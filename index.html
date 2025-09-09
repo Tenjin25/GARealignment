@@ -1,0 +1,647 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* Blue sidebar minimize button for county analysis (matches NC map) */
+.sidebar-header .minimize-btn {
+	color: #fff;
+	background: #2563eb;
+	border: none;
+	font-size: 32px;
+	width: 48px;
+	height: 48px;
+	border-radius: 8px;
+	box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+</style>
+	<script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+	<meta charset='utf-8'>
+	<title>GA Political Realignment Map (2008-2024)</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
+	<meta property="og:title" content="GA Political Realignment Map (2008-2024)">
+	<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2008 to 2024, showing county-level and precinct-level voting patterns.">
+	<meta property="og:image" content="preview.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
+	<link href='styles/style.css' rel='stylesheet'>
+<style>
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+#map {
+	width: 100vw;
+	height: 100vh;
+	min-height: 400px;
+}
+</style>
+</head>
+<body>
+	<!-- UI and controls copied from ultimate_nc_political_map_CLEAN.html, but all text and logic updated for Georgia -->
+	<div id="share-container-right" style="position: fixed; top: 20px; right: 440px; z-index: 1000;"></div>
+	<div id="share-container" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; gap: 8px;">
+		<a href="#" id="reddit-share-btn-top" class="share-button reddit" target="_blank">Share on Reddit</a>
+		<a href="#" id="linkedin-share-btn-top" class="share-button linkedin" target="_blank">Share on LinkedIn</a>
+	</div>
+	<button id="sidebar-float-toggle" style="position:fixed;top:20px;right:20px;z-index:10001;width:56px;height:56px;background:#2563eb;color:#fff;border:none;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;">+</button>
+	<div id="map" style="position:relative;width:100%;height:100%;">
+		<canvas id="swingCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1000;"></canvas>
+	</div>
+	<div class="main-controls" id="main-controls">
+		<div class="controls-header">
+			<h3>🗳️ GA Political Contests</h3>
+			<button class="minimize-btn" onclick="toggleMainControls()" id="controls-minimize-btn">−</button>
+		</div>
+		<div class="controls-content" id="controls-content">
+			<div class="control-group">
+				<label>🗺️ Map Style:</label>
+				<select id="map-style-switcher">
+					<option value="mapbox://styles/mapbox/light-v11">Light</option>
+					<option value="mapbox://styles/mapbox/dark-v11">Dark</option>
+					<option value="mapbox://styles/mapbox/satellite-streets-v12">Satellite</option>
+				</select>
+			</div>
+			<div class="control-group">
+				<label>🔗 Export / Share:</label>
+				<button id="export-image-btn" class="btn-secondary">Export as Image</button>
+				<button id="copy-link-btn" class="btn-secondary">Copy Link</button>
+				<a href="#" id="twitter-share-btn" class="share-button twitter" target="_blank">Share on Twitter</a>
+				<a href="#" id="reddit-share-btn" class="share-button reddit" target="_blank">Share on Reddit</a>
+				<a href="#" id="linkedin-share-btn" class="share-button linkedin" target="_blank">Share on LinkedIn</a>
+			</div>
+			<div class="analysis-mode">
+				<div class="mode-toggle active" id="county-mode" onclick="setMode('county')">County Results</div>
+				<div class="mode-toggle" id="precinct-mode" onclick="setMode('precinct')">Precinct Patterns</div>
+			</div>
+			<div class="control-group">
+				<label>📊 Contest Type:</label>
+				<select id="contest">
+					<option value="">Select a Contest...</option>
+                    <option value="presidential_2000">US President (2000)</option>
+                    <option value="presidential_2004">US President (2004)</option>
+					<option value="presidential_2008">US President (2008)</option>
+					<option value="presidential_2012">US President (2012)</option>
+					<option value="presidential_2016">US President (2016)</option>
+					<option value="presidential_2020">US President (2020)</option>
+					<option value="presidential_2024">US President (2024)</option>
+					<option value= "us_senate_2000">US Senate Special (2000)</option>
+                    <option value="us_senate_2004">US Senate (2004)</option>
+                    <option value="us_senate_2008">US Senate (2008)</option>
+					<option value="us_senate_2010">US Senate (2010)</option>
+					<option value="us_senate_2014">US Senate (2014)</option>
+					<option value="us_senate_2016">US Senate (2016)</option>
+					<option value="us_senate_2020">US Senate (2020)</option>
+                    <option value="us_senate_2021_warnock">US Senate Runoff (2021) - Warnock vs. Loeffler</option>
+                    <option value="us_senate_2021_ossoff">US Senate Runoff (2021) - Ossoff vs. Perdue</option>
+					<option value="us_senate_2022">US Senate (2022)</option>
+                    <option value="us_senate_2022_warnock">US Senate Runoff (2022) - Warnock vs. Walker</option>
+                    <option value ="governor_2002">GA Governor (2002)</option>
+                    <option value="governor_2006">GA Governor (2006)</option>
+					<option value="governor_2010">GA Governor (2010)</option>
+					<option value="governor_2014">GA Governor (2014)</option>
+					<option value="governor_2018">GA Governor (2018)</option>
+					<option value="governor_2022">GA Governor (2022)</option>
+                    <option value="secretary_of_state_2002">GA Secretary of State (2002)</option>
+                    <option value="secretary_of_state_2006">GA Secretary of State (2006)</option>
+					<option value="secretary_of_state_2010">GA Secretary of State (2010)</option>
+					<option value="secretary_of_state_2014">GA Secretary of State (2014)</option>
+					<option value="secretary_of_state_2018">GA Secretary of State (2018)</option>
+					<option value="secretary_of_state_2022">GA Secretary of State (2022)</option>
+                    <option value="attorney_general_2002">GA Attorney General (2002)</option>
+                    <option value="attorney_general_2006">GA Attorney General (2006)</option>
+					<option value="attorney_general_2010">GA Attorney General (2010)</option>
+					<option value="attorney_general_2014">GA Attorney General (2014)</option>
+					<option value="attorney_general_2018">GA Attorney General (2018)</option>
+					<option value="attorney_general_2022">GA Attorney General (2022)</option>
+                    <option value="lt_governor_2002">GA Lieutenant Governor (2002)</option>
+                    <option value="lt_governor_2006">GA Lieutenant Governor (2006)</option>
+					<option value="lt_governor_2010">GA Lieutenant Governor (2010)</option>
+					<option value="lt_governor_2014">GA Lieutenant Governor (2014)</option>
+					<option value="lt_governor_2018">GA Lieutenant Governor (2018)</option>
+					<option value="lt_governor_2022">GA Lieutenant Governor (2022)</option>
+                    <option value="agriculture_commissioner_2002">Agriculture Commissioner (2002)</option>
+                    <option value="agriculture_commissioner_2006">Agriculture Commissioner (2006)</option>
+					<option value="agriculture_commissioner_2010">Agriculture Commissioner (2010)</option>
+					<option value="agriculture_commissioner_2014">Agriculture Commissioner (2014)</option>
+					<option value="agriculture_commissioner_2018">Agriculture Commissioner (2018)</option>
+					<option value="agriculture_commissioner_2022">Agriculture Commissioner (2022)</option>
+					<option value="insurance_commissioner_2002">Insurance Commissioner (2002)</option>
+                    <option value="insurance_commissioner_2006">Insurance Commissioner (2006)</option>
+                    <option value="insurance_commissioner_2010">Insurance Commissioner (2010)</option>
+					<option value="insurance_commissioner_2014">Insurance Commissioner (2014)</option>
+					<option value="insurance_commissioner_2018">Insurance Commissioner (2018)</option>
+					<option value="insurance_commissioner_2022">Insurance Commissioner (2022)</option>
+					<option value="labor_commissioner_2002">Labor Commissioner (2002)</option>
+                    <option value="labor_commissioner_2006">Labor Commissioner (2006)</option>
+                    <option value="labor_commissioner_2010">Labor Commissioner (2010)</option>
+					<option value="labor_commissioner_2014">Labor Commissioner (2014)</option>
+					<option value="labor_commissioner_2018">Labor Commissioner (2018)</option>
+					<option value="labor_commissioner_2022">Labor Commissioner (2022)</option>
+                    <option value="state_school_superintendent_2002">State School Superintendent (2002)</option>
+                    <option value="state_school_superintendent_2006">State School Superintendent (2006)</option>
+					<option value="state_school_superintendent_2010">State School Superintendent (2010)</option>
+					<option value="state_school_superintendent_2014">State School Superintendent (2014)</option>
+					<option value="state_school_superintendent_2018">State School Superintendent (2018)</option>
+					<option value="state_school_superintendent_2022">State School Superintendent (2022)</option>
+				</select>
+			</div>
+			<button onclick="applyCategories()" class="btn-primary">🎨 Apply Political Categories</button>
+			<button onclick="resetView()" class="btn-secondary">🔄 Reset View</button>
+			<button onclick="toggleLabels()" class="btn-success">🏷️ Toggle County Labels</button>
+			<button onclick="togglePrecinctsLayer()" class="btn-warning">📍 Toggle Precincts</button>
+			<div class="control-group" style="margin-top: 15px;">
+				<label>🔍 Quick Analysis:</label>
+				<button onclick="showSwingCounties()" class="btn-secondary" style="font-size: 12px;"></button>
+			</div>
+			<div class="control-group">
+				<label>🔄 Compare Years (Swing Arrows):</label>
+				<select id="swing-year1"></select>
+				<select id="swing-year2"></select>
+				<button onclick="drawAllCountySwingArrows()" class="btn-secondary">Show Swing Arrows</button>
+				<button onclick="clearSwingArrows()" class="btn-secondary">Clear Arrows</button>
+			</div>
+<!-- ...existing HTML code... -->
+
+<script>
+// --- Reddit Share ---
+function getRedditShareUrl() {
+	const url = encodeURIComponent(window.location.href);
+	const title = encodeURIComponent('Check out this interactive Georgia political map!');
+	return `https://www.reddit.com/submit?url=${url}&title=${title}`;
+}
+document.getElementById('reddit-share-btn').addEventListener('click', function(e) {
+	e.preventDefault();
+	window.open(getRedditShareUrl(), '_blank');
+});
+document.getElementById('reddit-share-btn-top').addEventListener('click', function(e) {
+	e.preventDefault();
+	window.open(getRedditShareUrl(), '_blank');
+});
+
+// --- LinkedIn Share ---
+function getLinkedInShareUrl() {
+	const url = encodeURIComponent(window.location.href);
+	const title = encodeURIComponent('Check out this interactive Georgia political map!');
+	return `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`;
+}
+document.getElementById('linkedin-share-btn').addEventListener('click', function(e) {
+	e.preventDefault();
+	window.open(getLinkedInShareUrl(), '_blank');
+});
+
+	
+document.getElementById('linkedin-share-btn-top').addEventListener('click', function(e) {
+	e.preventDefault();
+	window.open(getLinkedInShareUrl(), '_blank');
+});
+// All JS logic is now in this single script block at the end of <body>
+// ...existing code for map, sidebar, controls, etc...
+
+
+// --- Swing Arrows Overlay Logic with Tooltip ---
+let swingCanvas = document.getElementById('swingCanvas');
+let swingCtx = swingCanvas.getContext('2d');
+let swingArrowsActive = false;
+let swingArrowHitboxes = [];
+
+// Tooltip div
+let swingTooltip = document.createElement('div');
+swingTooltip.style.position = 'fixed';
+swingTooltip.style.pointerEvents = 'none';
+swingTooltip.style.background = 'rgba(255,255,255,0.97)';
+swingTooltip.style.border = '1px solid #888';
+swingTooltip.style.borderRadius = '8px';
+swingTooltip.style.padding = '8px 12px';
+swingTooltip.style.fontSize = '14px';
+swingTooltip.style.boxShadow = '0 2px 8px rgba(0,0,0,0.12)';
+swingTooltip.style.display = 'none';
+document.body.appendChild(swingTooltip);
+
+// --- Mapbox initialization for Georgia ---
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbWFyZGF2aXMiLCJhIjoiY21kcW8yeDB2MDhvbTJzb29qeGp1aDZmZCJ9.Zw_i6U-dL7_bEKRHTUh7yg';
+const map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/light-v11',
+	center: [-83.5, 32.9],
+	zoom: 6.5
+});
+
+// Example: Load Georgia county GeoJSON (update path as needed)
+let countiesGeojson = null;
+let electionData = null;
+// Load Georgia county GeoJSON and election results JSON
+Promise.all([
+	fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
+	fetch('./data/ga_county_results.json')
+]).then(([geojson, results]) => {
+	countiesGeojson = geojson;
+	electionData = results;
+	// Attach election data to each county feature using the Label property
+	countiesGeojson.features.forEach(f => {
+		const key = f.properties.Label;
+		if (electionData[key]) {
+			f.properties.election = electionData[key];
+		}
+	});
+	map.addSource('counties', { type: 'geojson', data: countiesGeojson });
+	map.addLayer({
+		id: 'county-fill',
+		type: 'fill',
+		source: 'counties',
+		paint: {
+			'fill-color': '#888',
+			'fill-opacity': 0.3
+		}
+	});
+	// Add county outline layer for visible county borders (matches NC map style)
+	map.addLayer({
+		id: 'county-outline',
+		type: 'line',
+		source: 'counties',
+		paint: {
+			'line-color': '#222',
+			'line-width': 1
+		}
+	});
+	// Now that electionData is loaded, populate swing year dropdowns
+	tryPopulateSwingYearDropdowns();
+});
+
+// --- Export as Image ---
+document.getElementById('export-image-btn').addEventListener('click', function() {
+	map.getCanvas().toBlob(function(blob) {
+		const url = URL.createObjectURL(blob);
+		const a = document.createElement('a');
+		a.href = url;
+		a.download = 'georgia_map.png';
+		document.body.appendChild(a);
+		a.click();
+		setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+	});
+});
+
+// --- Copy Link ---
+document.getElementById('copy-link-btn').addEventListener('click', function() {
+	navigator.clipboard.writeText(window.location.href);
+	updateStatus('Link copied to clipboard!');
+});
+
+// --- Twitter Share ---
+document.getElementById('twitter-share-btn').addEventListener('click', function(e) {
+	e.preventDefault();
+	const url = encodeURIComponent(window.location.href);
+	const text = encodeURIComponent('Check out this interactive Georgia political map!');
+	const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+	window.open(shareUrl, '_blank');
+});
+
+function resizeSwingCanvas() {
+	swingCanvas.width = map.getContainer().offsetWidth;
+	swingCanvas.height = map.getContainer().offsetHeight;
+}
+window.addEventListener('resize', resizeSwingCanvas);
+map.on('resize', resizeSwingCanvas);
+resizeSwingCanvas();
+
+function populateSwingYearDropdowns() {
+	const yearSet = new Set();
+	if (!electionData) return;
+	Object.keys(electionData).forEach(k => {
+		const m = k.match(/(\d{4})/);
+		if (m) yearSet.add(m[1]);
+	});
+	const years = Array.from(yearSet).sort((a, b) => b - a);
+	const y1 = document.getElementById('swing-year1');
+	const y2 = document.getElementById('swing-year2');
+	if (!y1 || !y2) return;
+	y1.innerHTML = '';
+	y2.innerHTML = '';
+	years.forEach(yr => {
+		const opt1 = document.createElement('option');
+		opt1.value = yr;
+		opt1.textContent = yr;
+		y1.appendChild(opt1);
+		const opt2 = document.createElement('option');
+		opt2.value = yr;
+		opt2.textContent = yr;
+		y2.appendChild(opt2);
+	});
+	if (years.length > 1) {
+		y1.value = years[1];
+		y2.value = years[0];
+	}
+}
+
+map.on('move', function() {
+	if (swingArrowsActive) drawAllCountySwingArrows();
+});
+
+function drawAllCountySwingArrows() {
+	if (!countiesGeojson || !electionData) return;
+	const y1 = document.getElementById('swing-year1').value;
+	const y2 = document.getElementById('swing-year2').value;
+	if (!y1 || !y2 || y1 === y2) {
+		updateStatus('Select two different years');
+		return;
+	}
+	const k1 = Object.keys(electionData).find(k => k.includes('President') && k.includes(y1));
+	const k2 = Object.keys(electionData).find(k => k.includes('President') && k.includes(y2));
+	if (!k1 || !k2) {
+		updateStatus('President contest not found for both years');
+		return;
+	}
+	const results1 = electionData[k1];
+	const results2 = electionData[k2];
+	const map1 = {};
+	results1.forEach(r => { if (r.county) map1[r.county.toLowerCase()] = r; });
+	const map2 = {};
+	results2.forEach(r => { if (r.county) map2[r.county.toLowerCase()] = r; });
+	swingCtx.clearRect(0, 0, swingCanvas.width, swingCanvas.height);
+	swingArrowHitboxes = [];
+	countiesGeojson.features.forEach(f => {
+		const props = f.properties;
+		const keys = ['NAME', 'NAME10', 'County', 'COUNTY', 'COUNTY_NAM'];
+		let countyName = null;
+		for (const k of keys) { if (props[k]) { countyName = props[k]; break; } }
+		if (!countyName) return;
+		const c1 = map1[countyName.toLowerCase()];
+		const c2 = map2[countyName.toLowerCase()];
+		if (!c1 || !c2) return;
+		const d1 = c1.dem_votes || 0, r1 = c1.rep_votes || 0, t1 = d1 + r1;
+		const d2 = c2.dem_votes || 0, r2 = c2.rep_votes || 0, t2 = d2 + r2;
+		if (!t1 || !t2) return;
+		const demPct1 = d1 / t1 * 100, repPct1 = r1 / t1 * 100;
+		const demPct2 = d2 / t2 * 100, repPct2 = r2 / t2 * 100;
+		const margin1 = demPct1 - repPct1;
+		const margin2 = demPct2 - repPct2;
+		const swing = margin2 - margin1;
+		const color = swing > 0 ? '#3182bd' : '#cb181d';
+		const length = Math.min(60, Math.abs(swing) * 2.5);
+		const centroid = turf.centroid(f).geometry.coordinates;
+		const pixel = map.project(centroid);
+		// Draw arrow
+		swingCtx.save();
+		swingCtx.translate(pixel.x, pixel.y);
+		swingCtx.rotate(swing > 0 ? Math.PI : 0);
+		swingCtx.strokeStyle = color;
+		swingCtx.lineWidth = 4;
+		swingCtx.beginPath();
+		swingCtx.moveTo(0, 0);
+		swingCtx.lineTo(length, 0);
+		swingCtx.lineTo(length - 12, 8);
+		swingCtx.moveTo(length, 0);
+		swingCtx.lineTo(length - 12, -8);
+		swingCtx.stroke();
+		swingCtx.restore();
+		// Store hitbox for tooltip
+		swingArrowHitboxes.push({
+			x: pixel.x,
+			y: pixel.y,
+			length,
+			angle: swing > 0 ? Math.PI : 0,
+			countyName,
+			swing,
+			d1, r1, d2, r2,
+			y1, y2
+		});
+	});
+	swingArrowsActive = true;
+	updateStatus('Swing arrows drawn. Blue = Dem swing, Red = Rep swing.');
+}
+
+function clearSwingArrows() {
+	swingCtx.clearRect(0, 0, swingCanvas.width, swingCanvas.height);
+	swingArrowsActive = false;
+	swingTooltip.style.display = 'none';
+}
+
+// Tooltip logic for swing arrows
+swingCanvas.addEventListener('mousemove', function(e) {
+	if (!swingArrowsActive) { swingTooltip.style.display = 'none'; return; }
+	const rect = swingCanvas.getBoundingClientRect();
+	const mx = e.clientX - rect.left;
+	const my = e.clientY - rect.top;
+	let found = null;
+	for (const arrow of swingArrowHitboxes) {
+		// Simple hitbox: 12px wide, length long, centered at (x, y) and rotated
+		const dx = mx - arrow.x;
+		const dy = my - arrow.y;
+		// Rotate point by -angle
+		const rx = Math.cos(-arrow.angle) * dx - Math.sin(-arrow.angle) * dy;
+		const ry = Math.sin(-arrow.angle) * dx + Math.cos(-arrow.angle) * dy;
+		if (rx >= 0 && rx <= arrow.length && Math.abs(ry) < 10) {
+			found = arrow;
+			break;
+		}
+	}
+	if (found) {
+		swingTooltip.style.display = 'block';
+		swingTooltip.style.left = (e.clientX + 16) + 'px';
+		swingTooltip.style.top = (e.clientY + 8) + 'px';
+		swingTooltip.innerHTML = `<b>${found.countyName} County</b><br>
+		<b>Swing:</b> ${found.swing.toFixed(2)} pts (${found.y1}→${found.y2})<br>
+		<b>${found.y1}:</b> D ${found.d1.toLocaleString()} / R ${found.r1.toLocaleString()}<br>
+		<b>${found.y2}:</b> D ${found.d2.toLocaleString()} / R ${found.r2.toLocaleString()}`;
+	} else {
+		swingTooltip.style.display = 'none';
+	}
+});
+
+swingCanvas.addEventListener('mouseleave', function() {
+	swingTooltip.style.display = 'none';
+});
+
+function tryPopulateSwingYearDropdowns() {
+	if (electionData) populateSwingYearDropdowns();
+	else setTimeout(tryPopulateSwingYearDropdowns, 300);
+}
+tryPopulateSwingYearDropdowns();
+</script>
+		</div>
+	</div>
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-header" id="sidebar-header">
+			<h3>📊 County Analysis</h3>
+			<button class="minimize-btn" onclick="toggleSidebar()" id="sidebar-minimize-btn">−</button>
+		</div>
+		<div class="sidebar-content">
+			<!-- County Details Sidebar: moved above statewide margin -->
+			<div class="county-details" id="county-details" style="display: none;">
+				<h4 id="county-name">Select a County</h4>
+				<div id="county-info-content">
+					Click on any county to see detailed election results and competitiveness analysis.
+				</div>
+			</div>
+			<div style="margin-bottom: 16px;">
+				<label for="county-search" style="font-weight:600;">Search County:</label>
+				<input type="text" id="county-search" placeholder="Type to search..." style="width:100%;padding:8px;border-radius:6px;margin-top:6px;margin-bottom:6px;" />
+			</div>
+			<div class="statewide-results" id="statewide-results">
+				<h4>🏛️ Georgia Statewide</h4>
+				<div id="statewide-content">
+					<p>Select a contest to see statewide results and margin.</p>
+				</div>
+			</div>
+			<!-- Research Findings -->
+			<div class="findings-section">
+				<h4>🔍 Research Findings</h4>
+				<div class="finding-card"></div>
+				<div class="finding-card"></div>
+				<div class="finding-card"></div>
+			</div>
+		</div>
+		<div style="padding: 16px 0; text-align: center; color: #888; font-size: 15px; border-top: 1px solid #e5e7eb; background: #f9fafb;">
+			Created by Shamar Davis
+		</div>
+		<div class="status-panel" id="status" style="display:none;">
+			<button id="status-exit" title="Close" style="position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:6px;border:none;background:#eee;cursor:pointer;font-weight:bold;font-size:18px;">×</button>
+			<strong>Status:</strong> Loading map and data...
+		</div>
+	</div>
+	<div class="legend" id="legend">
+		<div class="legend-header">
+			<h4>Political Categories</h4>
+			<button class="minimize-btn" onclick="toggleLegend()" id="legend-minimize-btn">−</button>
+		</div>
+		<div class="legend-content" id="legend-content">
+			<div class="legend-item"><div class="legend-color" style="background: #67000d;"></div>Annihilation Republican (40%+)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #a50f15;"></div>Dominant Republican (30-40%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #cb181d;"></div>Stronghold Republican (20-30%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #ef3b2c;"></div>Safe Republican (10-20%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #fb6a4a;"></div>Likely Republican (5.5-10%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #fcae91;"></div>Lean Republican (1-5.5%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #fee8c8;"></div>Tilt Republican (0.5-1%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #f7f7f7; border: 1px solid #999;"></div>Tossup (±0.5%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #e1f5fe;"></div>Tilt Democratic (0.5-1%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #c6dbef;"></div>Lean Democratic (1-5.5%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #9ecae1;"></div>Likely Democratic (5.5-10%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #6baed6;"></div>Safe Democratic (10-20%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #3182bd;"></div>Stronghold Democratic (20-30%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #08519c;"></div>Dominant Democratic (30-40%)</div>
+			<div class="legend-item"><div class="legend-color" style="background: #08306b;"></div>Annihilation Democratic (40%+)</div>
+		</div>
+	</div>
+	<script>
+	// --- County Search Bar and Zoom Logic ---
+	function zoomToCounty(countyName) {
+		if (!countiesGeojson || !countiesGeojson.features) {
+			alert('County data not loaded');
+			return;
+		}
+		// Try to match by common property names (GA: NAME, NAME10, County, etc.)
+		const feature = countiesGeojson.features.find(f => {
+			const props = f.properties;
+			if (!props) return false;
+			// Try several property keys for county name
+			const keys = ['NAME', 'NAME10', 'County', 'COUNTY', 'COUNTY_NAM'];
+			return keys.some(k => props[k] && props[k].toString().toLowerCase() === countyName.toLowerCase());
+		});
+		if (!feature) {
+			alert(`County "${countyName}" not found`);
+			return;
+		}
+		const bbox = turf.bbox(feature);
+		map.fitBounds(bbox, { padding: 40, maxZoom: 10 });
+		// Optionally, show county details here
+	}
+
+	// Enable county search bar functionality
+	document.addEventListener('DOMContentLoaded', function() {
+		const searchInput = document.getElementById('county-search');
+		if (searchInput) {
+			searchInput.addEventListener('keydown', function(e) {
+				if (e.key === 'Enter') {
+					const val = searchInput.value.trim();
+					if (val) zoomToCounty(val);
+				}
+			});
+		}
+	});
+
+	// --- Sidebar/Main Controls Toggle Logic ---
+	// Toggle sidebar minimize/expand (header +/- and floating button)
+	function toggleSidebar() {
+		const sidebar = document.getElementById('sidebar');
+		const btn = document.getElementById('sidebar-minimize-btn');
+		const floatBtn = document.getElementById('sidebar-float-toggle');
+		if (sidebar.classList.contains('minimized')) {
+			sidebar.classList.remove('minimized');
+			btn.textContent = '−';
+			if (floatBtn) {
+				floatBtn.textContent = '−';
+				floatBtn.style.display = 'none'; // Hide floating button when sidebar is open
+			}
+		} else {
+			sidebar.classList.add('minimized');
+			btn.textContent = '+';
+			if (floatBtn) {
+				floatBtn.textContent = '+';
+				floatBtn.style.display = 'flex'; // Show floating button when sidebar is minimized
+			}
+		}
+	}
+
+	document.addEventListener('DOMContentLoaded', function() {
+		const floatBtn = document.getElementById('sidebar-float-toggle');
+		if (floatBtn) floatBtn.addEventListener('click', toggleSidebar);
+		// On load, set sidebar to minimized and button to +
+		const sidebar = document.getElementById('sidebar');
+		const btn = document.getElementById('sidebar-minimize-btn');
+		if (sidebar && btn) {
+			sidebar.classList.add('minimized');
+			btn.textContent = '+';
+			if (floatBtn) floatBtn.style.display = 'flex';
+		}
+	});
+
+	function toggleMainControls() {
+		const controls = document.getElementById('main-controls');
+		const btn = document.getElementById('controls-minimize-btn');
+		if (controls.classList.contains('minimized')) {
+			controls.classList.remove('minimized');
+			btn.textContent = '−';
+		} else {
+			controls.classList.add('minimized');
+			btn.textContent = '+';
+		}
+	}
+
+	function toggleLegend() {
+		const legend = document.getElementById('legend');
+		const btn = document.getElementById('legend-minimize-btn');
+		if (legend.classList.contains('minimized')) {
+			legend.classList.remove('minimized');
+			btn.textContent = '−';
+		} else {
+			legend.classList.add('minimized');
+			btn.textContent = '+';
+		}
+	}
+
+	// --- Status Panel Update Function ---
+	function updateStatus(message) {
+		const statusPanel = document.getElementById('status');
+		if (statusPanel) {
+			statusPanel.style.display = 'block';
+			statusPanel.innerHTML = `<button id="status-exit" title="Close" style="position:absolute;top:10px;right:10px;padding:4px 10px;border-radius:6px;border:none;background:#eee;cursor:pointer;font-weight:bold;font-size:18px;">×</button><strong>Status:</strong> ${message}`;
+			const exitBtn = document.getElementById('status-exit');
+			if (exitBtn) exitBtn.onclick = () => { statusPanel.style.display = 'none'; };
+		}
+		console.log(message);
+	}
+
+	// ...existing code...
+
+	// --- Apply Political Categories Button ---
+	function applyCategories() {
+		updateStatus('Apply Political Categories: This feature is not yet implemented.');
+	}
+	</script>
+</body>
+</html>
