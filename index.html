@@ -1,3 +1,4 @@
+<!-- ...existing code... -->
 
 <!DOCTYPE html>
 <html>
@@ -638,9 +639,118 @@ tryPopulateSwingYearDropdowns();
 
 	// ...existing code...
 
+	// --- Reset View ---
+	function resetView() {
+		// Reset map center and zoom
+		map.flyTo({ center: [-83.5, 32.9], zoom: 6.5 });
+		// Reset county fill color and opacity to default
+		if (map.getLayer('county-fill')) {
+			map.setPaintProperty('county-fill', 'fill-color', '#888');
+			map.setPaintProperty('county-fill', 'fill-opacity', 0.3);
+		}
+		updateStatus('View reset to default.');
+	}
+
+	// --- Toggle County Labels ---
+	let countyLabelsVisible = false;
+	function toggleLabels() {
+		if (!map.getSource('counties')) {
+			updateStatus('County data not loaded.');
+			return;
+		}
+		if (!map.getLayer('county-label')) {
+			map.addLayer({
+				id: 'county-label',
+				type: 'symbol',
+				source: 'counties',
+				layout: {
+					'text-field': ['get', 'Label'],
+					'text-font': ['Open Sans Bold', 'Arial Unicode MS Bold'],
+					'text-size': 14,
+					'text-offset': [0, 0.7],
+					'text-anchor': 'top',
+					'visibility': 'visible'
+				},
+				paint: {
+					'text-color': '#222',
+					'text-halo-color': '#fff',
+					'text-halo-width': 2
+				}
+			});
+			countyLabelsVisible = true;
+			updateStatus('County labels shown.');
+			return;
+		}
+		countyLabelsVisible = !countyLabelsVisible;
+		map.setLayoutProperty('county-label', 'visibility', countyLabelsVisible ? 'visible' : 'none');
+		updateStatus(countyLabelsVisible ? 'County labels shown.' : 'County labels hidden.');
+	}
+
 	// --- Apply Political Categories Button ---
 	function applyCategories() {
-		updateStatus('Apply Political Categories: This feature is not yet implemented.');
+		if (!countiesGeojson || !electionData) {
+			updateStatus('Data not loaded.');
+			return;
+		}
+		const contest = document.getElementById('contest').value;
+		if (!contest) {
+			updateStatus('Select a contest first.');
+			return;
+		}
+		// Find the contest key in electionData (case-insensitive, allow partial match)
+		let contestKey = Object.keys(electionData).find(k => k.toLowerCase() === contest.toLowerCase() || k.toLowerCase().includes(contest.toLowerCase()));
+		if (!contestKey) {
+			updateStatus('Contest not found in data.');
+			return;
+		}
+		const results = electionData[contestKey];
+		// Build a county margin map: { countyName: margin }
+		const marginMap = {};
+		results.forEach(r => {
+			const name = (r.county || r.County || r.COUNTY || '').toLowerCase();
+			const d = r.dem_votes || r.Democratic || r.dem || 0;
+			const rep = r.rep_votes || r.Republican || r.rep || 0;
+			const total = d + rep;
+			if (!name || !total) return;
+			const margin = total ? ((d - rep) / total) * 100 : 0; // Dem minus Rep, percent
+			marginMap[name] = margin;
+		});
+		// Legend color bins (from legend in HTML)
+		function getCategoryColor(margin) {
+			if (margin <= -40) return '#67000d'; // Annihilation R
+			if (margin <= -30) return '#a50f15'; // Dominant R
+			if (margin <= -20) return '#cb181d'; // Stronghold R
+			if (margin <= -10) return '#ef3b2c'; // Safe R
+			if (margin <= -5.5) return '#fb6a4a'; // Likely R
+			if (margin <= -1) return '#fcae91'; // Lean R
+			if (margin <= -0.5) return '#fee8c8'; // Tilt R
+			if (margin > -0.5 && margin < 0.5) return '#f7f7f7'; // Tossup
+			if (margin < 1) return '#e1f5fe'; // Tilt D
+			if (margin < 5.5) return '#c6dbef'; // Lean D
+			if (margin < 10) return '#9ecae1'; // Likely D
+			if (margin < 20) return '#6baed6'; // Safe D
+			if (margin < 30) return '#3182bd'; // Stronghold D
+			if (margin < 40) return '#08519c'; // Dominant D
+			return '#08306b'; // Annihilation D
+		}
+		// Build a match expression for Mapbox
+		const matchExpr = ['match', ['downcase', ['get', 'Label']]];
+		countiesGeojson.features.forEach(f => {
+			const label = (f.properties.Label || f.properties.NAME || f.properties.County || '').toLowerCase();
+			const margin = marginMap[label];
+			if (typeof margin === 'number') {
+				matchExpr.push(label, getCategoryColor(margin));
+			}
+		});
+		matchExpr.push('#888'); // default color
+		// Update the county-fill layer
+		if (map.getLayer('county-fill')) {
+			map.setPaintProperty('county-fill', 'fill-color', matchExpr);
+			map.setPaintProperty('county-fill', 'fill-opacity', 0.85);
+			updateStatus('Political categories applied for ' + contestKey + '.');
+		} else {
+			updateStatus('County layer not found.');
+		}
 	}
 	</script>
 </body>
