@@ -789,7 +789,141 @@ tryPopulateSwingYearDropdowns();
 		}
 		const bbox = turf.bbox(feature);
 		map.fitBounds(bbox, { padding: 40, maxZoom: 10 });
-		// Optionally, show county details here
+		// Also open sidebar and show county details (same as map click)
+		// Extract county name as in map click logic
+		let props = feature.properties;
+		let countyLabel = props.Label || props.NAME || props.County || '';
+		function toTitleCase(str) {
+			return str.toLowerCase().replace(/\b\w+/g, function(txt){
+				return txt.charAt(0).toUpperCase() + txt.substr(1);
+			});
+		}
+		if (countyLabel === countyLabel.toUpperCase()) {
+			countyLabel = toTitleCase(countyLabel);
+		}
+		openSidebar();
+		document.getElementById('county-details').style.display = 'block';
+		document.getElementById('county-name').textContent = countyLabel + ' County';
+		// Try to show more details from electionData if available
+		let infoHtml = '';
+		let foundElection = props.election;
+		const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+		let selectedYear = '', selectedContest = '';
+		if (contestVal && contestVal.includes('|')) {
+			[selectedYear, selectedContest] = contestVal.split('|');
+		}
+		if (!foundElection && electionData && electionData.results_by_year && selectedYear && selectedContest) {
+			const key = countyLabel.trim().toLowerCase();
+			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
+			if (contestObj && contestObj.results) {
+				for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
+					if (countyKey.trim().toLowerCase() === key) {
+						foundElection = { year: selectedYear, contest: selectedContest, ...countyResult };
+						break;
+					}
+				}
+			}
+		}
+		if (foundElection && !Array.isArray(foundElection)) {
+			const r = foundElection;
+			let winnerParty = (r.winner || '').toUpperCase();
+			let winnerName = '';
+			let winnerColor = '#222';
+			let winnerAbbr = '';
+			if (winnerParty === 'DEM' || winnerParty === 'D' || winnerParty === 'DEMOCRAT' || winnerParty === 'DEMOCRATIC') {
+				winnerName = (r.dem_candidate || 'Dem');
+				winnerColor = '#2563eb';
+				winnerAbbr = 'D';
+			} else if (winnerParty === 'REP' || winnerParty === 'R' || winnerParty === 'REPUBLICAN') {
+				winnerName = (r.rep_candidate || 'Rep');
+				winnerColor = '#cb181d';
+				winnerAbbr = 'R';
+			} else {
+				winnerName = r.winner || '';
+				winnerAbbr = winnerParty.length <= 3 ? winnerParty : '';
+			}
+			let margin = r.margin_pct !== undefined ? r.margin_pct : r.margin;
+			let marginStr = '';
+			let marginColor = '#cb181d';
+			if (typeof margin === 'number') {
+				let prefix = '';
+				if (winnerAbbr === 'D') {
+					prefix = 'D+';
+					marginColor = '#2563eb';
+				} else if (winnerAbbr === 'R') {
+					prefix = 'R+';
+					marginColor = '#cb181d';
+				} else {
+					prefix = (margin > 0 ? 'D+' : 'R+');
+					marginColor = (margin > 0 ? '#2563eb' : '#cb181d');
+				}
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(margin).toFixed(2)}%</span>`;
+			}
+			let demPct = r.dem_votes && r.total_votes ? (r.dem_votes / r.total_votes * 100) : 0;
+			let repPct = r.rep_votes && r.total_votes ? (r.rep_votes / r.total_votes * 100) : 0;
+			let demVotes = r.dem_votes ? Math.abs(Number(r.dem_votes)).toLocaleString() : 0;
+			let repVotes = r.rep_votes ? Math.abs(Number(r.rep_votes)).toLocaleString() : 0;
+			let otherVotes = r.other_votes ? Math.abs(Number(r.other_votes)).toLocaleString() : 0;
+			let totalVotes = r.total_votes ? Number(r.total_votes).toLocaleString() : '';
+			let precincts = r.precincts || r.Precincts || '';
+			infoHtml += `<div style='margin-bottom:18px;'>`;
+			infoHtml += `<div style='font-size:18px;font-weight:600;margin-bottom:6px;'>📊 Election Results</div>`;
+			if (totalVotes) {
+				infoHtml += `<b>Total Votes:</b> ${totalVotes}<br>`;
+			}
+			infoHtml += `<hr style='margin:10px 0;'>`;
+			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🏆 Winner</div>`;
+			infoHtml += `<span style='color:${winnerColor};font-size:18px;font-weight:bold;'>${winnerName}${winnerAbbr ? ' (' + winnerAbbr + ')' : ''}</span><br>`;
+			infoHtml += `<hr style='margin:10px 0;'>`;
+			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>📈 Margin</div>`;
+			infoHtml += `${marginStr}<br>`;
+			if (r.margin && r.margin !== r.margin_pct) {
+				infoHtml += `<span style='color:#888;'>(${Math.abs(Number(r.margin)).toLocaleString()} vote margin)</span><br>`;
+			}
+			infoHtml += `<hr style='margin:10px 0;'>`;
+			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🗳️ Vote Breakdown</div>`;
+			let demName = r.dem_candidate ? r.dem_candidate.replace(/\bDemocrat(ic)?\b/i, '').trim() : 'Dem';
+			let repName = r.rep_candidate ? r.rep_candidate.replace(/\bRepublican\b/i, '').trim() : 'Rep';
+			infoHtml += `<span style='color:#2563eb;font-weight:bold;'>${demName} (D)</span> : <span style='font-weight:bold;'>${demPct ? demPct.toFixed(2) : '0.00'}%</span> (${demVotes})<br>`;
+			infoHtml += `<span style='color:#cb181d;font-weight:bold;'>${repName} (R)</span> : <span style='font-weight:bold;'>${repPct ? repPct.toFixed(2) : '0.00'}%</span> (${repVotes})<br>`;
+			if (r.other_votes) {
+				infoHtml += `<span style='color:#555;font-weight:bold;'>Other</span> : ${otherVotes} <br>`;
+			}
+			infoHtml += `<hr style='margin:10px 0;'>`;
+			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
+			let cat = r.category || r.competitiveness || '';
+			function getCompetitivenessColor(cat) {
+				if (!cat) return '#222';
+				const c = cat.toLowerCase();
+				if (c.includes('annihilation republican')) return '#67000d';
+				if (c.includes('dominant republican')) return '#a50f15';
+				if (c.includes('stronghold republican')) return '#cb181d';
+				if (c.includes('safe republican')) return '#ef3b2c';
+				if (c.includes('likely republican')) return '#fb6a4a';
+				if (c.includes('lean republican')) return '#fcae91';
+				if (c.includes('tilt republican')) return '#fee8c8';
+				if (c.includes('tossup')) return '#f7f7f7';
+				if (c.includes('tilt democratic')) return '#e1f5fe';
+				if (c.includes('lean democratic')) return '#c6dbef';
+				if (c.includes('likely democratic')) return '#9ecae1';
+				if (c.includes('safe democratic')) return '#6baed6';
+				if (c.includes('stronghold democratic')) return '#3182bd';
+				if (c.includes('dominant democratic')) return '#08519c';
+				if (c.includes('annihilation democratic')) return '#08306b';
+				return '#222';
+			}
+			let catColor = getCompetitivenessColor(cat);
+			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
+			infoHtml += `</div>`;
+		} else if (foundElection) {
+			infoHtml += '<b>Election Data:</b><br>';
+			for (const [k, v] of Object.entries(foundElection)) {
+				infoHtml += k + ': ' + v + '<br>';
+			}
+		} else {
+			infoHtml = 'No election data found for this county.';
+		}
+		document.getElementById('county-info-content').innerHTML = infoHtml;
 	}
 
 	// Enable county search bar functionality
