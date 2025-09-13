@@ -431,9 +431,22 @@ function updateStatewideResults() {
 		winnerColor = '#888';
 	}
 	const marginVotes = Math.abs(demVotes - repVotes);
-	const marginPct = totalVotes ? Math.abs((demVotes - repVotes) / totalVotes * 100) : 0;
-	let marginPrefix = demVotes > repVotes ? 'D+' : (repVotes > demVotes ? 'R+' : '');
-	let marginColor = demVotes > repVotes ? '#2563eb' : (repVotes > demVotes ? '#cb181d' : '#888');
+	let marginPrefix = '';
+	let marginColor = '#888';
+	let marginPct = 0;
+	if (demVotes > repVotes) {
+		marginPrefix = 'D+';
+		marginColor = '#2563eb';
+		marginPct = totalVotes ? ((demVotes - repVotes) / totalVotes * 100) : 0;
+	} else if (repVotes > demVotes) {
+		marginPrefix = 'R+';
+		marginColor = '#cb181d';
+		marginPct = totalVotes ? ((repVotes - demVotes) / totalVotes * 100) : 0;
+	} else {
+		marginPrefix = '';
+		marginColor = '#888';
+		marginPct = 0;
+	}
 	// Competitiveness category (use same bins as legend)
 	function getCompetitivenessCategory(margin) {
 		if (margin <= -40) return 'Annihilation Republican (40%+)';
