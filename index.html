@@ -620,6 +620,12 @@ function populateContestDropdown() {
 	contestSelect.appendChild(fragment);
 	// Add event listener to update statewide results on change
 	contestSelect.onchange = updateStatewideResults;
+	// Also trigger on Enter key
+	contestSelect.addEventListener('keydown', function(e) {
+		if (e.key === 'Enter') {
+			updateStatewideResults();
+		}
+	});
 }
 
 map.on('move', function() {

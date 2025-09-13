@@ -189,10 +189,21 @@ function setMode(mode) {
     
     if (mode === 'county') {
         updateStatus(`Switched to County Results mode - shows actual county winners`);
+        // Show county labels if not already visible
+        if (typeof window.countyLabelsVisible === 'undefined' || !window.countyLabelsVisible) {
+            if (typeof window.toggleLabels === 'function') {
+                window.toggleLabels();
+            }
+        }
     } else {
         updateStatus(`Switched to Precinct Patterns mode - shows dominant precinct categories`);
+        // Optionally hide county labels when leaving county mode (optional, comment out if not desired)
+        // if (window.countyLabelsVisible) {
+        //     if (typeof window.toggleLabels === 'function') {
+        //         window.toggleLabels();
+        //     }
+        // }
     }
-    
     if (currentElectionResults) {
         console.log('Reapplying categories after mode change');
         const contest = document.getElementById('contest').value;
