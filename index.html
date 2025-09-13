@@ -2,6 +2,63 @@
 <html>
 <head>
 <style>
+/* County Analysis Font Consistency (matches NC map) */
+.county-details,
+.county-details h4,
+.county-details h5,
+.county-details p {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+.county-details {
+	font-size: 16px;
+}
+.county-details h4 {
+	font-size: 18px;
+	font-weight: 600;
+	color: #1e293b;
+	margin: 0 0 15px 0;
+}
+.county-details h5 {
+	font-size: 15px;
+	font-weight: 600;
+	color: #374151;
+	margin: 0 0 8px 0;
+}
+.county-details p {
+	font-size: 15px;
+	color: #374151;
+	margin: 4px 0;
+}
+/* Research Findings Font Consistency (matches county analysis) */
+.findings-section,
+.finding-card,
+.finding-card h5,
+.finding-card p,
+.finding-card .metric {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+.finding-card {
+	font-size: 15px;
+}
+.finding-card h5 {
+	font-size: 16px;
+	font-weight: 600;
+	color: #1e293b;
+}
+.finding-card p {
+	font-size: 15px;
+	color: #374151;
+}
+.finding-card .metric {
+	font-size: 15px;
+	font-weight: 600;
+	color: #1d4ed8;
+	background: #eff6ff;
+	border-radius: 4px;
+	padding: 4px 10px;
+	display: inline-block;
+	margin: 2px;
+}
 /* Blue sidebar minimize button for county analysis (matches NC map) */
 .sidebar-header .minimize-btn {
 	color: #fff;
@@ -734,10 +791,42 @@ tryPopulateSwingYearDropdowns();
 			</div>
 			<!-- Research Findings -->
 			<div class="findings-section">
-				<h4>🔍 Research Findings</h4>
-				<div class="finding-card"></div>
-				<div class="finding-card"></div>
-				<div class="finding-card"></div>
+					<h4>🔍 Research Findings</h4>
+					<div class="finding-card">
+						<h5>Henry County – Suburban Surge</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+19.60</span> → <span class="metric">2024: D+12.40</span></p>
+						<p><strong>Demographic Shift:</strong> Once reliably Republican, now a Democratic stronghold due to rapid suburban growth and increasing racial diversity.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Newton County – Diversifying Electorate</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+22.20</span> → <span class="metric">2024: D+12.40</span></p>
+						<p><strong>Demographic Shift:</strong> Suburban Atlanta county with significant growth in Black and Hispanic populations, shifting from Republican to Democratic in recent cycles.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Cobb County – Urban Professional Influx</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+34.20</span> → <span class="metric">2024: D+18.70</span></p>
+						<p><strong>Demographic Shift:</strong> Historically a GOP bastion, now solidly Democratic. Driven by an influx of younger, more diverse residents and urban professionals.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Douglas County – Black Middle Class Growth</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+18.20</span> → <span class="metric">2024: D+8.20</span></p>
+						<p><strong>Demographic Shift:</strong> Suburban county west of Atlanta, with a growing Black middle class and increasing Democratic margins.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Gwinnett County – Diversity Engine</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+33.20</span> → <span class="metric">2024: D+20.10</span></p>
+						<p><strong>Demographic Shift:</strong> One of the most diverse counties in the Southeast. Shifted from Republican to Democratic as Asian, Black, and Hispanic populations have surged.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Jackson County (I-85 corridor) – Exurban Watch</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+54.20</span> → <span class="metric">2024: R+48.20</span></p>
+						<p><strong>Demographic Shift:</strong> Remains strongly Republican, but is experiencing rapid population growth as Atlanta’s exurbs expand. A county to watch for future demographic and political shifts.</p>
+					</div>
+					<div class="finding-card">
+						<h5>Fayette County – On the Cusp</h5>
+						<p><strong>Competitive Trend:</strong> <span class="metric">2000: R+44.20</span> → <span class="metric">2024: R+12.20</span></p>
+						<p><strong>Demographic Shift:</strong> Traditionally Republican, but demographic change and proximity to Atlanta make it a likely candidate to flip Democratic in the near future. Georgia as a whole is now about 33% Black, accelerating these trends.</p>
+					</div>
 			</div>
 		</div>
 		<div style="padding: 16px 0; text-align: center; color: #888; font-size: 15px; border-top: 1px solid #e5e7eb; background: #f9fafb;">
