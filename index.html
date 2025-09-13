@@ -355,6 +355,27 @@ body {
 
 <script>
 // --- Statewide Results Panel Logic ---
+
+// Show county labels by default on map load
+document.addEventListener('DOMContentLoaded', function() {
+	if (typeof window.countyLabelsVisible === 'undefined' || !window.countyLabelsVisible) {
+		if (typeof window.toggleLabels === 'function') {
+			window.toggleLabels();
+		}
+	}
+});
+
+// Add Enter key event to contest dropdown
+document.addEventListener('DOMContentLoaded', function() {
+	var contestDropdown = document.getElementById('contest');
+	if (contestDropdown) {
+		contestDropdown.addEventListener('keydown', function(e) {
+			if (e.key === 'Enter') {
+				applyCategories();
+			}
+		});
+	}
+});
 function updateStatewideResults() {
 	const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
 	const statewideContent = document.getElementById('statewide-content');
