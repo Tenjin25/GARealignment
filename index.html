@@ -2,14 +2,14 @@
 <html>
 <head>
 <style>
-/* County Analysis Font Consistency (matches NC map) */
-.county-details,
-.county-details h4,
-.county-details h5,
-.county-details p {
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-}
+/* County Analysis Block: Match NC Map */
 .county-details {
+	background: #f8fafc;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+	padding: 20px;
+	margin-bottom: 30px;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 	font-size: 16px;
 }
 .county-details h4 {
@@ -17,17 +17,20 @@
 	font-weight: 600;
 	color: #1e293b;
 	margin: 0 0 15px 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 .county-details h5 {
 	font-size: 15px;
 	font-weight: 600;
 	color: #374151;
 	margin: 0 0 8px 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 .county-details p {
 	font-size: 15px;
 	color: #374151;
 	margin: 4px 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
 }
 /* Research Findings Font Consistency (matches county analysis) */
 .findings-section,
@@ -445,10 +448,13 @@ function getRedditShareUrl() {
 	return `https://www.reddit.com/submit?url=${url}&title=${title}`;
 }
 // Removed: document.getElementById('reddit-share-btn').addEventListener(...) (element does not exist)
-document.getElementById('reddit-share-btn-top').addEventListener('click', function(e) {
-	e.preventDefault();
-	window.open(getRedditShareUrl(), '_blank');
-});
+var redditBtn = document.getElementById('reddit-share-btn-top');
+if (redditBtn) {
+    redditBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(getRedditShareUrl(), '_blank');
+    });
+}
 
 // --- LinkedIn Share ---
 function getLinkedInShareUrl() {
@@ -457,12 +463,13 @@ function getLinkedInShareUrl() {
 	return `https://www.linkedin.com/sharing/share-offsite/?url=${url}&title=${title}`;
 }
 // Removed: document.getElementById('linkedin-share-btn').addEventListener(...) (element does not exist)
-
-	
-document.getElementById('linkedin-share-btn-top').addEventListener('click', function(e) {
-	e.preventDefault();
-	window.open(getLinkedInShareUrl(), '_blank');
-});
+var linkedinBtn = document.getElementById('linkedin-share-btn-top');
+if (linkedinBtn) {
+    linkedinBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.open(getLinkedInShareUrl(), '_blank');
+    });
+}
 // All JS logic is now in this single script block at the end of <body>
 // ...existing code for map, sidebar, controls, etc...
 
