@@ -529,7 +529,7 @@ let electionData = null;
 // Load Georgia county GeoJSON and election results JSON
 Promise.all([
 	fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
-	fetch('./data/ga_county_results_trimmed.updated.json').then(r => r.json())
+	fetch('./data/ga_county_results_trimmed.merged.json').then(r => r.json())
 ]).then(([geojson, results]) => {
 	countiesGeojson = geojson;
 	electionData = results;

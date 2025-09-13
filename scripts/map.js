@@ -118,8 +118,49 @@ function toggleLegend() {
 
 // Calculate and display statewide results
 function updateStatewideResults(results, contest, year) {
-    let demTotal = 0, repTotal = 0, totalVotes = 0;
-    
+    // Use statewide total if present (empty string key)
+    let statewide = results[""];
+    let demTotal, repTotal, totalVotes, demPercent, repPercent, margin, winner, winnerPercent, loserPercent, category, marginText;
+    if (statewide && statewide.dem_votes !== undefined && statewide.rep_votes !== undefined) {
+        demTotal = statewide.dem_votes;
+        repTotal = statewide.rep_votes;
+        totalVotes = demTotal + repTotal;
+        demPercent = (demTotal / totalVotes * 100);
+        repPercent = (repTotal / totalVotes * 100);
+        margin = Math.abs(demPercent - repPercent);
+        winner = demPercent > repPercent ? 'Democratic' : 'Republican';
+        winnerPercent = Math.max(demPercent, repPercent);
+        loserPercent = Math.min(demPercent, repPercent);
+        // Use category from statewide if present, else compute
+        category = statewide.category || (margin >= 40 ? `Annihilation ${winner}` :
+            margin >= 30 ? `Dominant ${winner}` :
+            margin >= 20 ? `Stronghold ${winner}` :
+            margin >= 10 ? `Safe ${winner}` :
+            margin >= 5.5 ? `Likely ${winner}` :
+            margin >= 1 ? `Lean ${winner}` :
+            margin >= 0.5 ? `Tilt ${winner}` : 'Tossup');
+        if (demPercent > repPercent) {
+            marginText = `D+${margin.toFixed(1)}%`;
+        } else if (repPercent > demPercent) {
+            marginText = `R+${margin.toFixed(1)}%`;
+        } else {
+            marginText = `Tied`;
+        }
+        document.getElementById('statewide-content').innerHTML = `
+            <div class="statewide-margin">
+                <div class="margin-text" style="color: ${winner === 'Democratic' ? '#1e40af' : '#dc2626'}">${marginText}</div>
+                <div class="margin-details">
+                    ${winnerPercent.toFixed(1)}% vs ${loserPercent.toFixed(1)}% • ${category}
+                </div>
+                <div class="margin-details">
+                    ${demTotal.toLocaleString()} D, ${repTotal.toLocaleString()} R • ${totalVotes.toLocaleString()} total votes
+                </div>
+            </div>
+        `;
+        return;
+    }
+    // Fallback: sum counties
+    demTotal = 0; repTotal = 0; totalVotes = 0;
     Object.values(results).forEach(result => {
         if (result.dem_votes && result.rep_votes) {
             demTotal += result.dem_votes;
@@ -127,40 +168,24 @@ function updateStatewideResults(results, contest, year) {
             totalVotes += result.dem_votes + result.rep_votes;
         }
     });
-    
     if (totalVotes === 0) {
         document.getElementById('statewide-content').innerHTML = 
             '<p>No statewide data available for this contest.</p>';
         return;
     }
-    
-    const demPercent = (demTotal / totalVotes * 100);
-    const repPercent = (repTotal / totalVotes * 100);
-    const margin = Math.abs(demPercent - repPercent);
-    const winner = demPercent > repPercent ? 'Democratic' : 'Republican';
-    const winnerPercent = Math.max(demPercent, repPercent);
-    const loserPercent = Math.min(demPercent, repPercent);
-    
-    let category;
-    if (margin >= 40) {
-        category = `Annihilation ${winner}`;
-    } else if (margin >= 30) {
-        category = `Dominant ${winner}`;
-    } else if (margin >= 20) {
-        category = `Stronghold ${winner}`;
-    } else if (margin >= 10) {
-        category = `Safe ${winner}`;
-    } else if (margin >= 5.5) {
-        category = `Likely ${winner}`;
-    } else if (margin >= 1) {
-        category = `Lean ${winner}`;
-    } else if (margin >= 0.5) {
-        category = `Tilt ${winner}`;
-    } else {
-        category = 'Tossup';
-    }
-    
-    let marginText = '';
+    demPercent = (demTotal / totalVotes * 100);
+    repPercent = (repTotal / totalVotes * 100);
+    margin = Math.abs(demPercent - repPercent);
+    winner = demPercent > repPercent ? 'Democratic' : 'Republican';
+    winnerPercent = Math.max(demPercent, repPercent);
+    loserPercent = Math.min(demPercent, repPercent);
+    category = (margin >= 40 ? `Annihilation ${winner}` :
+        margin >= 30 ? `Dominant ${winner}` :
+        margin >= 20 ? `Stronghold ${winner}` :
+        margin >= 10 ? `Safe ${winner}` :
+        margin >= 5.5 ? `Likely ${winner}` :
+        margin >= 1 ? `Lean ${winner}` :
+        margin >= 0.5 ? `Tilt ${winner}` : 'Tossup');
     if (demPercent > repPercent) {
         marginText = `D+${margin.toFixed(1)}%`;
     } else if (repPercent > demPercent) {
