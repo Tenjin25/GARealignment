@@ -139,6 +139,11 @@ function updateStatewideResults(results, contest, year) {
             margin >= 5.5 ? `Likely ${winner}` :
             margin >= 1 ? `Lean ${winner}` :
             margin >= 0.5 ? `Tilt ${winner}` : 'Tossup');
+        // Always display as e.g. 'Lean Democratic', 'Likely Republican', etc.
+        if (category !== 'Tossup') {
+            const parts = category.split(' ');
+            category = parts[0] + ' ' + winner;
+        }
         if (demPercent > repPercent) {
             marginText = `D+${margin.toFixed(1)}%`;
         } else if (repPercent > demPercent) {
@@ -186,6 +191,10 @@ function updateStatewideResults(results, contest, year) {
         margin >= 5.5 ? `Likely ${winner}` :
         margin >= 1 ? `Lean ${winner}` :
         margin >= 0.5 ? `Tilt ${winner}` : 'Tossup');
+    if (category !== 'Tossup') {
+        const parts = category.split(' ');
+        category = parts[0] + ' ' + winner;
+    }
     if (demPercent > repPercent) {
         marginText = `D+${margin.toFixed(1)}%`;
     } else if (repPercent > demPercent) {

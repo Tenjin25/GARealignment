@@ -402,11 +402,27 @@ function updateStatewideResults() {
 	}
 	let winner = '', winnerAbbr = '', winnerColor = '#222';
 	if (demVotes > repVotes) {
-		winner = (Object.values(contestObj.results)[0]?.dem_candidate || 'Democrat').replace(/\bDemocrat(ic)?\b/i, '').trim();
+		// Use the dem_candidate from the county's actual result
+		let demCandidate = '';
+		for (const countyResult of Object.values(contestObj.results)) {
+			if (countyResult.dem_votes !== undefined && countyResult.rep_votes !== undefined) {
+				demCandidate = countyResult.dem_candidate || '';
+				break;
+			}
+		}
+		winner = (demCandidate || 'Democrat').replace(/\bDemocrat(ic)?\b/i, '').trim();
 		winnerAbbr = 'D';
 		winnerColor = '#2563eb';
 	} else if (repVotes > demVotes) {
-		winner = (Object.values(contestObj.results)[0]?.rep_candidate || 'Republican').replace(/\bRepublican\b/i, '').trim();
+		// Use the rep_candidate from the county's actual result
+		let repCandidate = '';
+		for (const countyResult of Object.values(contestObj.results)) {
+			if (countyResult.dem_votes !== undefined && countyResult.rep_votes !== undefined) {
+				repCandidate = countyResult.rep_candidate || '';
+				break;
+			}
+		}
+		winner = (repCandidate || 'Republican').replace(/\bRepublican\b/i, '').trim();
 		winnerAbbr = 'R';
 		winnerColor = '#cb181d';
 	} else {
@@ -605,8 +621,8 @@ resizeSwingCanvas();
 function populateContestDropdown() {
 	const contestSelect = document.getElementById('contest');
 	if (!contestSelect || !electionData || !electionData.results_by_year) return;
-	// Build a flat array of all contests
-	const allContests = [];
+	// Build a flat array of all contests, deduplicating by year+contest_name
+	const contestMap = new Map();
 	for (const [year, contests] of Object.entries(electionData.results_by_year)) {
 		for (const contestKey of Object.keys(contests)) {
 			let contestName = contestKey;
@@ -621,7 +637,13 @@ function populateContestDropdown() {
 					contestName = firstCounty.contest_name;
 				}
 			}
-			allContests.push({ year, contestKey, contestName });
+			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
+			contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
+			const label = `${contestName} (${year})`;
+			const key = year + '|' + contestName.toLowerCase();
+			if (!contestMap.has(key)) {
+				contestMap.set(key, { year, contestKey, contestName, label });
+			}
 		}
 	}
 	// Use a DocumentFragment for efficient DOM updates
@@ -630,10 +652,9 @@ function populateContestDropdown() {
 	defaultOpt.value = '';
 	defaultOpt.textContent = 'Select a Contest...';
 	fragment.appendChild(defaultOpt);
-	for (const { year, contestKey, contestName } of allContests) {
+	for (const { year, contestKey, label } of contestMap.values()) {
 		const opt = document.createElement('option');
 		opt.value = year + '|' + contestKey;
-		let label = contestName + ' (' + year + ')';
 		opt.textContent = label;
 		fragment.appendChild(opt);
 	}
