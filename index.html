@@ -558,7 +558,7 @@ let electionData = null;
 // Load Georgia county GeoJSON and election results JSON
 Promise.all([
 	fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
-	fetch('./data/ga_county_results_trimmed.senate2016.json').then(r => r.json())
+	fetch('https://myelectiondatabucket.s3.us-east-2.amazonaws.com/ga_all_years_precincts_ncstyle.json').then(r => r.json())
 ]).then(([geojson, results]) => {
 	countiesGeojson = geojson;
 	electionData = results;
