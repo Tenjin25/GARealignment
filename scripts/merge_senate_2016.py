@@ -21,8 +21,23 @@ with open(gov2014_json_path, encoding='utf-8') as f:
 
 main_results_by_year = main_data['results_by_year']
 
+
+def fix_lean_category(results):
+    for county, data in results.items():
+        cat = data.get('category', '')
+        if cat.strip() == 'Lean':
+            # Determine winner
+            dem = data.get('dem_votes', 0)
+            rep = data.get('rep_votes', 0)
+            if dem > rep:
+                data['category'] = 'Lean Democratic'
+            elif rep > dem:
+                data['category'] = 'Lean Republican'
+            # else leave as 'Lean' (tie)
+
 # Merge 2016 Senate
 senate_results_2016 = senate_data['results_by_year']['2016']['us_senate_2016']
+fix_lean_category(senate_results_2016['results'])
 if '2016' not in main_results_by_year:
     main_results_by_year['2016'] = {}
 main_results_by_year['2016']['us_senate_2016'] = senate_results_2016
@@ -30,6 +45,8 @@ main_results_by_year['2016']['us_senate_2016'] = senate_results_2016
 # Merge 2014 Senate and Governor
 senate2014 = gov2014_data['results_by_year']['2014']['us_senate_2014']
 governor2014 = gov2014_data['results_by_year']['2014']['governor_2014']
+fix_lean_category(senate2014['results'])
+fix_lean_category(governor2014['results'])
 if '2014' not in main_results_by_year:
     main_results_by_year['2014'] = {}
 main_results_by_year['2014']['us_senate_2014'] = senate2014

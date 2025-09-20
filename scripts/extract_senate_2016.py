@@ -81,22 +81,22 @@ with open(csv_path, newline='', encoding='utf-8') as csvfile:
             continue
         county = row[0].strip().upper()
         party = row[3].strip().replace('(', '').replace(')', '')
-        candidate = row[4].strip().replace(' (I)', '').replace('(I)', '')
-        votes = int(row[5].replace(',', '').strip()) if row[5].strip() else 0
-        # Aggregate by county
-        if county not in senate_results:
-            senate_results[county] = {
-                'county': county,
-                'year': 2016,
-                'contest_name': 'US Senate (2016)',
-                'all_parties': {},
-                'rep_votes': 0,
-                'dem_votes': 0,
-                'other_votes': 0,
-                'rep_candidate': '',
-                'dem_candidate': '',
-                'other_candidate': '',
-            }
+    candidate = row[4].strip().replace(' (I)', '').replace('(I)', '')
+    votes = int(row[5].replace(',', '').strip()) if row[5].strip() else 0
+    # Aggregate by county
+    if county not in senate_results:
+        senate_results[county] = {
+            'county': county,
+            'year': 2016,
+            'contest_name': 'US Senate (2016)',
+            'all_parties': {},
+            'rep_votes': 0,
+            'dem_votes': 0,
+            'other_votes': 0,
+            'rep_candidate': '',
+            'dem_candidate': '',
+            'other_candidate': '',
+        }
         # Assign votes by party
         if 'REP' in party:
             senate_results[county]['rep_votes'] += votes

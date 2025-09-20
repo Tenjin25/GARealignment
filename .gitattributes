@@ -1,1 +1,2 @@
 # Git LFS configuration for large files
+data/json_by_year_precinct_ncstyle/ga_all_years_precincts_ncstyle.json filter=lfs diff=lfs merge=lfs -text
