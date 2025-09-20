@@ -596,32 +596,41 @@ Promise.all([
 });
 
 // --- Export as Image ---
-document.getElementById('export-image-btn').addEventListener('click', function() {
-	map.getCanvas().toBlob(function(blob) {
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'georgia_map.png';
-		document.body.appendChild(a);
-		a.click();
-		setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+var exportImageBtn = document.getElementById('export-image-btn');
+if (exportImageBtn) {
+	exportImageBtn.addEventListener('click', function() {
+		map.getCanvas().toBlob(function(blob) {
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = 'georgia_map.png';
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+		});
 	});
-});
+}
 
 // --- Copy Link ---
-document.getElementById('copy-link-btn').addEventListener('click', function() {
-	navigator.clipboard.writeText(window.location.href);
-	updateStatus('Link copied to clipboard!');
-});
+var copyLinkBtn = document.getElementById('copy-link-btn');
+if (copyLinkBtn) {
+	copyLinkBtn.addEventListener('click', function() {
+		navigator.clipboard.writeText(window.location.href);
+		updateStatus('Link copied to clipboard!');
+	});
+}
 
 // --- Twitter Share ---
-document.getElementById('twitter-share-btn').addEventListener('click', function(e) {
-	e.preventDefault();
-	const url = encodeURIComponent(window.location.href);
-	const text = encodeURIComponent('Check out this interactive Georgia political map!');
-	const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-	window.open(shareUrl, '_blank');
-});
+var twitterShareBtn = document.getElementById('twitter-share-btn');
+if (twitterShareBtn) {
+	twitterShareBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		const url = encodeURIComponent(window.location.href);
+		const text = encodeURIComponent('Check out this interactive Georgia political map!');
+		const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+		window.open(shareUrl, '_blank');
+	});
+}
 
 function resizeSwingCanvas() {
 	swingCanvas.width = map.getContainer().offsetWidth;
