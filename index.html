@@ -267,30 +267,31 @@ body {
 				   <label>📊 Contest Type:</label>
 				   <select id="contest">
 					   <option value="">Select a Contest...</option>
-					   <option value="president_2000">US President (2000)</option>
-					   <option value="president_2004">US President (2004)</option>
-					   <option value="president_2008">US President (2008)</option>
-					   <option value="president_2012">US President (2012)</option>
-					   <option value="president_of_the_united_states_2016">US President (2016)</option>
-					   <option value="president_2020">US President (2020)</option>
-					   <option value="president_2024">US President (2024)</option>
-					   <option value= "us_senate_2000">US Senate Special (2000)</option>
-					   <option value="us_senate_2004">US Senate (2004)</option>
-					   <option value="us_senate_2008">US Senate (2008)</option>
-					   <option value="us_senate_2010">US Senate (2010)</option>
-					   <option value="us_senate_2014">US Senate (2014)</option>
-					   <option value="us_senate_2016">US Senate (2016)</option>
-					   <option value="us_senate_2020">US Senate (2020)</option>
-					   <option value="us_senate_2021_warnock">US Senate Runoff (2021) - Warnock vs. Loeffler</option>
-					   <option value="us_senate_2021_ossoff">US Senate Runoff (2021) - Ossoff vs. Perdue</option>
-					   <option value="us_senate_2022">US Senate (2022)</option>
-					   <option value="us_senate_2022_warnock">US Senate Runoff (2022) - Warnock vs. Walker</option>
-					   <option value ="governor_2002">GA Governor (2002)</option>
-					   <option value="governor_2006">GA Governor (2006)</option>
-					   <option value="governor_2010">GA Governor (2010)</option>
-					   <option value="governor_2014">GA Governor (2014)</option>
-					   <option value="governor_2018">GA Governor (2018)</option>
-					   <option value="governor_2022">GA Governor (2022)</option>
+					   <option value="">Select a Contest...</option>
+					   <option value="2000|president_2000_1">US President (2000)</option>
+					   <option value="2004|president_2004_1">US President (2004)</option>
+					   <option value="2008|president_2008_1">US President (2008)</option>
+					   <option value="2012|president_2012_1">US President (2012)</option>
+					   <option value="2016|president_2016_1">US President (2016)</option>
+					   <option value="2020|president_2020_1">US President (2020)</option>
+					   <option value="2024|president_2024_1">US President (2024)</option>
+					   <option value="2000|us_senate_2000_1">US Senate Special (2000)</option>
+					   <option value="2004|us_senate_2004_1">US Senate (2004)</option>
+					   <option value="2008|us_senate_2008_1">US Senate (2008)</option>
+					   <option value="2010|us_senate_2010_1">US Senate (2010)</option>
+					   <option value="2014|us_senate_2014_1">US Senate (2014)</option>
+					   <option value="2016|us_senate_2016_1">US Senate (2016)</option>
+					   <option value="2020|us_senate_2020_1">US Senate (2020)</option>
+					   <option value="2021|us_senate_warnock_2021_1">US Senate Runoff (2021) - Warnock vs. Loeffler</option>
+					   <option value="2021|us_senate_ossoff_2021_1">US Senate Runoff (2021) - Ossoff vs. Perdue</option>
+					   <option value="2022|us_senate_2022_1">US Senate (2022)</option>
+					   <option value="2022|us_senate_warnock_2022_1">US Senate Runoff (2022) - Warnock vs. Walker</option>
+					   <option value="2002|governor_2002_1">GA Governor (2002)</option>
+					   <option value="2006|governor_2006_1">GA Governor (2006)</option>
+					   <option value="2010|governor_2010_1">GA Governor (2010)</option>
+					   <option value="2014|governor_2014_1">GA Governor (2014)</option>
+					   <option value="2018|governor_2018_1">GA Governor (2018)</option>
+					   <option value="2022|governor_2022_1">GA Governor (2022)</option>
 					   <option value="secretary_of_state_2002">GA Secretary of State (2002)</option>
 					   <option value="secretary_of_state_2006">GA Secretary of State (2006)</option>
 					   <option value="secretary_of_state_2010">GA Secretary of State (2010)</option>
@@ -959,9 +960,19 @@ tryPopulateSwingYearDropdowns();
 		// Extract county name as in map click logic
 		let props = feature.properties;
 		let countyLabel = props.Label || props.NAME || props.County || '';
+
+		/**
+		 * Normalize a county name by trimming whitespace, converting to lowercase,
+		 * replacing multiple whitespace characters with a single space, and removing
+		 * the word "county" from the end (if present).
+		 * 
+		 * @param {string} str - The county name to normalize
+		 * @returns {string} The normalized county name
+		 */
 		function normalizeCountyName(str) {
 			return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/ county$/, '');
-		}
+/*******  27e536fe-af3d-4b91-9125-32d0cba17c5d  *******/
+// Removed extra closing brace here
 		countyLabel = normalizeCountyName(countyLabel);
 		openSidebar();
 		document.getElementById('county-details').style.display = 'block';
@@ -982,22 +993,30 @@ tryPopulateSwingYearDropdowns();
 			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
 			if (contestObj && contestObj.results) {
 				console.log('ContestObj results keys:', Object.keys(contestObj.results));
-				for (const [countyKey, countyData] of Object.entries(contestObj.results)) {
+				// Robust county key matching: find key by normalized value
+				let matchedCountyKey = null;
+				for (const countyKey of Object.keys(contestObj.results)) {
 					if (countyKey.trim().toLowerCase() === key) {
-						console.log('Found county match:', countyKey);
-						// If countyData is an object with precincts, aggregate them
-						if (typeof countyData === 'object' && !Array.isArray(countyData)) {
-							let dem_votes = 0, rep_votes = 0, other_votes = 0, total_votes = 0, two_party_total = 0;
-							let dem_candidate = '', rep_candidate = '', winner = '', margin = 0, margin_pct = 0;
-							let precinct_count = 0;
-							let hasPrecincts = false;
-							for (const [precinctName, entry] of Object.entries(countyData)) {
-								if (typeof entry === 'object') {
-									hasPrecincts = true;
-									dem_votes += entry.dem_votes || 0;
-									rep_votes += entry.rep_votes || 0;
-									other_votes += entry.other_votes || 0;
-									total_votes += entry.total_votes || 0;
+						matchedCountyKey = countyKey;
+						break;
+					}
+				}
+				if (matchedCountyKey) {
+					const countyData = contestObj.results[matchedCountyKey];
+					console.log('Found county match:', matchedCountyKey);
+					// If countyData is an object with precincts, aggregate them
+					if (typeof countyData === 'object' && !Array.isArray(countyData)) {
+						let dem_votes = 0, rep_votes = 0, other_votes = 0, total_votes = 0, two_party_total = 0;
+						let dem_candidate = '', rep_candidate = '', winner = '', margin = 0, margin_pct = 0;
+						let precinct_count = 0;
+						let hasPrecincts = false;
+						for (const [precinctName, entry] of Object.entries(countyData)) {
+							if (typeof entry === 'object') {
+								hasPrecincts = true;
+								dem_votes += entry.dem_votes || 0;
+								rep_votes += entry.rep_votes || 0;
+								other_votes += entry.other_votes || 0;
+								total_votes += entry.total_votes || 0;
 									two_party_total += entry.two_party_total || 0;
 									if (!dem_candidate && entry.dem_candidate) dem_candidate = entry.dem_candidate;
 									if (!rep_candidate && entry.rep_candidate) rep_candidate = entry.rep_candidate;
