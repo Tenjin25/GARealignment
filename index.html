@@ -1022,7 +1022,7 @@ tryPopulateSwingYearDropdowns();
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
 			let cat = r.category || r.competitiveness || '';
 			function getCompetitivenessColor(cat) {
-				if (!cat) return '#222';
+				if (typeof cat !== 'string' || !cat) return '#222';
 				const c = cat.toLowerCase();
 				if (c.includes('annihilation republican')) return '#67000d';
 				if (c.includes('dominant republican')) return '#a50f15';
@@ -1248,7 +1248,7 @@ map.on('load', function() {
 			let cat = r.category || r.competitiveness || '';
 			// Assign color based on category depth, matching the legend
 			function getCompetitivenessColor(cat) {
-				if (!cat) return '#222';
+				if (typeof cat !== 'string' || !cat) return '#222';
 				const c = cat.toLowerCase();
 				if (c.includes('annihilation republican')) return '#67000d';
 				if (c.includes('dominant republican')) return '#a50f15';
