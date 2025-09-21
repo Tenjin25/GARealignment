@@ -249,7 +249,7 @@ body {
 	</div>
 	<button id="sidebar-float-toggle" style="position:fixed;top:20px;right:20px;z-index:10001;width:56px;height:56px;background:#2563eb;color:#fff;border:none;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;">+</button>
 	<div id="map" style="position:relative;width:100%;height:100%;">
-		<canvas id="swingCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1000;"></canvas>
+	<!-- swingCanvas will be created dynamically in JS after map initialization -->
 	</div>
 
 
@@ -525,8 +525,8 @@ if (linkedinBtn) {
 
 
 // --- Swing Arrows Overlay Logic with Tooltip ---
-let swingCanvas = document.getElementById('swingCanvas');
-let swingCtx = swingCanvas.getContext('2d');
+let swingCanvas = null;
+let swingCtx = null;
 let swingArrowsActive = false;
 let swingArrowHitboxes = [];
 
@@ -569,8 +569,8 @@ Promise.all([
 			f.properties.election = electionData[key];
 		}
 	});
-	map.addSource('counties', { type: 'geojson', data: countiesGeojson });
-	map.addLayer({
+	window.map.addSource('counties', { type: 'geojson', data: countiesGeojson });
+	window.map.addLayer({
 		id: 'county-fill',
 		type: 'fill',
 		source: 'counties',
@@ -579,8 +579,7 @@ Promise.all([
 			'fill-opacity': 0.3
 		}
 	});
-	// Add county outline layer for visible county borders (matches NC map style)
-	map.addLayer({
+	window.map.addLayer({
 		id: 'county-outline',
 		type: 'line',
 		source: 'counties',
@@ -589,6 +588,19 @@ Promise.all([
 			'line-width': 1
 		}
 	});
+	// Dynamically add swingCanvas after map is initialized
+	window.swingCanvas = document.createElement('canvas');
+	window.swingCanvas.id = 'swingCanvas';
+	window.swingCanvas.style.position = 'absolute';
+	window.swingCanvas.style.top = '0';
+	window.swingCanvas.style.left = '0';
+	window.swingCanvas.style.width = '100%';
+	window.swingCanvas.style.height = '100%';
+	window.swingCanvas.style.pointerEvents = 'none';
+	window.swingCanvas.style.zIndex = '1000';
+	window.map.getContainer().appendChild(window.swingCanvas);
+	swingCanvas = window.swingCanvas;
+	swingCtx = swingCanvas.getContext('2d');
 	// Now that electionData is loaded, populate swing year dropdowns and contest dropdown
 	tryPopulateSwingYearDropdowns();
 	populateContestDropdown();
@@ -915,8 +927,8 @@ tryPopulateSwingYearDropdowns();
 			const props = f.properties;
 			if (!props) return false;
 			// Try several property keys for county name
-			const keys = ['NAME', 'NAME10', 'County', 'COUNTY', 'COUNTY_NAM'];
-			return keys.some(k => props[k] && props[k].toString().toLowerCase() === countyName.toLowerCase());
+			const keys = ['NAME', 'NAME10', 'County', 'COUNTY', 'COUNTY_NAM', 'Label'];
+			return keys.some(k => props[k] && props[k].toString().toLowerCase().trim() === countyName.toLowerCase().trim());
 		});
 		if (!feature) {
 			alert(`County "${countyName}" not found`);
@@ -927,18 +939,20 @@ tryPopulateSwingYearDropdowns();
 		// Also open sidebar and show county details (same as map click)
 		// Extract county name as in map click logic
 		let props = feature.properties;
-		let countyLabel = props.Label || props.NAME || props.County || '';
+		let countyLabelRaw = props.Label || props.NAME || props.County || '';
+		let countyLabel = countyLabelRaw.toLowerCase().trim();
 		function toTitleCase(str) {
 			return str.toLowerCase().replace(/\b\w+/g, function(txt){
 				return txt.charAt(0).toUpperCase() + txt.substr(1);
 			});
 		}
-		if (countyLabel === countyLabel.toUpperCase()) {
-			countyLabel = toTitleCase(countyLabel);
+		let countyLabelDisplay = countyLabelRaw;
+		if (countyLabelDisplay === countyLabelDisplay.toUpperCase()) {
+			countyLabelDisplay = toTitleCase(countyLabelDisplay);
 		}
 		openSidebar();
 		document.getElementById('county-details').style.display = 'block';
-		document.getElementById('county-name').textContent = countyLabel + ' County';
+		document.getElementById('county-name').textContent = countyLabelDisplay + ' County';
 		// Try to show more details from electionData if available
 		let infoHtml = '';
 		let foundElection = props.election;
@@ -948,11 +962,10 @@ tryPopulateSwingYearDropdowns();
 			[selectedYear, selectedContest] = contestVal.split('|');
 		}
 		if (!foundElection && electionData && electionData.results_by_year && selectedYear && selectedContest) {
-			const key = countyLabel.trim().toLowerCase();
 			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
 			if (contestObj && contestObj.results) {
 				for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
-					if (countyKey.trim().toLowerCase() === key) {
+					if (countyKey.trim().toLowerCase() === countyLabel) {
 						foundElection = { year: selectedYear, contest: selectedContest, ...countyResult };
 						break;
 					}
