@@ -1330,7 +1330,7 @@ map.on('load', function() {
 	// --- Toggle County Labels ---
 	let countyLabelsVisible = false;
 	function toggleLabels() {
-		if (!map.getSource('counties')) {
+			if (!map.getSource('counties')) {
 			updateStatus('County data not loaded.');
 			return;
 		}
@@ -1397,13 +1397,10 @@ map.on('load', function() {
 			return;
 		}
 		const resultsObj = electionData.results_by_year[year][contestKey];
-		if (!resultsObj.results) {
-			updateStatus('No county results for this contest.');
-			return;
-		}
+		// Use resultsObj directly (no .results)
 		// Build a county margin map: { countyName: margin }
 		const marginMap = {};
-		Object.values(resultsObj.results).forEach(r => {
+		Object.values(resultsObj).forEach(r => {
 			const name = (r.county || r.County || r.COUNTY || '').toLowerCase();
 			const d = r.dem_votes || r.Democratic || r.dem || 0;
 			const rep = r.rep_votes || r.Republican || r.rep || 0;
