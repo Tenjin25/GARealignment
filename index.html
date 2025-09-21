@@ -1102,12 +1102,22 @@ tryPopulateSwingYearDropdowns();
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🗳️ Vote Breakdown</div>`;
-			let demName = r.dem_candidate ? r.dem_candidate.replace(/\bDemocrat(ic)?\b/i, '').trim() : 'Dem';
-			let repName = r.rep_candidate ? r.rep_candidate.replace(/\bRepublican\b/i, '').trim() : 'Rep';
-			infoHtml += `<span style='color:#2563eb;font-weight:bold;'>${demName} (D)</span> : <span style='font-weight:bold;'>${demPct ? demPct.toFixed(2) : '0.00'}%</span> (${demVotes})<br>`;
-			infoHtml += `<span style='color:#cb181d;font-weight:bold;'>${repName} (R)</span> : <span style='font-weight:bold;'>${repPct ? repPct.toFixed(2) : '0.00'}%</span> (${repVotes})<br>`;
-			if (r.other_votes) {
-				infoHtml += `<span style='color:#555;font-weight:bold;'>Other</span> : ${otherVotes} <br>`;
+			if (r.all_parties && typeof r.all_parties === 'object') {
+				// Show all parties for county-level data
+				for (const [party, votes] of Object.entries(r.all_parties)) {
+					let color = '#555';
+					if (party === 'D') color = '#2563eb';
+					if (party === 'R') color = '#cb181d';
+					infoHtml += `<span style='color:${color};font-weight:bold;'>${party}</span> : ${votes.toLocaleString()}<br>`;
+				}
+			} else {
+				let demName = r.dem_candidate ? r.dem_candidate.replace(/\bDemocrat(ic)?\b/i, '').trim() : 'Dem';
+				let repName = r.rep_candidate ? r.rep_candidate.replace(/\bRepublican\b/i, '').trim() : 'Rep';
+				infoHtml += `<span style='color:#2563eb;font-weight:bold;'>${demName} (D)</span> : <span style='font-weight:bold;'>${demPct ? demPct.toFixed(2) : '0.00'}%</span> (${demVotes})<br>`;
+				infoHtml += `<span style='color:#cb181d;font-weight:bold;'>${repName} (R)</span> : <span style='font-weight:bold;'>${repPct ? repPct.toFixed(2) : '0.00'}%</span> (${repVotes})<br>`;
+				if (r.other_votes) {
+					infoHtml += `<span style='color:#555;font-weight:bold;'>Other</span> : ${otherVotes} <br>`;
+				}
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
