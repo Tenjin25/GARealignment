@@ -1514,13 +1514,23 @@ map.on('load', function() {
 			}
 		});
 		matchExpr.push('#888'); // default color
-		// Update the county-fill layer
-		if (map.getLayer('county-fill')) {
-			map.setPaintProperty('county-fill', 'fill-color', matchExpr);
-			map.setPaintProperty('county-fill', 'fill-opacity', 0.38);
-			updateStatus('Political categories applied for ' + contestKey + '.');
+		// If no county/color pairs, fallback to default color
+		if (matchExpr.length < 5) { // ['match', expr, label, color, default] = 5
+			if (map.getLayer('county-fill')) {
+				map.setPaintProperty('county-fill', 'fill-color', '#888');
+				map.setPaintProperty('county-fill', 'fill-opacity', 0.38);
+				updateStatus('No county data found for this contest. Showing default color.');
+			} else {
+				updateStatus('County layer not found.');
+			}
 		} else {
-			updateStatus('County layer not found.');
+			if (map.getLayer('county-fill')) {
+				map.setPaintProperty('county-fill', 'fill-color', matchExpr);
+				map.setPaintProperty('county-fill', 'fill-opacity', 0.38);
+				updateStatus('Political categories applied for ' + contestKey + '.');
+			} else {
+				updateStatus('County layer not found.');
+			}
 		}
 		// Update statewide results panel after applying categories
 		updateStatewideResults();
