@@ -1011,7 +1011,13 @@ function populateSwingYearDropdowns() {
 			let cat = '';
 			let catColor = '#222';
 			if (r.competitiveness && typeof r.competitiveness === 'object') {
-				cat = r.competitiveness.category || '';
+				let base = r.competitiveness.category || '';
+				let party = r.competitiveness.party || '';
+				if (base && party) {
+					cat = `${base} ${party.charAt(0) + party.slice(1).toLowerCase()}`;
+				} else {
+					cat = base || party;
+				}
 				catColor = r.competitiveness.color || '#222';
 			} else {
 				cat = r.category || (typeof r.competitiveness === 'string' ? r.competitiveness : '');
@@ -1330,42 +1336,22 @@ map.on('load', function() {
 		}
 		const resultsObj = electionData.results_by_year[year][contestKey];
 		// Use resultsObj directly (no .results)
-		// Build a county margin map: { countyName: margin }
-		const marginMap = {};
+		// Build a county color map: { countyName: color }
+		const colorMap = {};
 		Object.values(resultsObj).forEach(r => {
 			const name = (r.county || r.County || r.COUNTY || '').toLowerCase();
-			const d = r.dem_votes || r.Democratic || r.dem || 0;
-			const rep = r.rep_votes || r.Republican || r.rep || 0;
-			const total = d + rep;
-			if (!name || !total) return;
-			const margin = total ? ((d - rep) / total) * 100 : 0; // Dem minus Rep, percent
-			marginMap[name] = margin;
+			const color = r.competitiveness && r.competitiveness.color ? r.competitiveness.color : null;
+			if (name && color) {
+				colorMap[name] = color;
+			}
 		});
-		// Legend color bins (from legend in HTML)
-		function getCategoryColor(margin) {
-			if (margin <= -40) return '#67000d'; // Annihilation R
-			if (margin <= -30) return '#a50f15'; // Dominant R
-			if (margin <= -20) return '#cb181d'; // Stronghold R
-			if (margin <= -10) return '#ef3b2c'; // Safe R
-			if (margin <= -5.5) return '#fb6a4a'; // Likely R
-			if (margin <= -1) return '#fcae91'; // Lean R
-			if (margin <= -0.5) return '#fee8c8'; // Tilt R
-			if (margin > -0.5 && margin < 0.5) return '#f7f7f7'; // Tossup
-			if (margin < 1) return '#e1f5fe'; // Tilt D
-			if (margin < 5.5) return '#c6dbef'; // Lean D
-			if (margin < 10) return '#9ecae1'; // Likely D
-			if (margin < 20) return '#6baed6'; // Safe D
-			if (margin < 30) return '#3182bd'; // Stronghold D
-			if (margin < 40) return '#08519c'; // Dominant D
-			return '#08306b'; // Annihilation D
-		}
-		// Build a match expression for Mapbox
+		// Build a match expression for Mapbox using competitiveness color
 		const matchExpr = ['match', ['downcase', ['get', 'Label']]];
 		countiesGeojson.features.forEach(f => {
 			const label = (f.properties.Label || f.properties.NAME || f.properties.County || '').toLowerCase();
-			const margin = marginMap[label];
-			if (typeof margin === 'number') {
-				matchExpr.push(label, getCategoryColor(margin));
+			const color = colorMap[label];
+			if (color) {
+				matchExpr.push(label, color);
 			}
 		});
 		matchExpr.push('#888'); // default color
