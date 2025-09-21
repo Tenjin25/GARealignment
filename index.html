@@ -1168,10 +1168,11 @@ map.on('load', function() {
 				winnerName = r.winner || '';
 				winnerAbbr = winnerParty.length <= 3 ? winnerParty : '';
 			}
-			let margin = r.margin_pct !== undefined ? r.margin_pct : r.margin;
 			let marginStr = '';
 			let marginColor = '#cb181d';
-			if (typeof margin === 'number') {
+			if (typeof r.margin_pct === 'string') {
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${r.margin_pct}</span>`;
+			} else if (typeof r.margin === 'number') {
 				// Determine prefix by winner's party, not just sign
 				let prefix = '';
 				if (winnerAbbr === 'D') {
@@ -1181,10 +1182,10 @@ map.on('load', function() {
 					prefix = 'R+';
 					marginColor = '#cb181d';
 				} else {
-					prefix = (margin > 0 ? 'D+' : 'R+');
-					marginColor = (margin > 0 ? '#2563eb' : '#cb181d');
+					prefix = (r.margin > 0 ? 'D+' : 'R+');
+					marginColor = (r.margin > 0 ? '#2563eb' : '#cb181d');
 				}
-				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(margin).toFixed(2)}%</span>`;
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(r.margin).toFixed(2)}%</span>`;
 			}
 			let demPct = r.dem_votes && r.total_votes ? (r.dem_votes / r.total_votes * 100) : 0;
 			let repPct = r.rep_votes && r.total_votes ? (r.rep_votes / r.total_votes * 100) : 0;
@@ -1219,29 +1220,14 @@ map.on('load', function() {
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
-			let cat = r.category || r.competitiveness || '';
-			// Assign color based on category depth, matching the legend
-			function getCompetitivenessColor(cat) {
-				if (typeof cat !== 'string' || !cat) return '#222';
-				const c = cat.toLowerCase();
-				if (c.includes('annihilation republican')) return '#67000d';
-				if (c.includes('dominant republican')) return '#a50f15';
-				if (c.includes('stronghold republican')) return '#cb181d';
-				if (c.includes('safe republican')) return '#ef3b2c';
-				if (c.includes('likely republican')) return '#fb6a4a';
-				if (c.includes('lean republican')) return '#fcae91';
-				if (c.includes('tilt republican')) return '#fee8c8';
-				if (c.includes('tossup')) return '#f7f7f7';
-				if (c.includes('tilt democratic')) return '#e1f5fe';
-				if (c.includes('lean democratic')) return '#c6dbef';
-				if (c.includes('likely democratic')) return '#9ecae1';
-				if (c.includes('safe democratic')) return '#6baed6';
-				if (c.includes('stronghold democratic')) return '#3182bd';
-				if (c.includes('dominant democratic')) return '#08519c';
-				if (c.includes('annihilation democratic')) return '#08306b';
-				return '#222';
+			let cat = '';
+			let catColor = '#222';
+			if (r.competitiveness && typeof r.competitiveness === 'object') {
+				cat = r.competitiveness.category || '';
+				catColor = r.competitiveness.color || '#222';
+			} else {
+				cat = r.category || (typeof r.competitiveness === 'string' ? r.competitiveness : '');
 			}
-			let catColor = getCompetitivenessColor(cat);
 			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
