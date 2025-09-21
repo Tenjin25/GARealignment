@@ -311,17 +311,22 @@ document.addEventListener('DOMContentLoaded', function() {
 	}
 });
 function updateStatewideResults() {
-	const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
-	const statewideContent = document.getElementById('statewide-content');
-	if (!contestVal || !electionData || !electionData.results_by_year) {
-		if (statewideContent) statewideContent.innerHTML = '<p>Select a contest to see statewide results and margin.</p>';
-		return;
-	}
-	let [year, contestKey] = contestVal.split('|');
-	if (!year || !contestKey || !electionData.results_by_year[year] || !electionData.results_by_year[year][contestKey]) {
-		if (statewideContent) statewideContent.innerHTML = '<p>No statewide data for this contest.</p>';
-		return;
-	}
+	   const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+	   const statewideContent = document.getElementById('statewide-content');
+	   // Debug: log electionData structure and selected contest
+	   console.log('updateStatewideResults: electionData', electionData);
+	   console.log('updateStatewideResults: contestVal', contestVal);
+	   if (!contestVal || !electionData || !electionData.results_by_year) {
+		   if (statewideContent) statewideContent.innerHTML = '<p>Select a contest to see statewide results and margin.</p>';
+		   return;
+	   }
+	   let [year, contestKey] = contestVal.split('|');
+	   console.log('updateStatewideResults: year', year, 'contestKey', contestKey);
+	   if (!year || !contestKey || !electionData.results_by_year[year] || !electionData.results_by_year[year][contestKey]) {
+		   console.log('updateStatewideResults: year or contestKey not found in electionData');
+		   if (statewideContent) statewideContent.innerHTML = '<p>No statewide data for this contest.</p>';
+		   return;
+	   }
 	const contestObj = electionData.results_by_year[year][contestKey];
 	if (!contestObj || !contestObj.results) {
 		if (statewideContent) statewideContent.innerHTML = '<p>No statewide data for this contest.</p>';
