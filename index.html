@@ -1033,7 +1033,9 @@ function populateSwingYearDropdowns() {
 			if (r.competitiveness && typeof r.competitiveness === 'object') {
 				let base = r.competitiveness.category || '';
 				let party = r.competitiveness.party || '';
-				if (base && party) {
+				if (base === 'Tossup') {
+					cat = 'Tossup';
+				} else if (base && party) {
 					cat = `${base} ${party.charAt(0) + party.slice(1).toLowerCase()}`;
 				} else {
 					cat = base || party;
@@ -1391,6 +1393,8 @@ map.on('load', function() {
 			const color = colorMap[label];
 			if (color) {
 				matchExpr.push(label, color);
+			} else {
+				console.warn('No color for county:', label, 'Available:', Object.keys(colorMap));
 			}
 		});
 		matchExpr.push('#888'); // default color
