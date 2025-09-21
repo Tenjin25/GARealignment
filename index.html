@@ -336,7 +336,7 @@ body {
 					   <option value="state_school_superintendent_2022">State School Superintendent (2022)</option>
 				   </select>
 			   </div>
-			   <button onclick="applyCategories()" class="btn-primary">🎨 Apply Political Categories</button>
+			   <button onclick="updateStatewideResults()" class="btn-primary">🎨 Apply Political Categories</button>
 			   <button onclick="resetView()" class="btn-secondary">🔄 Reset View</button>
 			   <button onclick="toggleLabels()" class="btn-success">🏷️ Toggle County Labels</button>
 			   <button onclick="togglePrecinctsLayer()" class="btn-warning">📍 Toggle Precincts</button>
@@ -1058,7 +1058,6 @@ tryPopulateSwingYearDropdowns();
 								...countyData
 							};
 						}
-						break;
 					}
 				}
 			}
