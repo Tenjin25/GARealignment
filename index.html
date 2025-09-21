@@ -8,8 +8,10 @@
 	<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2000 to 2024, showing county-level and precinct-level voting patterns.">
 	<meta property="og:image" content="preview.png">
 	<meta name="twitter:card" content="summary_large_image">
-	<link href="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet" />
-	<script src="https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+	<link href="styles/style.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
 <style>
 /* County Analysis Block: Match NC Map */
 .county-details {
@@ -85,19 +87,6 @@
 	align-items: center;
 	justify-content: center;
 }
-</style>
-	<script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
-	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
-	<meta charset='utf-8'>
-	<title>GA Political Realignment Map (2008-2024)</title>
-	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
-	<meta property="og:title" content="GA Political Realignment Map (2008-2024)">
-	<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2008 to 2024, showing county-level and precinct-level voting patterns.">
-	<meta property="og:image" content="preview.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
-	<link href='styles/style.css' rel='stylesheet'>
-<style>
 html, body {
 	height: 100vh;
 	margin: 0;
@@ -787,14 +776,8 @@ function tryPopulateSwingYearDropdowns() {
 function populateSwingYearDropdowns() {
 	const swingYear1 = document.getElementById('swing-year1');
 	const swingYear2 = document.getElementById('swing-year2');
-	if (!swingYear1 || !swingYear2 || !electionData) return;
-	let years = [];
-	// Try to extract years from electionData keys (e.g., "presidential_2020")
-	Object.keys(electionData).forEach(k => {
-		const match = k.match(/\d{4}/);
-		if (match) years.push(match[0]);
-	});
-	years = Array.from(new Set(years)).sort();
+	if (!swingYear1 || !swingYear2 || !electionData || !electionData.results_by_year) return;
+	let years = Object.keys(electionData.results_by_year).sort();
 	swingYear1.innerHTML = '';
 	swingYear2.innerHTML = '';
 	years.forEach(y => {
@@ -1026,28 +1009,14 @@ tryPopulateSwingYearDropdowns();
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
-			let cat = r.category || r.competitiveness || '';
-			function getCompetitivenessColor(cat) {
-				if (typeof cat !== 'string' || !cat) return '#222';
-				const c = cat.toLowerCase();
-				if (c.includes('annihilation republican')) return '#67000d';
-				if (c.includes('dominant republican')) return '#a50f15';
-				if (c.includes('stronghold republican')) return '#cb181d';
-				if (c.includes('safe republican')) return '#ef3b2c';
-				if (c.includes('likely republican')) return '#fb6a4a';
-				if (c.includes('lean republican')) return '#fcae91';
-				if (c.includes('tilt republican')) return '#fee8c8';
-				if (c.includes('tossup')) return '#f7f7f7';
-				if (c.includes('tilt democratic')) return '#e1f5fe';
-				if (c.includes('lean democratic')) return '#c6dbef';
-				if (c.includes('likely democratic')) return '#9ecae1';
-				if (c.includes('safe democratic')) return '#6baed6';
-				if (c.includes('stronghold democratic')) return '#3182bd';
-				if (c.includes('dominant democratic')) return '#08519c';
-				if (c.includes('annihilation democratic')) return '#08306b';
-				return '#222';
+			let cat = '';
+			let catColor = '#222';
+			if (r.competitiveness && typeof r.competitiveness === 'object') {
+				cat = r.competitiveness.category || '';
+				catColor = r.competitiveness.color || '#222';
+			} else {
+				cat = r.category || (typeof r.competitiveness === 'string' ? r.competitiveness : '');
 			}
-			let catColor = getCompetitivenessColor(cat);
 			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
