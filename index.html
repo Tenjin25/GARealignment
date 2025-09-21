@@ -606,6 +606,70 @@ map.on('load', function() {
 		// Add all other map event listeners here
 		// Example: County click handler
 		map.on('click', 'county-fill', function(e) {
+			// --- Robust sidebar logic with margin percentage ---
+			if (!e.features || !e.features.length) return;
+			const f = e.features[0];
+			const props = f.properties;
+			openSidebar();
+			let countyName = props.Label || props.NAME || props.County || '';
+			function toTitleCase(str) {
+				return str.toLowerCase().replace(/\b\w+/g, function(txt){
+					return txt.charAt(0).toUpperCase() + txt.substr(1);
+				});
+			}
+			if (countyName === countyName.toUpperCase()) {
+				countyName = toTitleCase(countyName);
+			}
+			document.getElementById('county-details').style.display = 'block';
+			document.getElementById('county-name').textContent = countyName + ' County';
+			let infoHtml = '';
+			let foundElection = props.election;
+			const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+			let selectedYear = '', selectedContest = '';
+			if (contestVal && contestVal.includes('|')) {
+				[selectedYear, selectedContest] = contestVal.split('|');
+			}
+			if (!foundElection && electionData && electionData.results_by_year && selectedYear && selectedContest) {
+				const key = countyName.trim().toLowerCase();
+				const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
+				if (contestObj && contestObj.results) {
+					for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
+						if (countyKey.trim().toLowerCase() === key) {
+							foundElection = { year: selectedYear, contest: selectedContest, ...countyResult };
+							break;
+						}
+					}
+				}
+			}
+			if (foundElection && !Array.isArray(foundElection)) {
+				const r = foundElection;
+				const demVotes = r.dem_votes || 0;
+				const repVotes = r.rep_votes || 0;
+				const totalVotes = r.total_votes || 0;
+				let winnerAbbr = (demVotes > repVotes) ? 'D' : 'R';
+				let winnerName = (winnerAbbr === 'D') ? (r.dem_candidate || 'Democrat') : (r.rep_candidate || 'Republican');
+				let winnerColor = (winnerAbbr === 'D') ? '#2563eb' : '#cb181d';
+				let margin = totalVotes > 0 ? ((demVotes - repVotes) / totalVotes * 100) : 0;
+				let marginStr = `<span style='color:${winnerColor};font-weight:bold;'>${winnerAbbr}+${Math.abs(margin).toFixed(2)}%</span>`;
+				let demPct = totalVotes > 0 ? (demVotes / totalVotes * 100).toFixed(2) : '0.00';
+				let repPct = totalVotes > 0 ? (repVotes / totalVotes * 100).toFixed(2) : '0.00';
+				infoHtml = `
+					<div style='font-size:18px;font-weight:600;margin-bottom:6px;'>📊 Election Results</div>
+					<b>Total Votes:</b> ${totalVotes.toLocaleString()}<br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🏆 Winner</div>
+					<span style='color:${winnerColor};font-size:18px;font-weight:bold;'>${winnerName} (${winnerAbbr})</span><br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>📈 Margin</div>
+					${marginStr}<br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🗳️ Vote Breakdown</div>
+					<span style='color:#2563eb;font-weight:bold;'>${r.dem_candidate || 'Democrat'} (D)</span> : <b>${demPct}%</b> (${demVotes.toLocaleString()})<br>
+					<span style='color:#cb181d;font-weight:bold;'>${r.rep_candidate || 'Republican'} (R)</span> : <b>${repPct}%</b> (${repVotes.toLocaleString()})`;
+			} else {
+				infoHtml = 'No election results found for this county in the selected contest.';
+			}
+			document.getElementById('county-info-content').innerHTML = infoHtml;
 			// ...insert robust sidebar logic here...
 		});
 	}).catch(error => console.error("Failed to load data:", error));
@@ -656,10 +720,15 @@ function populateContestDropdown() {
 	defaultOpt.value = '';
 	defaultOpt.textContent = 'Select a Contest...';
 	fragment.appendChild(defaultOpt);
+	function toTitleCase(str) {
+		return str.replace(/_/g, ' ').replace(/\w\S*/g, function(txt){
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
+	}
 	for (const [year, contests] of Object.entries(electionData.results_by_year)) {
 		for (const contestKey of Object.keys(contests)) {
 			const contestObj = contests[contestKey];
-			let contestName = contestObj.contest_name || contestKey.replace(/_/g, ' ');
+			let contestName = contestObj.contest_name || toTitleCase(contestKey);
 			const label = `${contestName} (${year})`;
 			const opt = document.createElement('option');
 			opt.value = `${year}|${contestKey}`;
