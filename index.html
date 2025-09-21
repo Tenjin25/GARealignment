@@ -1197,9 +1197,11 @@ map.on('load', function() {
 			let marginStr = '';
 			let marginColor = '#cb181d';
 			if (typeof r.margin_pct === 'string') {
+				// Use winner's party color for margin
+				marginColor = (winnerAbbr === 'D') ? '#2563eb' : (winnerAbbr === 'R') ? '#cb181d' : '#888';
 				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${r.margin_pct}</span>`;
 			} else if (typeof r.margin === 'number') {
-				// Determine prefix by winner's party, not just sign
+				// Determine prefix and color by winner's party
 				let prefix = '';
 				if (winnerAbbr === 'D') {
 					prefix = 'D+';
@@ -1249,8 +1251,22 @@ map.on('load', function() {
 			let cat = '';
 			let catColor = '#222';
 			if (r.competitiveness && typeof r.competitiveness === 'object') {
-				cat = r.competitiveness.category || '';
-				catColor = r.competitiveness.color || '#222';
+				// Show 'Lean Democratic' or 'Lean Republican' if category is 'Lean'
+				if (r.competitiveness.category === 'Lean') {
+					if (winnerAbbr === 'D') {
+						cat = 'Lean Democratic';
+						catColor = '#2563eb';
+					} else if (winnerAbbr === 'R') {
+						cat = 'Lean Republican';
+						catColor = '#cb181d';
+					} else {
+						cat = 'Lean';
+						catColor = r.competitiveness.color || '#222';
+					}
+				} else {
+					cat = r.competitiveness.category || '';
+					catColor = r.competitiveness.color || '#222';
+				}
 			} else {
 				cat = r.category || (typeof r.competitiveness === 'string' ? r.competitiveness : '');
 			}
