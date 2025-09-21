@@ -376,10 +376,30 @@ document.addEventListener('DOMContentLoaded', function() {
 	if (contestDropdown) {
 		contestDropdown.addEventListener('keydown', function(e) {
 			if (e.key === 'Enter') {
-				applyCategories();
+				if (typeof applyCategories === 'function') {
+					applyCategories();
+				}
 			}
 		});
 	}
+// --- Ensure applyCategories is defined and global ---
+if (typeof applyCategories !== 'function') {
+	function applyCategories() {
+		// TODO: Implement category application logic
+		console.log('applyCategories called');
+	}
+	window.applyCategories = applyCategories;
+}
+
+// --- Ensure toTitleCase is defined and global ---
+if (typeof toTitleCase !== 'function') {
+	function toTitleCase(str) {
+		return str.replace(
+			/\w\S*/g,
+			function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }
+		);
+	}
+}
 });
 function updateStatewideResults() {
 	const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
