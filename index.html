@@ -983,41 +983,62 @@ tryPopulateSwingYearDropdowns();
 			const key = countyLabel.trim().toLowerCase();
 			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
 			if (contestObj && contestObj.results) {
-				for (const [countyKey, precinctsObj] of Object.entries(contestObj.results)) {
+				for (const [countyKey, countyData] of Object.entries(contestObj.results)) {
 					if (countyKey.trim().toLowerCase() === key) {
-						// precinctsObj is an object: { precinctName: entry, ... }
-						let dem_votes = 0, rep_votes = 0, other_votes = 0, total_votes = 0, two_party_total = 0;
-						let dem_candidate = '', rep_candidate = '', winner = '', margin = 0, margin_pct = 0;
-						let precinct_count = 0;
-						for (const [precinctName, entry] of Object.entries(precinctsObj)) {
-							dem_votes += entry.dem_votes || 0;
-							rep_votes += entry.rep_votes || 0;
-							other_votes += entry.other_votes || 0;
-							total_votes += entry.total_votes || 0;
-							two_party_total += entry.two_party_total || 0;
-							if (!dem_candidate && entry.dem_candidate) dem_candidate = entry.dem_candidate;
-							if (!rep_candidate && entry.rep_candidate) rep_candidate = entry.rep_candidate;
-							precinct_count++;
+						// If countyData is an object with precincts, aggregate them
+						if (typeof countyData === 'object' && !Array.isArray(countyData)) {
+							let dem_votes = 0, rep_votes = 0, other_votes = 0, total_votes = 0, two_party_total = 0;
+							let dem_candidate = '', rep_candidate = '', winner = '', margin = 0, margin_pct = 0;
+							let precinct_count = 0;
+							let hasPrecincts = false;
+							for (const [precinctName, entry] of Object.entries(countyData)) {
+								if (typeof entry === 'object') {
+									hasPrecincts = true;
+									dem_votes += entry.dem_votes || 0;
+									rep_votes += entry.rep_votes || 0;
+									other_votes += entry.other_votes || 0;
+									total_votes += entry.total_votes || 0;
+									two_party_total += entry.two_party_total || 0;
+									if (!dem_candidate && entry.dem_candidate) dem_candidate = entry.dem_candidate;
+									if (!rep_candidate && entry.rep_candidate) rep_candidate = entry.rep_candidate;
+									precinct_count++;
+								}
+							}
+							if (hasPrecincts) {
+								margin = rep_votes - dem_votes;
+								margin_pct = two_party_total ? (margin / two_party_total * 100) : 0;
+								winner = rep_votes > dem_votes ? 'REP' : (dem_votes > rep_votes ? 'DEM' : 'TIE');
+								foundElection = {
+									year: selectedYear,
+									contest: selectedContest,
+									dem_candidate,
+									rep_candidate,
+									dem_votes,
+									rep_votes,
+									other_votes,
+									total_votes,
+									two_party_total,
+									margin,
+									margin_pct,
+									winner,
+									precinct_count
+								};
+							} else {
+								// County summary (earlier years)
+								foundElection = {
+									year: selectedYear,
+									contest: selectedContest,
+									...countyData
+								};
+							}
+						} else {
+							// County summary (earlier years, direct object)
+							foundElection = {
+								year: selectedYear,
+								contest: selectedContest,
+								...countyData
+							};
 						}
-						// Calculate margin and winner
-						margin = rep_votes - dem_votes;
-						margin_pct = two_party_total ? (margin / two_party_total * 100) : 0;
-						winner = rep_votes > dem_votes ? 'REP' : (dem_votes > rep_votes ? 'DEM' : 'TIE');
-						foundElection = {
-							year: selectedYear,
-							contest: selectedContest,
-							dem_candidate,
-							rep_candidate,
-							dem_votes,
-							rep_votes,
-							other_votes,
-							total_votes,
-							two_party_total,
-							margin,
-							margin_pct,
-							winner,
-							precinct_count
-						};
 						break;
 					}
 				}
