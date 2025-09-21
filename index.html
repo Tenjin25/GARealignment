@@ -617,6 +617,26 @@ function populateContestDropdown() {
 					contestName = firstCounty.contest_name;
 				}
 			}
+			// If still missing, format contestKey to readable label
+			if (!contestName || contestName === contestKey) {
+				// Custom replacements for common GA contests
+				contestName = contestKey
+					.replace(/^president.*$/i, 'US President')
+					.replace(/^us_senate.*2021_warnock$/i, 'US Senate Runoff - Warnock vs. Loeffler')
+					.replace(/^us_senate.*2021_ossoff$/i, 'US Senate Runoff - Ossoff vs. Perdue')
+					.replace(/^us_senate.*2022_warnock$/i, 'US Senate Runoff - Warnock vs. Walker')
+					.replace(/^us_senate.*$/i, 'US Senate')
+					.replace(/^governor.*$/i, 'GA Governor')
+					.replace(/^secretary_of_state.*$/i, 'GA Secretary of State')
+					.replace(/^attorney_general.*$/i, 'GA Attorney General')
+					.replace(/^lt_governor.*$/i, 'GA Lieutenant Governor')
+					.replace(/^agriculture_commissioner.*$/i, 'Agriculture Commissioner')
+					.replace(/^insurance_commissioner.*$/i, 'Insurance Commissioner')
+					.replace(/^labor_commissioner.*$/i, 'Labor Commissioner')
+					.replace(/^state_school_superintendent.*$/i, 'State School Superintendent')
+					.replace(/_/g, ' ')
+					.replace(/\b([a-z])/g, function(m) { return m.toUpperCase(); });
+			}
 			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
 			contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
 			const label = `${contestName} (${year})`;
@@ -1334,11 +1354,14 @@ map.on('load', function() {
 			updateStatus('Contest not found in data.');
 			return;
 		}
-		const resultsObj = electionData.results_by_year[year][contestKey];
-		// Use resultsObj directly (no .results)
+		const contestObj = electionData.results_by_year[year][contestKey];
+		if (!contestObj || !contestObj.results) {
+			updateStatus('No county results found for this contest.');
+			return;
+		}
 		// Build a county color map: { countyName: color }
 		const colorMap = {};
-		Object.values(resultsObj).forEach(r => {
+		Object.values(contestObj.results).forEach(r => {
 			const name = (r.county || r.County || r.COUNTY || '').toLowerCase();
 			const color = r.competitiveness && r.competitiveness.color ? r.competitiveness.color : null;
 			if (name && color) {
