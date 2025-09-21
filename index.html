@@ -266,74 +266,7 @@ body {
 			   <div class="control-group">
 				   <label>📊 Contest Type:</label>
 				   <select id="contest">
-					   <option value="">Select a Contest...</option>
-					   <option value="">Select a Contest...</option>
-					   <option value="2000|president_2000_1">US President (2000)</option>
-					   <option value="2004|president_2004_1">US President (2004)</option>
-					   <option value="2008|president_2008_1">US President (2008)</option>
-					   <option value="2012|president_2012_1">US President (2012)</option>
-					   <option value="2016|president_2016_1">US President (2016)</option>
-					   <option value="2020|president_2020_1">US President (2020)</option>
-					   <option value="2024|president_2024_1">US President (2024)</option>
-					   <option value="2000|us_senate_2000_1">US Senate Special (2000)</option>
-					   <option value="2004|us_senate_2004_1">US Senate (2004)</option>
-					   <option value="2008|us_senate_2008_1">US Senate (2008)</option>
-					   <option value="2010|us_senate_2010_1">US Senate (2010)</option>
-					   <option value="2014|us_senate_2014_1">US Senate (2014)</option>
-					   <option value="2016|us_senate_2016_1">US Senate (2016)</option>
-					   <option value="2020|us_senate_2020_1">US Senate (2020)</option>
-					   <option value="2021|us_senate_warnock_2021_1">US Senate Runoff (2021) - Warnock vs. Loeffler</option>
-					   <option value="2021|us_senate_ossoff_2021_1">US Senate Runoff (2021) - Ossoff vs. Perdue</option>
-					   <option value="2022|us_senate_2022_1">US Senate (2022)</option>
-					   <option value="2022|us_senate_warnock_2022_1">US Senate Runoff (2022) - Warnock vs. Walker</option>
-					   <option value="2002|governor_2002_1">GA Governor (2002)</option>
-					   <option value="2006|governor_2006_1">GA Governor (2006)</option>
-					   <option value="2010|governor_2010_1">GA Governor (2010)</option>
-					   <option value="2014|governor_2014_1">GA Governor (2014)</option>
-					   <option value="2018|governor_2018_1">GA Governor (2018)</option>
-					   <option value="2022|governor_2022_1">GA Governor (2022)</option>
-					   <option value="secretary_of_state_2002">GA Secretary of State (2002)</option>
-					   <option value="secretary_of_state_2006">GA Secretary of State (2006)</option>
-					   <option value="secretary_of_state_2010">GA Secretary of State (2010)</option>
-					   <option value="secretary_of_state_2014">GA Secretary of State (2014)</option>
-					   <option value="secretary_of_state_2018">GA Secretary of State (2018)</option>
-					   <option value="secretary_of_state_2022">GA Secretary of State (2022)</option>
-					   <option value="attorney_general_2002">GA Attorney General (2002)</option>
-					   <option value="attorney_general_2006">GA Attorney General (2006)</option>
-					   <option value="attorney_general_2010">GA Attorney General (2010)</option>
-					   <option value="attorney_general_2014">GA Attorney General (2014)</option>
-					   <option value="attorney_general_2018">GA Attorney General (2018)</option>
-					   <option value="attorney_general_2022">GA Attorney General (2022)</option>
-					   <option value="lt_governor_2002">GA Lieutenant Governor (2002)</option>
-					   <option value="lt_governor_2006">GA Lieutenant Governor (2006)</option>
-					   <option value="lt_governor_2010">GA Lieutenant Governor (2010)</option>
-					   <option value="lt_governor_2014">GA Lieutenant Governor (2014)</option>
-					   <option value="lt_governor_2018">GA Lieutenant Governor (2018)</option>
-					   <option value="lt_governor_2022">GA Lieutenant Governor (2022)</option>
-					   <option value="agriculture_commissioner_2002">Agriculture Commissioner (2002)</option>
-					   <option value="agriculture_commissioner_2006">Agriculture Commissioner (2006)</option>
-					   <option value="agriculture_commissioner_2010">Agriculture Commissioner (2010)</option>
-					   <option value="agriculture_commissioner_2014">Agriculture Commissioner (2014)</option>
-					   <option value="agriculture_commissioner_2018">Agriculture Commissioner (2018)</option>
-					   <option value="agriculture_commissioner_2022">Agriculture Commissioner (2022)</option>
-					   <option value="insurance_commissioner_2002">Insurance Commissioner (2002)</option>
-					   <option value="insurance_commissioner_2006">Insurance Commissioner (2006)</option>
-					   <option value="insurance_commissioner_2010">Insurance Commissioner (2010)</option>
-					   <option value="insurance_commissioner_2014">Insurance Commissioner (2014)</option>
-					   <option value="insurance_commissioner_2018">Insurance Commissioner (2018)</option>
-					   <option value="insurance_commissioner_2022">Insurance Commissioner (2022)</option>
-					   <option value="labor_commissioner_2002">Labor Commissioner (2002)</option>
-					   <option value="labor_commissioner_2006">Labor Commissioner (2006)</option>
-					   <option value="labor_commissioner_2010">Labor Commissioner (2010)</option>
-					   <option value="labor_commissioner_2014">Labor Commissioner (2014)</option>
-					   <option value="labor_commissioner_2018">Labor Commissioner (2018)</option>
-					   <option value="labor_commissioner_2022">Labor Commissioner (2022)</option>
-					   <option value="state_school_superintendent_2002">State School Superintendent (2002)</option>
-					   <option value="state_school_superintendent_2006">State School Superintendent (2006)</option>
-					   <option value="state_school_superintendent_2010">State School Superintendent (2010)</option>
-					   <option value="state_school_superintendent_2014">State School Superintendent (2014)</option>
-					   <option value="state_school_superintendent_2018">State School Superintendent (2018)</option>
-					   <option value="state_school_superintendent_2022">State School Superintendent (2022)</option>
+					   <!-- Options will be dynamically populated by populateContestDropdown() -->
 				   </select>
 			   </div>
 			   <button onclick="updateStatewideResults()" class="btn-primary">🎨 Apply Political Categories</button>
@@ -646,29 +579,31 @@ function populateContestDropdown() {
 	if (!contestSelect || !electionData || !electionData.results_by_year) return;
 	// Build a flat array of all contests, deduplicating by year+contest_name
 	const contestMap = new Map();
-	for (const [year, contests] of Object.entries(electionData.results_by_year)) {
-		for (const contestKey of Object.keys(contests)) {
-			let contestName = contestKey;
-			const contestObj = contests[contestKey];
-			// Prefer contest-level contest_name
-			if (contestObj && contestObj.contest_name) {
-				contestName = contestObj.contest_name;
-			} else if (contestObj && contestObj.results) {
-				// Fallback: first county's contest_name
-				const firstCounty = Object.values(contestObj.results)[0];
-				if (firstCounty && firstCounty.contest_name) {
-					contestName = firstCounty.contest_name;
-				}
-			}
-			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
-			contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
-			const label = `${contestName} (${year})`;
-			const key = year + '|' + contestName.toLowerCase();
-			if (!contestMap.has(key)) {
-				contestMap.set(key, { year, contestKey, contestName, label });
-			}
-		}
-	}
+	   for (const [year, contests] of Object.entries(electionData.results_by_year)) {
+		   for (const contestKey of Object.keys(contests)) {
+			   // Skip state_senate contests
+			   if (contestKey.toLowerCase().includes('state_senate')) continue;
+			   let contestName = contestKey;
+			   const contestObj = contests[contestKey];
+			   // Prefer contest-level contest_name
+			   if (contestObj && contestObj.contest_name) {
+				   contestName = contestObj.contest_name;
+			   } else if (contestObj && contestObj.results) {
+				   // Fallback: first county's contest_name
+				   const firstCounty = Object.values(contestObj.results)[0];
+				   if (firstCounty && firstCounty.contest_name) {
+					   contestName = firstCounty.contest_name;
+				   }
+			   }
+			   // Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
+			   contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
+			   const label = `${contestName} (${year})`;
+			   const key = year + '|' + contestName.toLowerCase();
+			   if (!contestMap.has(key)) {
+				   contestMap.set(key, { year, contestKey, contestName, label });
+			   }
+		   }
+	   }
 	// Use a DocumentFragment for efficient DOM updates
 	const fragment = document.createDocumentFragment();
 	const defaultOpt = document.createElement('option');
