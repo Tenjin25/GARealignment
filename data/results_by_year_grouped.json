@@ -1,7 +1,7 @@
 {
   "results_by_year": {
     "2000": {
-      "president": {
+      "president_2000": {
         "Appling": {
           "dem_candidate": "Al Gore",
           "rep_candidate": "George W. Bush",
@@ -8430,7 +8430,7 @@
           "year": "2000"
         }
       },
-      "u.s._senate": {
+      "us_senate_2000": {
         "Appling": {
           "dem_candidate": "Zell Miller",
           "rep_candidate": "Mack Mattingly",
@@ -19403,7 +19403,7 @@
           "year": "2000"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2000": {
         "Appling": {
           "dem_candidate": "Jim Boyd",
           "rep_candidate": "Stan Wise",
@@ -29265,7 +29265,7 @@
       }
     },
     "2002": {
-      "u.s._senate": {
+      "us_senate_2002": {
         "Appling": {
           "dem_candidate": "Max Cleland",
           "rep_candidate": "Saxby Chambliss",
@@ -36740,7 +36740,7 @@
           "year": "2002"
         }
       },
-      "governor": {
+      "governor_2002": {
         "Appling": {
           "dem_candidate": "Roy E. Barnes",
           "rep_candidate": "Sonny Perdue",
@@ -44215,7 +44215,7 @@
           "year": "2002"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2002": {
         "Appling": {
           "dem_candidate": "MARK TAYLOR",
           "rep_candidate": "STEVE STANCIL",
@@ -51690,7 +51690,7 @@
           "year": "2002"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2002": {
         "Appling": {
           "dem_candidate": "CATHY COX",
           "rep_candidate": "CHARLIE BAILEY",
@@ -59165,7 +59165,7 @@
           "year": "2002"
         }
       },
-      "attorney_general": {
+      "attorney_general_2002": {
         "Appling": {
           "dem_candidate": "THURBERT BAKER",
           "rep_candidate": "SHANNON GOESSLING",
@@ -65686,7 +65686,7 @@
           "year": "2002"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2002": {
         "Appling": {
           "dem_candidate": "TOMMY IRVIN",
           "rep_candidate": "DEANNA STRICKLAND",
@@ -73161,7 +73161,7 @@
           "year": "2002"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2002": {
         "Appling": {
           "dem_candidate": "Lois Cohen",
           "rep_candidate": "John W. Oxendine",
@@ -80636,7 +80636,7 @@
           "year": "2002"
         }
       },
-      "state_school_superintendent": {
+      "state_school_superintendent_2002": {
         "Appling": {
           "dem_candidate": "Barbara Christmas",
           "rep_candidate": "Kathy Cox",
@@ -88111,7 +88111,7 @@
           "year": "2002"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2002": {
         "Appling": {
           "dem_candidate": "Mike Thurmond",
           "rep_candidate": "Richard McGee",
@@ -95586,7 +95586,7 @@
           "year": "2002"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2002": {
         "Appling": {
           "dem_candidate": "Lauren McDonald",
           "rep_candidate": "Angela Speir",
@@ -104653,7 +104653,7 @@
       }
     },
     "2004": {
-      "president": {
+      "president_2004": {
         "Appling": {
           "dem_candidate": "John Kerry",
           "rep_candidate": "George Bush",
@@ -112128,7 +112128,7 @@
           "year": "2004"
         }
       },
-      "u.s._senate": {
+      "us_senate_2004": {
         "Appling": {
           "dem_candidate": "Denise Majette",
           "rep_candidate": "Johnny Isakson",
@@ -119603,7 +119603,7 @@
           "year": "2004"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2004": {
         "Appling": {
           "dem_candidate": "Mac Barber",
           "rep_candidate": "Bobby Baker",
@@ -127080,7 +127080,7 @@
       }
     },
     "2006": {
-      "governor": {
+      "governor_2006": {
         "Appling": {
           "dem_candidate": "Mark Taylor",
           "rep_candidate": "Sonny Perdue",
@@ -134555,7 +134555,7 @@
           "year": "2006"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2006": {
         "Appling": {
           "dem_candidate": "Jim Martin",
           "rep_candidate": "Casey Cagle",
@@ -142030,7 +142030,7 @@
           "year": "2006"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2006": {
         "Appling": {
           "dem_candidate": "Gail Buckner",
           "rep_candidate": "Karen Handel",
@@ -149505,7 +149505,7 @@
           "year": "2006"
         }
       },
-      "attorney_general": {
+      "attorney_general_2006": {
         "Appling": {
           "dem_candidate": "Thurbert Baker",
           "rep_candidate": "Perry McGuire",
@@ -156026,7 +156026,7 @@
           "year": "2006"
         }
       },
-      "state_school_superintendent": {
+      "state_school_superintendent_2006": {
         "Appling": {
           "dem_candidate": "Denise Majette",
           "rep_candidate": "Kathy Cox",
@@ -163501,7 +163501,7 @@
           "year": "2006"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2006": {
         "Appling": {
           "dem_candidate": "Guy Drexinger",
           "rep_candidate": "John W. Oxendine",
@@ -170022,7 +170022,7 @@
           "year": "2006"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2006": {
         "Appling": {
           "dem_candidate": "Tommy Irvin",
           "rep_candidate": "Gary Black",
@@ -177497,7 +177497,7 @@
           "year": "2006"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2006": {
         "Appling": {
           "dem_candidate": "Michael Thurmond",
           "rep_candidate": "Brent Brown",
@@ -184018,7 +184018,7 @@
           "year": "2006"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2006": {
         "Appling": {
           "dem_candidate": "Dawn Randolph",
           "rep_candidate": "Stan Wise",
@@ -193880,7 +193880,7 @@
       }
     },
     "2008": {
-      "president": {
+      "president_2008": {
         "Appling": {
           "dem_candidate": "Barack Obama",
           "rep_candidate": "John McCain",
@@ -208510,7 +208510,7 @@
           "year": "2008"
         }
       },
-      "u.s._senate": {
+      "us_senate_2008": {
         "Appling": {
           "dem_candidate": "Jim Martin",
           "rep_candidate": "Saxby Chambliss",
@@ -217734,7 +217734,7 @@
           "year": "2008"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2008": {
         "Appling": {
           "dem_candidate": "Jim Powell",
           "rep_candidate": "Lauren W. McDonald Jr.",
@@ -226801,7 +226801,7 @@
       }
     },
     "2010": {
-      "u.s._senate": {
+      "us_senate_2010": {
         "Appling": {
           "dem_candidate": "Michael (Mike) Thurmond",
           "rep_candidate": "Johnny Isakson",
@@ -236820,7 +236820,7 @@
           "year": "2010"
         }
       },
-      "governor": {
+      "governor_2010": {
         "Appling": {
           "dem_candidate": "Roy E. Barnes",
           "rep_candidate": "Nathan Deal",
@@ -246044,7 +246044,7 @@
           "year": "2010"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2010": {
         "Appling": {
           "dem_candidate": "Carol Porter",
           "rep_candidate": "L.S. Casey Cagle",
@@ -253519,7 +253519,7 @@
           "year": "2010"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2010": {
         "Appling": {
           "dem_candidate": "Georganna Sinkfield",
           "rep_candidate": "Brian Kemp",
@@ -260994,7 +260994,7 @@
           "year": "2010"
         }
       },
-      "attorney_general": {
+      "attorney_general_2010": {
         "Appling": {
           "dem_candidate": "Ken Hodges",
           "rep_candidate": "Sam Olens",
@@ -268469,7 +268469,7 @@
           "year": "2010"
         }
       },
-      "state_school_superintendent": {
+      "state_school_superintendent_2010": {
         "Appling": {
           "dem_candidate": "Joe Martin",
           "rep_candidate": "John D. Barge",
@@ -276898,7 +276898,7 @@
           "year": "2010"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2010": {
         "Appling": {
           "dem_candidate": "Mary Squires",
           "rep_candidate": "Ralph T. Hudgens",
@@ -284373,7 +284373,7 @@
           "year": "2010"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2010": {
         "Appling": {
           "dem_candidate": "J. B. Powell",
           "rep_candidate": "Gary Black",
@@ -291848,7 +291848,7 @@
           "year": "2010"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2010": {
         "Appling": {
           "dem_candidate": "Darryl Hicks",
           "rep_candidate": "Mark Butler",
@@ -299323,7 +299323,7 @@
           "year": "2010"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2010": {
         "Appling": {
           "dem_candidate": "Keith Moffett",
           "rep_candidate": "Tim Echols",
@@ -306800,7 +306800,7 @@
       }
     },
     "2012": {
-      "president": {
+      "president_2012": {
         "Appling": {
           "dem_candidate": "BARACK OBAMA",
           "rep_candidate": "MITT ROMNEY",
@@ -314275,7 +314275,7 @@
           "year": "2012"
         }
       },
-      "public_service_commissioner": {
+      "public_service_commissioner_2012": {
         "Appling": {
           "dem_candidate": "STEPHEN OPPENHEIMER",
           "rep_candidate": "STAN WISE",
@@ -323342,7 +323342,7 @@
       }
     },
     "2014": {
-      "united_states_senator": {
+      "united_states_senator_2014": {
         "Appling": {
           "dem_candidate": "M. MICHELLE NUNN",
           "rep_candidate": "DAVID A. PERDUE",
@@ -330817,7 +330817,7 @@
           "year": "2014"
         }
       },
-      "governor": {
+      "governor_2014": {
         "Appling": {
           "dem_candidate": "JASON J. CARTER",
           "rep_candidate": "J. NATHAN DEAL",
@@ -338292,7 +338292,7 @@
           "year": "2014"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2014": {
         "Appling": {
           "dem_candidate": "CONNIE J. STOKES",
           "rep_candidate": "L. S. \"CASEY\" CAGLE",
@@ -344813,7 +344813,7 @@
           "year": "2014"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2014": {
         "Appling": {
           "dem_candidate": "DOREEN CARTER",
           "rep_candidate": "BRIAN P. KEMP",
@@ -351333,7 +351333,7 @@
           "year": "2014"
         }
       },
-      "attorney_general": {
+      "attorney_general_2014": {
         "Appling": {
           "dem_candidate": "GREGORY K. \"GREG\" HECHT",
           "rep_candidate": "SAMUEL S. OLENS",
@@ -357854,7 +357854,7 @@
           "year": "2014"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2014": {
         "Appling": {
           "dem_candidate": "CHRISTOPHER JAMES IRVIN",
           "rep_candidate": "GARY W. BLACK",
@@ -364375,7 +364375,7 @@
           "year": "2014"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2014": {
         "Appling": {
           "dem_candidate": "ELIZABETH N. \"LIZ\" JOHNSON",
           "rep_candidate": "RALPH T. HUDGENS",
@@ -371850,7 +371850,7 @@
           "year": "2014"
         }
       },
-      "state_school_superintendent": {
+      "state_school_superintendent_2014": {
         "Appling": {
           "dem_candidate": "VALARIE D. WILSON",
           "rep_candidate": "RICHARD L. WOODS",
@@ -378370,7 +378370,7 @@
           "year": "2014"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2014": {
         "Appling": {
           "dem_candidate": "ROBBIN K. SHIPP",
           "rep_candidate": "J. MARK BUTLER",
@@ -384891,7 +384891,7 @@
           "year": "2014"
         }
       },
-      "public_service_commission": {
+      "public_service_commission_2014": {
         "Appling": {
           "dem_candidate": "DANIEL A. BLACKMAN",
           "rep_candidate": "LAUREN W. \"BUBBA\" MCDONALD",
@@ -393958,7 +393958,7 @@
       }
     },
     "2016": {
-      "president_of_the_united_states": {
+      "president_of_the_united_states_2016": {
         "Appling": {
           "dem_candidate": "HILLARY CLINTON",
           "rep_candidate": "DONALD J. TRUMP",
@@ -401433,7 +401433,7 @@
           "year": "2016"
         }
       },
-      "united_states_senator": {
+      "united_states_senator_2016": {
         "Appling": {
           "dem_candidate": "JIM BARKSDALE",
           "rep_candidate": "JOHNNY ISAKSON",
@@ -408910,7 +408910,7 @@
       }
     },
     "2018": {
-      "governor": {
+      "governor_2018": {
         "Appling": {
           "dem_candidate": "STACEY ABRAMS",
           "rep_candidate": "BRIAN KEMP",
@@ -416385,7 +416385,7 @@
           "year": "2018"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2018": {
         "Appling": {
           "dem_candidate": "SARAH RIGGS AMICO",
           "rep_candidate": "GEOFF DUNCAN",
@@ -422906,7 +422906,7 @@
           "year": "2018"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2018": {
         "Appling": {
           "dem_candidate": "JOHN BARROW",
           "rep_candidate": "BRAD RAFFENSPERGER",
@@ -430381,7 +430381,7 @@
           "year": "2018"
         }
       },
-      "attorney_general": {
+      "attorney_general_2018": {
         "Appling": {
           "dem_candidate": "CHARLIE BAILEY",
           "rep_candidate": "CHRIS CARR",
@@ -436902,7 +436902,7 @@
           "year": "2018"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2018": {
         "Appling": {
           "dem_candidate": "FRED SWANN",
           "rep_candidate": "GARY BLACK",
@@ -443423,7 +443423,7 @@
           "year": "2018"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2018": {
         "Appling": {
           "dem_candidate": "JANICE LAWS",
           "rep_candidate": "JIM BECK",
@@ -450898,7 +450898,7 @@
           "year": "2018"
         }
       },
-      "state_school_superintendent": {
+      "state_school_superintendent_2018": {
         "Appling": {
           "dem_candidate": "OTHA E. THORNTON, JR",
           "rep_candidate": "RICHARD WOODS",
@@ -457419,7 +457419,7 @@
           "year": "2018"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2018": {
         "Appling": {
           "dem_candidate": "RICHARD KEATLEY",
           "rep_candidate": "MARK BUTLER",
@@ -463940,7 +463940,7 @@
           "year": "2018"
         }
       },
-      "public_service_commission,_district_3": {
+      "public_service_commission_district_3_2018": {
         "Appling": {
           "dem_candidate": "LINDY MILLER",
           "rep_candidate": "CHUCK EATON",
@@ -471415,7 +471415,7 @@
           "year": "2018"
         }
       },
-      "public_service_commission,_district_5": {
+      "public_service_commission_district_5_2018": {
         "Appling": {
           "dem_candidate": "DAWN A. RANDOLPH",
           "rep_candidate": "TRICIA PRIDEMORE",
@@ -478892,7 +478892,7 @@
       }
     },
     "2020": {
-      "u.s._senate_(special)": {
+      "us_senate_special_2020": {
         "Appling": {
           "dem_candidate": "Tamara Johnson-Shealey",
           "rep_candidate": "Kelly Loeffler",
@@ -500200,7 +500200,7 @@
           "year": "2020"
         }
       },
-      "public_service_commission": {
+      "public_service_commission_2020": {
         "Appling": {
           "dem_candidate": "Robert G. Bryant",
           "rep_candidate": "Lauren Bubba McDonald Jr.",
@@ -510060,7 +510060,7 @@
           "year": "2020"
         }
       },
-      "u.s._senate": {
+      "us_senate_2020": {
         "Appling": {
           "dem_candidate": "Jon Ossoff",
           "rep_candidate": "David A. Perdue",
@@ -517535,7 +517535,7 @@
           "year": "2020"
         }
       },
-      "president": {
+      "president_2020": {
         "Appling": {
           "dem_candidate": "Joseph R. Biden",
           "rep_candidate": "Donald J. Trump",
@@ -525012,7 +525012,7 @@
       }
     },
     "2021": {
-      "public_service_commissioner": {
+      "public_service_commissioner_2021": {
         "Appling": {
           "dem_candidate": "Daniel Blackman",
           "rep_candidate": "Lauren Bubba McDonald Jr.",
@@ -531369,7 +531369,7 @@
           "year": "2021"
         }
       },
-      "u.s._senate": {
+      "us_senate_2021": {
         "Appling": {
           "dem_candidate": "Jon Ossoff",
           "rep_candidate": "David A. Perdue",
@@ -537726,7 +537726,7 @@
           "year": "2021"
         }
       },
-      "u.s._senate_(special)": {
+      "us_senate_special_2021": {
         "Appling": {
           "dem_candidate": "Raphael Warnock",
           "rep_candidate": "Kelly Loeffler",
@@ -544085,7 +544085,7 @@
       }
     },
     "2022": {
-      "u.s._senate": {
+      "us_senate_2022": {
         "Elbert": {
           "dem_candidate": "Raphael Warnock",
           "rep_candidate": "Herschel Walker",
@@ -550606,7 +550606,7 @@
           "year": "2022"
         }
       },
-      "governor": {
+      "governor_2022": {
         "Elbert": {
           "dem_candidate": "Stacey Abrams",
           "rep_candidate": "Brian Kemp",
@@ -558034,7 +558034,7 @@
           "year": "2022"
         }
       },
-      "lieutenant_governor": {
+      "lieutenant_governor_2022": {
         "Elbert": {
           "dem_candidate": "Charlie Bailey",
           "rep_candidate": "Burt Jones",
@@ -565462,7 +565462,7 @@
           "year": "2022"
         }
       },
-      "secretary_of_state": {
+      "secretary_of_state_2022": {
         "Elbert": {
           "dem_candidate": "Bee Nguyen",
           "rep_candidate": "Brad Raffensperger",
@@ -572890,7 +572890,7 @@
           "year": "2022"
         }
       },
-      "attorney_general": {
+      "attorney_general_2022": {
         "Elbert": {
           "dem_candidate": "\"Jennifer \"\"\"\"Jen\"\"\"\" Jordan\"",
           "rep_candidate": "Chris Carr",
@@ -580318,7 +580318,7 @@
           "year": "2022"
         }
       },
-      "commissioner_of_agriculture": {
+      "commissioner_of_agriculture_2022": {
         "Elbert": {
           "dem_candidate": "Nakita Hemingway",
           "rep_candidate": "Tyler Harper",
@@ -585772,7 +585772,7 @@
           "year": "2022"
         }
       },
-      "commissioner_of_insurance": {
+      "commissioner_of_insurance_2022": {
         "Elbert": {
           "dem_candidate": "Janice Laws Robinson",
           "rep_candidate": "John King",
@@ -590530,7 +590530,7 @@
           "year": "2022"
         }
       },
-      "commissioner_of_labor": {
+      "commissioner_of_labor_2022": {
         "Elbert": {
           "dem_candidate": "\"William \"\"\"\"Will\"\"\"\" Boddie",
           "rep_candidate": "Bruce Thompson",
@@ -595986,7 +595986,7 @@
       }
     },
     "2024": {
-      "president": {
+      "president_2024": {
         "Appling": {
           "dem_candidate": "Kamala D. Harris",
           "rep_candidate": "Donald J. Trump",
