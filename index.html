@@ -357,6 +357,15 @@ body {
 			   </div>
 		   </div>
 <!-- ...existing HTML code... -->
+<script>
+if (typeof window.toTitleCase !== 'function') {
+	window.toTitleCase = function(str) {
+		return str.replace(/\w\S*/g, function(txt) {
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+		});
+	};
+}
+</script>
 
 <script>
 // --- Statewide Results Panel Logic ---
@@ -372,35 +381,41 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Add Enter key event to contest dropdown
 document.addEventListener('DOMContentLoaded', function() {
-	var contestDropdown = document.getElementById('contest');
-	if (contestDropdown) {
-		contestDropdown.addEventListener('keydown', function(e) {
-			if (e.key === 'Enter') {
-				if (typeof applyCategories === 'function') {
-					applyCategories();
-				}
-			}
+	const contestDropdown = document.getElementById('contest');
+	if (!contestDropdown || !electionData || !electionData.results_by_year) return;
+	contestDropdown.innerHTML = '';
+	// Loop through years and contests
+	Object.keys(electionData.results_by_year).sort().reverse().forEach(year => {
+		const contests = electionData.results_by_year[year];
+		Object.keys(contests).forEach(contestKey => {
+			// Use contest_name if available, else prettify contestKey
+			const contestObj = contests[contestKey];
+			const contestName = contestObj.contest_name || toTitleCase(contestKey.replace(/_/g, ' '));
+			const option = document.createElement('option');
+			option.value = `${year}|${contestKey}`;
+			option.textContent = `${year} - ${contestName}`;
+			contestDropdown.appendChild(option);
 		});
-	}
+	});
+});
+
 // --- Ensure applyCategories is defined and global ---
-if (typeof applyCategories !== 'function') {
-	function applyCategories() {
+if (typeof window.applyCategories !== 'function') {
+	window.applyCategories = function() {
 		// TODO: Implement category application logic
 		console.log('applyCategories called');
-	}
-	window.applyCategories = applyCategories;
+	};
 }
 
 // --- Ensure toTitleCase is defined and global ---
-if (typeof toTitleCase !== 'function') {
-	function toTitleCase(str) {
+if (typeof window.toTitleCase !== 'function') {
+	window.toTitleCase = function(str) {
 		return str.replace(
 			/\w\S*/g,
 			function(txt) { return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase(); }
 		);
-	}
+	};
 }
-});
 function updateStatewideResults() {
 	const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
 	const statewideContent = document.getElementById('statewide-content');
@@ -633,7 +648,49 @@ map.on('load', function() {
 			}
 			document.getElementById('county-details').style.display = 'block';
 			document.getElementById('county-name').textContent = countyName + ' County';
-			// ...sidebar rendering logic...
+			// --- Sidebar rendering logic for new JSON structure ---
+			// Assume countyName and contest/year selection are available
+			const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+			let infoHtml = '';
+			if (contestVal && electionData && electionData.results_by_year) {
+				const [year, contestKey] = contestVal.split('|');
+				const contestObj = electionData.results_by_year[year]?.[contestKey];
+				const countyResult = contestObj?.results?.[countyName];
+				if (countyResult) {
+					// Example: show winner, margin, competitiveness, vote breakdown
+					infoHtml += `<div style='font-size:18px;font-weight:600;margin-bottom:6px;'>📊 Election Results</div>`;
+					infoHtml += `<b>Total Votes:</b> ${countyResult.total_votes?.toLocaleString() || ''}<br>`;
+					infoHtml += `<hr style='margin:10px 0;'>`;
+					infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🏆 Winner</div>`;
+					infoHtml += `<span style='color:${countyResult.winner_party === 'REPUBLICAN' ? '#cb181d' : '#2563eb'};font-size:18px;font-weight:bold;'>${countyResult.winner_name} (${countyResult.winner_party?.charAt(0)})</span><br>`;
+					infoHtml += `<hr style='margin:10px 0;'>`;
+					infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
+					let cat = '';
+					if (countyResult.competitiveness && typeof countyResult.competitiveness === 'object') {
+						cat = countyResult.competitiveness.category || '';
+						if (cat === 'Lean') {
+							if (countyResult.winner_party === 'DEMOCRAT') cat = 'Lean Democratic';
+							if (countyResult.winner_party === 'REPUBLICAN') cat = 'Lean Republican';
+						}
+					} else {
+						cat = countyResult.category || (typeof countyResult.competitiveness === 'string' ? countyResult.competitiveness : '');
+					}
+					let catColor = countyResult.competitiveness?.color || '#222';
+					infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
+					infoHtml += `<hr style='margin:10px 0;'>`;
+					infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>Vote Breakdown</div>`;
+					infoHtml += `<span style='color:#2563eb;font-weight:bold;'>${countyResult.dem_candidate} (D)</span> : <span style='font-weight:bold;'>${countyResult.dem_votes?.toLocaleString() || 0}</span><br>`;
+					infoHtml += `<span style='color:#cb181d;font-weight:bold;'>${countyResult.rep_candidate} (R)</span> : <span style='font-weight:bold;'>${countyResult.rep_votes?.toLocaleString() || 0}</span><br>`;
+					if (countyResult.other_votes) {
+						infoHtml += `<span style='color:#555;font-weight:bold;'>Other</span> : ${countyResult.other_votes?.toLocaleString() || 0}<br>`;
+					}
+				} else {
+					infoHtml = 'No election data found for this county.';
+				}
+			} else {
+				infoHtml = 'No contest selected.';
+			}
+			document.getElementById('county-info-content').innerHTML = infoHtml;
 		});
 
 		// Enable county search bar
@@ -1230,6 +1287,20 @@ tryPopulateSwingYearDropdowns();
 			}
 			let catColor = getCompetitivenessColor(cat);
 			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
+			infoHtml += `<br>`;
+			// Margin percentage display
+			let marginPct = 0, marginPrefix = '', marginColorLocal = '#888';
+			if (typeof r.dem_votes === 'number' && typeof r.rep_votes === 'number' && typeof r.total_votes === 'number' && r.total_votes > 0) {
+				marginPct = Math.abs(r.dem_votes - r.rep_votes) / r.total_votes * 100;
+				if (r.dem_votes > r.rep_votes) {
+					marginPrefix = 'D+';
+					marginColorLocal = '#2563eb';
+				} else if (r.rep_votes > r.dem_votes) {
+					marginPrefix = 'R+';
+					marginColorLocal = '#cb181d';
+				}
+			}
+			infoHtml += `<span style='color:${marginColorLocal};font-weight:bold;'>${marginPrefix}${marginPct.toFixed(2)}%</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
 			infoHtml += '<b>Election Data:</b><br>';
@@ -1434,12 +1505,15 @@ map.on('load', function() {
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
 			let cat = '';
 			if (r.competitiveness && typeof r.competitiveness === 'object') {
+				// If it's an object, get the category string from inside it
 				cat = r.competitiveness.category || '';
 				if (cat === 'Lean') {
+					// Add the party for more descriptive text, e.g., "Lean Democratic"
 					if (winnerAbbr === 'D') cat = 'Lean Democratic';
 					if (winnerAbbr === 'R') cat = 'Lean Republican';
 				}
 			} else {
+				// Otherwise, treat it as a string
 				cat = r.category || (typeof r.competitiveness === 'string' ? r.competitiveness : '');
 			}
 			function getCompetitivenessColor(cat) {
