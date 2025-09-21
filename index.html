@@ -940,7 +940,8 @@ tryPopulateSwingYearDropdowns();
 		// Extract county name as in map click logic
 		let props = feature.properties;
 		let countyLabelRaw = props.Label || props.NAME || props.County || '';
-		let countyLabel = countyLabelRaw.toLowerCase().trim();
+		// Normalize: lowercase, trim, remove ' county', remove punctuation
+		let countyLabel = countyLabelRaw.toLowerCase().replace(/ county$/, '').replace(/[^a-z0-9 ]/g, '').trim();
 		function toTitleCase(str) {
 			return str.toLowerCase().replace(/\b\w+/g, function(txt){
 				return txt.charAt(0).toUpperCase() + txt.substr(1);
@@ -964,8 +965,12 @@ tryPopulateSwingYearDropdowns();
 		if (!foundElection && electionData && electionData.results_by_year && selectedYear && selectedContest) {
 			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
 			if (contestObj && contestObj.results) {
+				// Debug logging
+				console.log('County label for lookup:', countyLabel);
+				console.log('Available county keys:', Object.keys(contestObj.results));
 				for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
-					if (countyKey.trim().toLowerCase() === countyLabel) {
+					let normalizedKey = countyKey.toLowerCase().replace(/ county$/, '').replace(/[^a-z0-9 ]/g, '').trim();
+					if (normalizedKey === countyLabel) {
 						foundElection = { year: selectedYear, contest: selectedContest, ...countyResult };
 						break;
 					}
@@ -1042,7 +1047,12 @@ tryPopulateSwingYearDropdowns();
 			let cat = r.category || r.competitiveness || '';
 			function getCompetitivenessColor(cat) {
 				if (!cat) return '#222';
-				const c = cat.toLowerCase();
+				let c = cat;
+				if (typeof cat === 'object' && cat.category) {
+					c = cat.category;
+				}
+				if (typeof c !== 'string') return '#222';
+				c = c.toLowerCase();
 				if (c.includes('annihilation republican')) return '#67000d';
 				if (c.includes('dominant republican')) return '#a50f15';
 				if (c.includes('stronghold republican')) return '#cb181d';
