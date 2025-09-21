@@ -545,61 +545,70 @@ document.body.appendChild(swingTooltip);
 
 // --- Mapbox initialization for Georgia ---
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbWFyZGF2aXMiLCJhIjoiY21kcW8yeDB2MDhvbTJzb29qeGp1aDZmZCJ9.Zw_i6U-dL7_bEKRHTUh7yg';
-	// ...removed duplicate Mapbox initialization...
+const map = new mapboxgl.Map({
+	container: 'map',
+	style: 'mapbox://styles/mapbox/light-v11',
+	center: [-83.5, 32.9],
+	zoom: 6.5
+});
 
-// Example: Load Georgia county GeoJSON (update path as needed)
 let countiesGeojson = null;
 let electionData = null;
-	// ...removed duplicate global variable declarations...
-Promise.all([
-	fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
-	fetch('./data/results_by_year_grouped.json').then(r => r.json())
-]).then(([geojson, results]) => {
-	countiesGeojson = geojson;
-	electionData = results;
-	// Attach election data to each county feature using the Label property
-	countiesGeojson.features.forEach(f => {
-		const key = f.properties.Label;
-		if (electionData[key]) {
-			f.properties.election = electionData[key];
-		}
-	});
-	window.map.addSource('counties', { type: 'geojson', data: countiesGeojson });
-	window.map.addLayer({
-		id: 'county-fill',
-		type: 'fill',
-		source: 'counties',
-		paint: {
-			'fill-color': '#888',
-			'fill-opacity': 0.3
-		}
-	});
-	window.map.addLayer({
-		id: 'county-outline',
-		type: 'line',
-		source: 'counties',
-		paint: {
-			'line-color': '#222',
-			'line-width': 1
-		}
-	});
-	// Dynamically add swingCanvas after map is initialized
-	window.swingCanvas = document.createElement('canvas');
-	window.swingCanvas.id = 'swingCanvas';
-	window.swingCanvas.style.position = 'absolute';
-	window.swingCanvas.style.top = '0';
-	window.swingCanvas.style.left = '0';
-	window.swingCanvas.style.width = '100%';
-	window.swingCanvas.style.height = '100%';
-	window.swingCanvas.style.pointerEvents = 'none';
-	window.swingCanvas.style.zIndex = '1000';
-	window.map.getContainer().appendChild(window.swingCanvas);
-	swingCanvas = window.swingCanvas;
-	swingCtx = swingCanvas.getContext('2d');
-	// Now that electionData is loaded, populate swing year dropdowns and contest dropdown
-	tryPopulateSwingYearDropdowns();
-	populateContestDropdown();
-	updateStatewideResults();
+
+map.on('load', function() {
+	Promise.all([
+		fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
+		fetch('./data/results_by_year_grouped.json').then(r => r.json())
+	]).then(([geojson, results]) => {
+		countiesGeojson = geojson;
+		electionData = results;
+		countiesGeojson.features.forEach(f => {
+			const key = f.properties.Label;
+			if (electionData[key]) {
+				f.properties.election = electionData[key];
+			}
+		});
+		map.addSource('counties', { type: 'geojson', data: countiesGeojson });
+		map.addLayer({
+			id: 'county-fill',
+			type: 'fill',
+			source: 'counties',
+			paint: {
+				'fill-color': '#888',
+				'fill-opacity': 0.3
+			}
+		});
+		map.addLayer({
+			id: 'county-outline',
+			type: 'line',
+			source: 'counties',
+			paint: {
+				'line-color': '#222',
+				'line-width': 1
+			}
+		});
+		// Dynamically add swingCanvas after map is initialized
+		window.swingCanvas = document.createElement('canvas');
+		window.swingCanvas.id = 'swingCanvas';
+		window.swingCanvas.style.position = 'absolute';
+		window.swingCanvas.style.top = '0';
+		window.swingCanvas.style.left = '0';
+		window.swingCanvas.style.width = '100%';
+		window.swingCanvas.style.height = '100%';
+		window.swingCanvas.style.pointerEvents = 'none';
+		window.swingCanvas.style.zIndex = '1000';
+		map.getContainer().appendChild(window.swingCanvas);
+		swingCanvas = window.swingCanvas;
+		swingCtx = swingCanvas.getContext('2d');
+		tryPopulateSwingYearDropdowns();
+		populateContestDropdown();
+		updateStatewideResults();
+		// Add all other map event listeners here
+		// Example: County click handler
+		map.on('click', 'county-fill', function(e) {
+			// ...insert robust sidebar logic here...
+		});
+	}).catch(error => console.error("Failed to load data:", error));
 });
 
 // --- Export as Image ---
