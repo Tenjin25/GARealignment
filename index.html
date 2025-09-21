@@ -500,10 +500,10 @@ function getRedditShareUrl() {
 // Removed: document.getElementById('reddit-share-btn').addEventListener(...) (element does not exist)
 var redditBtn = document.getElementById('reddit-share-btn-top');
 if (redditBtn) {
-    redditBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open(getRedditShareUrl(), '_blank');
-    });
+	redditBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		window.open(getRedditShareUrl(), '_blank');
+	});
 }
 
 // --- LinkedIn Share ---
@@ -515,10 +515,10 @@ function getLinkedInShareUrl() {
 // Removed: document.getElementById('linkedin-share-btn').addEventListener(...) (element does not exist)
 var linkedinBtn = document.getElementById('linkedin-share-btn-top');
 if (linkedinBtn) {
-    linkedinBtn.addEventListener('click', function(e) {
-        e.preventDefault();
-        window.open(getLinkedInShareUrl(), '_blank');
-    });
+	linkedinBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		window.open(getLinkedInShareUrl(), '_blank');
+	});
 }
 // All JS logic is now in this single script block at the end of <body>
 // ...existing code for map, sidebar, controls, etc...
@@ -593,34 +593,6 @@ Promise.all([
 	tryPopulateSwingYearDropdowns();
 	populateContestDropdown();
 	updateStatewideResults();
-});
-
-// --- Export as Image ---
-document.getElementById('export-image-btn').addEventListener('click', function() {
-	map.getCanvas().toBlob(function(blob) {
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'georgia_map.png';
-		document.body.appendChild(a);
-		a.click();
-		setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
-	});
-});
-
-// --- Copy Link ---
-document.getElementById('copy-link-btn').addEventListener('click', function() {
-	navigator.clipboard.writeText(window.location.href);
-	updateStatus('Link copied to clipboard!');
-});
-
-// --- Twitter Share ---
-document.getElementById('twitter-share-btn').addEventListener('click', function(e) {
-	e.preventDefault();
-	const url = encodeURIComponent(window.location.href);
-	const text = encodeURIComponent('Check out this interactive Georgia political map!');
-	const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-	window.open(shareUrl, '_blank');
 });
 
 function resizeSwingCanvas() {
@@ -1439,7 +1411,12 @@ map.on('load', function() {
 		matchExpr.push('#888'); // default color
 		// Update the county-fill layer
 		if (map.getLayer('county-fill')) {
-			map.setPaintProperty('county-fill', 'fill-color', matchExpr);
+			if (matchExpr.length < 4) {
+				// Not enough arguments for match, use default color
+				map.setPaintProperty('county-fill', 'fill-color', '#888');
+			} else {
+				map.setPaintProperty('county-fill', 'fill-color', matchExpr);
+			}
 			map.setPaintProperty('county-fill', 'fill-opacity', 0.38);
 			updateStatus('Political categories applied for ' + contestKey + '.');
 		} else {
