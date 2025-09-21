@@ -959,14 +959,10 @@ tryPopulateSwingYearDropdowns();
 		// Extract county name as in map click logic
 		let props = feature.properties;
 		let countyLabel = props.Label || props.NAME || props.County || '';
-		function toTitleCase(str) {
-			return str.toLowerCase().replace(/\b\w+/g, function(txt){
-				return txt.charAt(0).toUpperCase() + txt.substr(1);
-			});
+		function normalizeCountyName(str) {
+			return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/ county$/, '');
 		}
-		if (countyLabel === countyLabel.toUpperCase()) {
-			countyLabel = toTitleCase(countyLabel);
-		}
+		countyLabel = normalizeCountyName(countyLabel);
 		openSidebar();
 		document.getElementById('county-details').style.display = 'block';
 		document.getElementById('county-name').textContent = countyLabel + ' County';
