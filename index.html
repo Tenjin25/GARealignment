@@ -1426,14 +1426,20 @@ map.on('load', function() {
 		}
 		// Build a match expression for Mapbox
 		const matchExpr = ['match', ['downcase', ['get', 'Label']]];
+		let unmatchedCounties = [];
 		countiesGeojson.features.forEach(f => {
 			// Try all possible property names for county label
 			const label = (f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || '').toString().trim().toLowerCase();
 			const margin = marginMap[label];
 			if (typeof margin === 'number') {
 				matchExpr.push(label, getCategoryColor(margin));
+			} else {
+				unmatchedCounties.push(label);
 			}
 		});
+		if (unmatchedCounties.length > 0) {
+			console.warn('Unmatched counties (not colored):', unmatchedCounties);
+		}
 		matchExpr.push('#888'); // default color
 		// Update the county-fill layer
 		if (map.getLayer('county-fill')) {
