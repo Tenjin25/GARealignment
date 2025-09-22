@@ -1201,11 +1201,15 @@ map.on('load', function() {
 				winnerName = r.winner || '';
 				winnerAbbr = winnerParty.length <= 3 ? winnerParty : '';
 			}
-			let margin = r.margin_pct !== undefined ? r.margin_pct : r.margin;
 			let marginStr = '';
 			let marginColor = '#cb181d';
-			if (typeof margin === 'number') {
-				// Determine prefix by winner's party, not just sign
+			if (r.margin_pct) {
+				// Use margin_pct string directly (e.g., 'R+35.22')
+				let color = '#cb181d';
+				if (r.margin_pct.startsWith('D+')) color = '#2563eb';
+				marginStr = `<span style='color:${color};font-weight:bold;'>${r.margin_pct}%</span>`;
+			} else if (typeof r.margin === 'number') {
+				// Fallback to calculated margin
 				let prefix = '';
 				if (winnerAbbr === 'D') {
 					prefix = 'D+';
@@ -1214,10 +1218,10 @@ map.on('load', function() {
 					prefix = 'R+';
 					marginColor = '#cb181d';
 				} else {
-					prefix = (margin > 0 ? 'D+' : 'R+');
-					marginColor = (margin > 0 ? '#2563eb' : '#cb181d');
+					prefix = (r.margin > 0 ? 'D+' : 'R+');
+					marginColor = (r.margin > 0 ? '#2563eb' : '#cb181d');
 				}
-				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(margin).toFixed(2)}%</span>`;
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(r.margin).toFixed(2)}%</span>`;
 			}
 			let demPct = r.dem_votes && r.total_votes ? (r.dem_votes / r.total_votes * 100) : 0;
 			let repPct = r.rep_votes && r.total_votes ? (r.rep_votes / r.total_votes * 100) : 0;
@@ -1252,8 +1256,36 @@ map.on('load', function() {
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
-			let cat = r.category || r.competitiveness || '';
-			// Assign color based on category depth, matching the legend
+			let catObj = r.category || r.competitiveness || '';
+			let catStr = '';
+			if (typeof catObj === 'string') {
+				catStr = catObj;
+			} else if (catObj && typeof catObj === 'object') {
+				// Combine category and party for display
+				let partyStr = '';
+				if (catObj.party) {
+					if (catObj.party.toUpperCase() === 'DEMOCRAT' || catObj.party.toUpperCase() === 'DEMOCRATIC') {
+						partyStr = 'Democratic';
+					} else if (catObj.party.toUpperCase() === 'REPUBLICAN') {
+						partyStr = 'Republican';
+					} else {
+						partyStr = catObj.party.charAt(0).toUpperCase() + catObj.party.slice(1).toLowerCase();
+					}
+				}
+				if (catObj.category && partyStr) {
+					catStr = catObj.category + ' ' + partyStr;
+				} else if (catObj.category) {
+					catStr = catObj.category;
+				} else if (catObj.label) {
+					catStr = catObj.label;
+				} else if (catObj.name) {
+					catStr = catObj.name;
+				} else {
+					catStr = JSON.stringify(catObj);
+				}
+			} else {
+				catStr = '';
+			}
 			function getCompetitivenessColor(cat) {
 				if (typeof cat !== 'string' || !cat) return '#222';
 				const c = cat.toLowerCase();
@@ -1274,8 +1306,8 @@ map.on('load', function() {
 				if (c.includes('annihilation democratic')) return '#08306b';
 				return '#222';
 			}
-			let catColor = getCompetitivenessColor(cat);
-			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${cat}</span>`;
+			let catColor = getCompetitivenessColor(catStr);
+			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${catStr}</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
 			infoHtml += '<b>Election Data:</b><br>';
@@ -1395,6 +1427,8 @@ map.on('load', function() {
 			const margin = total ? ((d - rep) / total) * 100 : 0; // Dem minus Rep, percent
 			marginMap[name] = margin;
 		});
+        // Log all normalized county names from resultsObj
+        console.log('Normalized county names from resultsObj:', Object.keys(marginMap));
 		// Legend color bins (from legend in HTML)
 		function getCategoryColor(margin) {
 			if (margin <= -40) return '#67000d'; // Annihilation R
@@ -1416,10 +1450,14 @@ map.on('load', function() {
 		// Build a match expression for Mapbox
 		const matchExpr = ['match', ['downcase', ['get', 'Label']]];
 		let unmatchedCounties = [];
+        // Set Label property to normalized name for every feature
+        let geojsonNormalizedNames = [];
 		countiesGeojson.features.forEach(f => {
 			// Try all possible property names for county label
 			const rawLabel = (f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || '');
 			const label = normalizeCountyName(rawLabel);
+            f.properties.Label = label; // Overwrite Label to normalized name
+            geojsonNormalizedNames.push(label);
 			const margin = marginMap[label];
 			if (typeof margin === 'number') {
 				matchExpr.push(label, getCategoryColor(margin));
@@ -1427,6 +1465,8 @@ map.on('load', function() {
 				unmatchedCounties.push(rawLabel);
 			}
 		});
+        // Log all normalized county names from GeoJSON
+        console.log('Normalized county names from GeoJSON:', geojsonNormalizedNames);
 		if (unmatchedCounties.length > 0) {
 			console.warn('Unmatched counties (not colored):', unmatchedCounties);
 		}
