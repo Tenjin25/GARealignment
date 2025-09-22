@@ -1410,6 +1410,8 @@ map.on('load', function() {
 		const resultsObj = electionData.results_by_year[year][contestKey];
 		// Use resultsObj directly (no .results)
 		// Build a county margin map: { countyName: margin }
+        // DEBUG: Log resultsObj before processing
+        console.log('DEBUG: resultsObj contents before margin map:', resultsObj);
 		const marginMap = {};
 		function normalizeCountyName(str) {
 			return str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
