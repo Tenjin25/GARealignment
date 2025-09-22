@@ -1416,7 +1416,8 @@ map.on('load', function() {
 		function normalizeCountyName(str) {
 			return str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
 		}
-		Object.values(resultsObj).forEach(r => {
+	const countyResultsArr = resultsObj.results ? Object.values(resultsObj.results) : Object.values(resultsObj);
+	countyResultsArr.forEach(r => {
 			// Try all possible property names for county
 			const rawName = (r.county || r.County || r.COUNTY || r.label || r.Label || r.NAME || r.Name || '');
 			const name = normalizeCountyName(rawName);
