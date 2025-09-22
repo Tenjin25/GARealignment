@@ -1,3 +1,36 @@
+<script>
+function normalizeCandidateName(name) {
+	if (!name) return '';
+	name = name.trim();
+	const known = {
+		'johnny isakson': 'Johnny Isakson',
+		'jon ossoff': 'Jon Ossoff',
+		// Add more mappings as needed
+	};
+	const lower = name.toLowerCase();
+	if (known[lower]) return known[lower];
+	return name.replace(/\w\S*/g, function(txt){
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
+</script>
+// Normalize candidate names to title case and handle known variants
+function normalizeCandidateName(name) {
+	if (!name) return '';
+	name = name.trim();
+	// Map known variants/typos
+	const known = {
+		'johnny isakson': 'Johnny Isakson',
+		'jon ossoff': 'Jon Ossoff',
+		// Add more mappings as needed
+	};
+	const lower = name.toLowerCase();
+	if (known[lower]) return known[lower];
+	// Title case
+	return name.replace(/\w\S*/g, function(txt){
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -499,7 +532,7 @@ function updateStatewideResults() {
 	let repPct = totalVotes ? (repVotes / totalVotes * 100) : 0;
 	let otherPct = totalVotes ? (otherVotes / totalVotes * 100) : 0;
 	let html = `<div style='margin-bottom:10px;background:#f6f8fa;border-radius:10px;padding:12px 10px 10px 10px;box-shadow:0 1px 4px rgba(0,0,0,0.04);'>`;
-	html += `<div style='font-size:16px;font-weight:600;margin-bottom:6px;'>Winner: <span style='color:${winnerColor};font-size:18px;font-weight:bold;'>${winner}${winnerAbbr ? ' (' + winnerAbbr + ')' : ''}</span></div>`;
+	html += `<div style='font-size:16px;font-weight:600;margin-bottom:6px;'>Winner: <span style='color:${winnerColor};font-size:18px;font-weight:bold;'>${normalizeCandidateName(winner)}${winnerAbbr ? ' (' + winnerAbbr + ')' : ''}</span></div>`;
 	html += `<div style='margin-bottom:8px;'><span style='font-size:15px;font-weight:600;'>Margin:</span> <span style='color:${marginColor};font-weight:bold;font-size:16px;'>${marginPrefix}${marginPct.toFixed(2)}%</span> <span style='color:#888;font-size:14px;'>(${marginVotes.toLocaleString()} votes)</span></div>`;
 	// Horizontal vote bar (like NC map)
 	html += `<div style='display:flex;align-items:center;margin-bottom:8px;height:22px;background:#f1f5f9;border-radius:8px;overflow:hidden;width:100%;box-shadow:0 1px 2px rgba(0,0,0,0.04);'>`;
@@ -651,13 +684,14 @@ function populateContestDropdown() {
 			// Friendly name mapping for common contest keys
 			// Normalize specific commissioner titles before broader matches
 			if (/lt[_\s]?governor/i.test(contestName)) contestName = 'Lt. Governor';
+			else if (/^governor$/i.test(contestName)) contestName = 'Governor';
 			else if (/ag(ricultural)?[_\s]?commissioner|commissioner[_\s]?of[_\s]?agriculture/i.test(contestName)) contestName = 'Agriculture Commissioner';
 			else if (/insurance[_\s]?commissioner|commissioner[_\s]?of[_\s]?insurance/i.test(contestName)) contestName = 'Insurance Commissioner';
 			else if (/labor[_\s]?commissioner|commissioner[_\s]?of[_\s]?labor/i.test(contestName)) contestName = 'Labor Commissioner';
-			else if (/public[_\s]?service[_\s]?commissioner|commissioner[_\s]?of[_\s]?public[_\s]?service/i.test(contestName)) contestName = 'Public Service Commissioner';
-			else if (/governor/i.test(contestName)) contestName = 'Governor';
+			else if (/public[_\s]?service[_\s]?commissioner|commissioner[_\s]?of[_\s]?public[_\s]?service|psc|^public service$/i.test(contestName)) contestName = 'Public Service Commissioner';
+			else if (/state[_\s]?school[_\s]?superintendent|school[_\s]?superintendent/i.test(contestName)) contestName = 'State School Superintendent';
 			if (/president/i.test(contestName)) contestName = 'US President';
-			if (/senate/i.test(contestName)) contestName = 'US Senate';
+			if (/senate|united[_\s]?states[_\s]?senator/i.test(contestName)) contestName = 'US Senate';
 			if (/attorney/i.test(contestName)) contestName = 'Attorney General';
 			if (/secretary/i.test(contestName)) contestName = 'Secretary of State';
 			if (/treasurer/i.test(contestName)) contestName = 'Treasurer';
