@@ -15,7 +15,19 @@
 	border-radius: 4px;
 	padding: 2px 8px;
 	margin-right: 6px;
-}
+	}
+
+	/* Add clear tossup category styling for sidebar */
+	.tossup-category {
+		color: #fff !important;
+		background: #f59e42 !important;
+		font-weight: bold;
+		font-size: 18px;
+		border-radius: 6px;
+		padding: 4px 12px;
+		border: 2px solid #f59e42;
+		box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+	}
 /* County Analysis Block: Match NC Map */
 .county-details {
 	background: #f8fafc;
@@ -572,7 +584,7 @@ let electionData = null;
 // Load Georgia county GeoJSON and election results JSON
 Promise.all([
 	fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
-	fetch('./data/results_by_year_grouped.filled.json').then(r => r.json())
+	fetch('./data/results_by_year_grouped.json').then(r => r.json())
 ]).then(([geojson, results]) => {
 	countiesGeojson = geojson;
 	electionData = results;
@@ -1350,7 +1362,7 @@ map.on('load', function() {
 		sidebarDiv.className = 'county-details';
 		if (county.competitiveness && county.competitiveness.category === 'Tossup') {
 			sidebarDiv.classList.add('tossup');
-			sidebarDiv.innerHTML += '<p><span class="tossup-label">Tossup</span> (Democratic or Republican Win)</p>';
+			sidebarDiv.innerHTML += `<p><span class="tossup-category">Tossup</span> (Democratic or Republican Win)</p>`;
 		}
 		// ...existing rendering code for county details...
 		// Example: sidebarDiv.innerHTML += `<h4>${county.county}</h4>`;
