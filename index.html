@@ -1029,42 +1029,27 @@ tryPopulateSwingYearDropdowns();
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
-			let cat = '';
-			if (r.competitiveness) {
-				if (typeof r.competitiveness === 'object' && r.competitiveness.category) {
-					cat = r.competitiveness.category;
-				} else if (typeof r.competitiveness === 'string') {
-					cat = r.competitiveness;
-				}
-			} else if (r.category && typeof r.category === 'string') {
-				cat = r.category;
+			// --- Start of replacement ---
+			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
+
+			let catData = r.category || r.competitiveness || '';
+			let competitivenessString = '';
+			let catColor = '';
+
+			if (typeof catData === 'object' && catData !== null) {
+				// Compose label: category + party
+				let partyLabel = catData.party ? (' ' + catData.party.charAt(0) + catData.party.slice(1).toLowerCase()) : '';
+				competitivenessString = (catData.category ? catData.category : '') + partyLabel;
+				if (!competitivenessString.trim()) competitivenessString = catData.level || catData.name || catData.label || 'Data is an object';
+				// Use color from JSON if present, else fallback to mapping
+				catColor = catData.color || getCompetitivenessColor(competitivenessString);
+			} else {
+				competitivenessString = catData;
+				catColor = getCompetitivenessColor(competitivenessString);
 			}
-			let party = (r.competitiveness && r.competitiveness.party) ? r.competitiveness.party : (r.winner_party || '');
-			let marginLabel = (typeof r.margin_pct === 'string') ? r.margin_pct : (winnerAbbr + '+' + Math.abs(r.margin).toFixed(2) + '%');
-			function getCompetitivenessColor(catStr) {
-				if (typeof catStr !== 'string' || !catStr) return '#222';
-				const c = catStr.toLowerCase();
-				if (c.includes('annihilation republican')) return '#67000d';
-				if (c.includes('dominant republican')) return '#a50f15';
-				if (c.includes('stronghold republican')) return '#cb181d';
-				if (c.includes('safe republican')) return '#ef3b2c';
-				if (c.includes('likely republican')) return '#fb6a4a';
-				if (c.includes('lean republican')) return '#fcae91';
-				if (c.includes('tilt republican')) return '#fee8c8';
-				if (c.includes('tossup')) return '#f7f7f7';
-				if (c.includes('tilt democratic')) return '#e1f5fe';
-				if (c.includes('lean democratic')) return '#c6dbef';
-				if (c.includes('likely democratic')) return '#9ecae1';
-				if (c.includes('safe democratic')) return '#6baed6';
-				if (c.includes('stronghold democratic')) return '#3182bd';
-				if (c.includes('dominant democratic')) return '#08519c';
-				if (c.includes('annihilation democratic')) return '#08306b';
-				return '#222';
-			}
-			let catColor = getCompetitivenessColor(cat);
-			let partyLabel = party ? (party.charAt(0) + party.slice(1).toLowerCase()) : '';
-			let displayLabel = `${cat} ${partyLabel} (${marginLabel})`;
-			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${displayLabel}</span>`;
+
+			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${competitivenessString}</span>`;
+			// --- End of replacement ---
 			infoHtml += `</div>`;
 		} else if (foundElection) {
 			infoHtml += '<b>Election Data:</b><br>';
@@ -1394,9 +1379,13 @@ map.on('load', function() {
 		// Use resultsObj directly (no .results)
 		// Build a county margin map: { countyName: margin }
 		const marginMap = {};
+		function normalizeCountyName(str) {
+			return str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+		}
 		Object.values(resultsObj).forEach(r => {
 			// Try all possible property names for county
-			const name = (r.county || r.County || r.COUNTY || r.label || r.Label || r.NAME || r.Name || '').toString().trim().toLowerCase();
+			const rawName = (r.county || r.County || r.COUNTY || r.label || r.Label || r.NAME || r.Name || '');
+			const name = normalizeCountyName(rawName);
 			// Try all possible property names for votes
 			const d = r.dem_votes || r.Democratic || r.dem || r.democrat || r.DEMOCRAT || 0;
 			const rep = r.rep_votes || r.Republican || r.rep || r.republican || r.REPUBLICAN || 0;
@@ -1429,12 +1418,13 @@ map.on('load', function() {
 		let unmatchedCounties = [];
 		countiesGeojson.features.forEach(f => {
 			// Try all possible property names for county label
-			const label = (f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || '').toString().trim().toLowerCase();
+			const rawLabel = (f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || '');
+			const label = normalizeCountyName(rawLabel);
 			const margin = marginMap[label];
 			if (typeof margin === 'number') {
 				matchExpr.push(label, getCategoryColor(margin));
 			} else {
-				unmatchedCounties.push(label);
+				unmatchedCounties.push(rawLabel);
 			}
 		});
 		if (unmatchedCounties.length > 0) {
