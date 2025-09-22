@@ -683,6 +683,9 @@ map.on('load', function() {
 let countiesGeojson = null;
 let electionData = null;
 
+// Set Mapbox access token (required for map to load)
+mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbWFyZGF2aXMiLCJhIjoiY21kcW8yeDB2MDhvbTJzb29qeGp1aDZmZCJ9.Zw_i6U-dL7_bEKRHTUh7yg';
+
 // --- Global Toggle Functions for UI Controls ---
 window.toggleSidebar = function() {
 	const sidebar = document.getElementById('sidebar');
