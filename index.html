@@ -746,7 +746,7 @@ map.on('load', function() {
 	});
 });
 let countiesGeojson = null;
-let electionData = null;
+window.electionData = null;
 
 // Set Mapbox access token (required for map to load)
 mapboxgl.accessToken = 'pk.eyJ1Ijoic2hhbWFyZGF2aXMiLCJhIjoiY21kcW8yeDB2MDhvbTJzb29qeGp1aDZmZCJ9.Zw_i6U-dL7_bEKRHTUh7yg';
@@ -1530,7 +1530,7 @@ tryPopulateSwingYearDropdowns();
 	}
 		// Try to show more details from electionData if available
 		let infoHtml = '';
-		let foundElection = props.election;
+		let foundElection = props && props.election ? props.election : null;
 		// Only show the selected contest/year for this county
 	const contestVal2 = document.getElementById('contest') ? document.getElementById('contest').value : '';
 		let selectedYear = '', selectedContest = '';
@@ -1674,10 +1674,10 @@ tryPopulateSwingYearDropdowns();
 	// --- Toggle County Labels ---
 	let countyLabelsVisible = false;
 	function toggleLabels() {
-			if (!map.getSource('counties')) {
-			updateStatus('County data not loaded.');
-			return;
-		}
+			if (!(window.map && typeof window.map.getSource === 'function' && map.getSource('counties'))) {
+				updateStatus('County data not loaded.');
+				return;
+			}
 		   if (!map.getLayer('county-label')) {
 			   // Add a new GeoJSON source with title-cased county names for labels
 			   const countiesWithTitleLabels = JSON.parse(JSON.stringify(countiesGeojson));
@@ -1693,7 +1693,7 @@ tryPopulateSwingYearDropdowns();
 				   }
 				   f.properties.LabelTitle = label;
 			   });
-			   if (!map.getSource('counties-title')) {
+			   if (!(window.map && typeof window.map.getSource === 'function' && map.getSource('counties-title'))) {
 				   map.addSource('counties-title', { type: 'geojson', data: countiesWithTitleLabels });
 			   }
 			   map.addLayer({
