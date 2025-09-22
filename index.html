@@ -48,39 +48,7 @@
 			font-style: italic;
 			color: #555;
 		}
-</style>
-	<div class="container">
-		<div class="section">
-			<span class="label">Randolph County</span>
-		</div>
-		<div class="section">
-			<span class="icon">📊</span>
-			<span class="label">Election Results</span><br>
-			Precincts: 22<br>
-			Total Votes: 76,008
-		</div>
-		<div class="section winner">
-			<span class="icon">🏆</span>
-			<span class="label">Winner</span><br>
-			Donald J. Trump (R)
-		</div>
-		<div class="section">
-			<span class="icon">📈</span>
-			<span class="label">Margin</span><br>
-			<span class="margin">R+57.11%</span><br>
-			(43,406 vote margin)
-		</div>
-		<div class="section">
-			<span class="icon">🗳️</span>
-			<span class="label">Vote Breakdown</span>
-			<div class="votes">
-				Kamala D. Harris (D) : 20.99% (15,951)<br>
-				Donald J. Trump (R) : 78.09% (59,357)
-			</div>
-		</div>
-		<div class="section competitiveness">
-			<span class="icon">🎯</span>
-			Competitiveness: Annihilation Republican
+        </style>
 		</div>
 	</div>
 </body>
@@ -161,19 +129,6 @@
 	align-items: center;
 	justify-content: center;
 }
-</style>
-	<script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
-	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
-		<meta charset='utf-8'>
-	<title>GA Political Realignment Map (2008-2024)</title>
-	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
-	<meta property="og:title" content="GA Political Realignment Map (2008-2024)">
-	<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2008 to 2024, showing county-level and precinct-level voting patterns.">
-	<meta property="og:image" content="preview.png">
-	<meta name="twitter:card" content="summary_large_image">
-	<link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
-	<link href='styles/style.css' rel='stylesheet'>
-<style>
 html, body {
 	height: 100vh;
 	margin: 0;
@@ -335,7 +290,106 @@ body {
 	<button id="sidebar-float-toggle" style="position:fixed;top:20px;right:20px;z-index:10001;width:56px;height:56px;background:#2563eb;color:#fff;border:none;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;">+</button>
 	<div id="map" style="position:relative;width:100%;height:100%;">
 		<canvas id="swingCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1000;"></canvas>
-	</div>
+		<div class="main-controls" id="main-controls">
+			<div class="controls-header">
+				<h3>🗳️ GA Political Contests</h3>
+				<button class="minimize-btn" onclick="toggleMainControls()" id="controls-minimize-btn">−</button>
+			</div>
+			<div class="controls-content" id="controls-content">
+				<div class="analysis-mode" style="display: flex; gap: 10px; align-items: center; margin-bottom: 15px;">
+					<div class="mode-toggle active" id="county-mode" onclick="setMode('county')">County Results</div>
+					<div class="mode-toggle" id="precinct-mode" onclick="setMode('precinct')">Precinct Patterns</div>
+				</div>
+				<div class="control-group">
+					<label>📊 Contest Type:</label>
+					<select id="contest">
+						<option value="">Select a Contest...</option>
+						<option value="2000|president_2000">US President (2000)</option>
+						<option value="2004|president_2004">US President (2004)</option>
+						<option value="2008|president_2008">US President (2008)</option>
+						<option value="2012|president_2012">US President (2012)</option>
+						<option value="2016|president_of_the_united_states_2016">US President (2016)</option>
+						<option value="2020|president_2020">US President (2020)</option>
+						<option value="2024|president_2024">US President (2024)</option>
+						<option value="2000|us_senate_2000">US Senate Special (2000)</option>
+						<option value="2004|us_senate_2004">US Senate (2004)</option>
+						<option value="2008|us_senate_2008">US Senate (2008)</option>
+						<option value="2010|us_senate_2010">US Senate (2010)</option>
+						<option value="2014|us_senate_2014">US Senate (2014)</option>
+						<option value="2016|us_senate_2016">US Senate (2016)</option>
+						<option value="2020|us_senate_2020">US Senate (2020)</option>
+						<option value="2021|us_senate_2021_warnock">US Senate Runoff (2021) - Warnock vs. Loeffler</option>
+						<option value="2021|us_senate_2021_ossoff">US Senate Runoff (2021) - Ossoff vs. Perdue</option>
+						<option value="2022|us_senate_2022">US Senate (2022)</option>
+						<option value="2022|us_senate_2022_warnock">US Senate Runoff (2022) - Warnock vs. Walker</option>
+						<option value ="2002|governor_2002">GA Governor (2002)</option>
+						<option value="2006|governor_2006">GA Governor (2006)</option>
+						<option value="2010|governor_2010">GA Governor (2010)</option>
+						<option value="2014|governor_2014">GA Governor (2014)</option>
+						<option value="2018|governor_2018">GA Governor (2018)</option>
+						<option value="2022|governor_2022">GA Governor (2022)</option>
+						<option value="2002|secretary_of_state_2002">GA Secretary of State (2002)</option>
+						<option value="2006|secretary_of_state_2006">GA Secretary of State (2006)</option>
+						<option value="2010|secretary_of_state_2010">GA Secretary of State (2010)</option>
+						<option value="2014|secretary_of_state_2014">GA Secretary of State (2014)</option>
+						<option value="2018|secretary_of_state_2018">GA Secretary of State (2018)</option>
+						<option value="2022|secretary_of_state_2022">GA Secretary of State (2022)</option>
+						<option value="2002|attorney_general_2002">GA Attorney General (2002)</option>
+						<option value="2006|attorney_general_2006">GA Attorney General (2006)</option>
+						<option value="2010|attorney_general_2010">GA Attorney General (2010)</option>
+						<option value="2014|attorney_general_2014">GA Attorney General (2014)</option>
+						<option value="2018|attorney_general_2018">GA Attorney General (2018)</option>
+						<option value="2022|attorney_general_2022">GA Attorney General (2022)</option>
+						<option value="2002|lt_governor_2002">GA Lieutenant Governor (2002)</option>
+						<option value="2006|lt_governor_2006">GA Lieutenant Governor (2006)</option>
+						<option value="2010|lt_governor_2010">GA Lieutenant Governor (2010)</option>
+						<option value="2014|lt_governor_2014">GA Lieutenant Governor (2014)</option>
+						<option value="2018|lt_governor_2018">GA Lieutenant Governor (2018)</option>
+						<option value="2022|lt_governor_2022">GA Lieutenant Governor (2022)</option>
+						<option value="2002|agriculture_commissioner_2002">Agriculture Commissioner (2002)</option>
+						<option value="2006|agriculture_commissioner_2006">Agriculture Commissioner (2006)</option>
+						<option value="2010|agriculture_commissioner_2010">Agriculture Commissioner (2010)</option>
+						<option value="2014|agriculture_commissioner_2014">Agriculture Commissioner (2014)</option>
+						<option value="2018|agriculture_commissioner_2018">Agriculture Commissioner (2018)</option>
+						<option value="2022|agriculture_commissioner_2022">Agriculture Commissioner (2022)</option>
+						<option value="2002|insurance_commissioner_2002">Insurance Commissioner (2002)</option>
+						<option value="2006|insurance_commissioner_2006">Insurance Commissioner (2006)</option>
+						<option value="2010|insurance_commissioner_2010">Insurance Commissioner (2010)</option>
+						<option value="2014|insurance_commissioner_2014">Insurance Commissioner (2014)</option>
+						<option value="2018|insurance_commissioner_2018">Insurance Commissioner (2018)</option>
+						<option value="2022|insurance_commissioner_2022">Insurance Commissioner (2022)</option>
+						<option value="2002|labor_commissioner_2002">Labor Commissioner (2002)</option>
+						<option value="2006|labor_commissioner_2006">Labor Commissioner (2006)</option>
+						<option value="2010|labor_commissioner_2010">Labor Commissioner (2010)</option>
+						<option value="2014|labor_commissioner_2014">Labor Commissioner (2014)</option>
+						<option value="2018|labor_commissioner_2018">Labor Commissioner (2018)</option>
+						<option value="2022|labor_commissioner_2022">Labor Commissioner (2022)</option>
+						<option value="2002|state_school_superintendent_2002">State School Superintendent (2002)</option>
+						<option value="2006|state_school_superintendent_2006">State School Superintendent (2006)</option>
+						<option value="2010|state_school_superintendent_2010">State School Superintendent (2010)</option>
+						<option value="2014|state_school_superintendent_2014">State School Superintendent (2014)</option>
+						<option value="2018|state_school_superintendent_2018">State School Superintendent (2018)</option>
+						<option value="2022|state_school_superintendent_2022">State School Superintendent (2022)</option>
+					</select>
+				</div>
+				<button onclick="applyCategories()" class="btn-primary">🎨 Apply Political Categories</button>
+				<button onclick="resetView()" class="btn-secondary">🔄 Reset View</button>
+				<button onclick="toggleLabels()" class="btn-success">🏷️ Toggle County Labels</button>
+				<button onclick="togglePrecinctsLayer()" class="btn-warning">📍 Toggle Precincts</button>
+				<div class="control-group" style="margin-top: 15px;">
+					<label>🔍 Quick Analysis:</label>
+					<button onclick="showSwingCounties()" class="btn-secondary" style="font-size: 12px;"></button>
+				</div>
+				<div class="control-group">
+					<label>🔄 Compare Years (Swing Arrows):</label>
+					<select id="swing-year1"></select>
+					<select id="swing-year2"></select>
+					<button onclick="drawAllCountySwingArrows()" class="btn-secondary">Show Swing Arrows</button>
+					<button onclick="clearSwingArrows()" class="btn-secondary">Clear Arrows</button>
+				</div>
+			</div>
+		</div>
+	<!-- ...existing HTML code... -->
 
 
 	   <div class="main-controls" id="main-controls">
@@ -418,7 +472,18 @@ body {
 					   <option value="2014|state_school_superintendent_2014">State School Superintendent (2014)</option>
 					   <option value="2018|state_school_superintendent_2018">State School Superintendent (2018)</option>
 					   <option value="2022|state_school_superintendent_2022">State School Superintendent (2022)</option>
-				   </select>
+				<script src='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js'></script>
+				<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+				<meta charset='utf-8'>
+				<title>GA Political Realignment Map (2008-2024)</title>
+				<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
+				<meta property="og:title" content="GA Political Realignment Map (2008-2024)">
+				<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2008 to 2024, showing county-level and precinct-level voting patterns.">
+				<meta property="og:image" content="preview.png">
+				<meta name="twitter:card" content="summary_large_image">
+				<link href='https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css' rel='stylesheet'>
+				<link href='styles/style.css' rel='stylesheet'>
+                   </select>
 			   </div>
 			   <button onclick="applyCategories()" class="btn-primary">🎨 Apply Political Categories</button>
 			   <button onclick="resetView()" class="btn-secondary">🔄 Reset View</button>
@@ -754,39 +819,53 @@ window.toggleLegend = function() {
 	});
 
 // --- Export as Image ---
-document.getElementById('export-image-btn').addEventListener('click', function() {
-	map.getCanvas().toBlob(function(blob) {
-		const url = URL.createObjectURL(blob);
-		const a = document.createElement('a');
-		a.href = url;
-		a.download = 'georgia_map.png';
-		document.body.appendChild(a);
-		a.click();
-		setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+var exportBtn = document.getElementById('export-image-btn');
+if (exportBtn) {
+	exportBtn.addEventListener('click', function() {
+		map.getCanvas().toBlob(function(blob) {
+			const url = URL.createObjectURL(blob);
+			const a = document.createElement('a');
+			a.href = url;
+			a.download = 'georgia_map.png';
+			document.body.appendChild(a);
+			a.click();
+			setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 100);
+		});
 	});
-});
+}
 
-// --- Copy Link ---
-document.getElementById('copy-link-btn').addEventListener('click', function() {
-	navigator.clipboard.writeText(window.location.href);
-	updateStatus('Link copied to clipboard!');
-});
+var copyBtn = document.getElementById('copy-link-btn');
+if (copyBtn) {
+	copyBtn.addEventListener('click', function() {
+		navigator.clipboard.writeText(window.location.href);
+		updateStatus('Link copied to clipboard!');
+	});
+}
 
 // --- Twitter Share ---
-document.getElementById('twitter-share-btn').addEventListener('click', function(e) {
-	e.preventDefault();
-	const url = encodeURIComponent(window.location.href);
-	const text = encodeURIComponent('Check out this interactive Georgia political map!');
-	const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
-	window.open(shareUrl, '_blank');
-});
+var twitterBtn = document.getElementById('twitter-share-btn');
+if (twitterBtn) {
+	twitterBtn.addEventListener('click', function(e) {
+		e.preventDefault();
+		const url = encodeURIComponent(window.location.href);
+		const text = encodeURIComponent('Check out this interactive Georgia political map!');
+		const shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${text}`;
+		window.open(shareUrl, '_blank');
+	});
+}
 
 function resizeSwingCanvas() {
-	swingCanvas.width = map.getContainer().offsetWidth;
-	swingCanvas.height = map.getContainer().offsetHeight;
+	if (window.map && typeof window.map.getContainer === 'function') {
+		if (window.map && typeof window.map.getContainer === 'function') {
+			swingCanvas.width = map.getContainer().offsetWidth;
+			swingCanvas.height = map.getContainer().offsetHeight;
+		}
+	}
 }
 window.addEventListener('resize', resizeSwingCanvas);
-map.on('resize', resizeSwingCanvas);
+if (window.map && typeof window.map.on === 'function') {
+	map.on('resize', resizeSwingCanvas);
+}
 resizeSwingCanvas();
 
 function populateContestDropdown() {
@@ -841,30 +920,39 @@ function populateContestDropdown() {
 	});
 }
 
-map.on('move', function() {
-	if (swingArrowsActive) drawAllCountySwingArrows();
-});
+if (window.map && typeof window.map.on === 'function') {
+	map.on('move', function() {
+		if (swingArrowsActive) drawAllCountySwingArrows();
+	});
+}
 
 function drawAllCountySwingArrows() {
 	if (!countiesGeojson || !electionData) return;
 	const y1 = document.getElementById('swing-year1').value;
 	const y2 = document.getElementById('swing-year2').value;
-	if (!y1 || !y2 || y1 === y2) {
-		updateStatus('Select two different years');
+	const c1 = document.getElementById('swing-contest1').value;
+	const c2 = document.getElementById('swing-contest2').value;
+	if (!y1 || !y2 || !c1 || !c2 || y1 === y2 || c1 === '' || c2 === '') {
+		updateStatus('Select two different years and contests');
 		return;
 	}
-	const k1 = Object.keys(electionData).find(k => k.includes('President') && k.includes(y1));
-	const k2 = Object.keys(electionData).find(k => k.includes('President') && k.includes(y2));
-	if (!k1 || !k2) {
-		updateStatus('President contest not found for both years');
+	// Use new flexible electionData structure
+	const contestObj1 = electionData.results_by_year[y1] && electionData.results_by_year[y1][c1];
+	const contestObj2 = electionData.results_by_year[y2] && electionData.results_by_year[y2][c2];
+	if (!contestObj1 || !contestObj2 || !contestObj1.results || !contestObj2.results) {
+		updateStatus('Contest not found for both years');
 		return;
 	}
-	const results1 = electionData[k1];
-	const results2 = electionData[k2];
-	const map1 = {};
-	results1.forEach(r => { if (r.county) map1[r.county.toLowerCase()] = r; });
-	const map2 = {};
-	results2.forEach(r => { if (r.county) map2[r.county.toLowerCase()] = r; });
+	const results1 = contestObj1.results;
+	const results2 = contestObj2.results;
+	let map1 = {};
+	for (const [countyKey, countyResult] of Object.entries(results1)) {
+		map1[countyKey.trim().toLowerCase()] = countyResult;
+	}
+	let map2 = {};
+	for (const [countyKey, countyResult] of Object.entries(results2)) {
+		map2[countyKey.trim().toLowerCase()] = countyResult;
+	}
 	swingCtx.clearRect(0, 0, swingCanvas.width, swingCanvas.height);
 	swingArrowHitboxes = [];
 	countiesGeojson.features.forEach(f => {
@@ -1105,7 +1193,6 @@ tryPopulateSwingYearDropdowns();
 		var foundBbox = turf.bbox(foundFeature);
 		map.fitBounds(foundBbox, { padding: 40, maxZoom: 10 });
 		// Prepare sidebar analysis
-		// Only declare these variables once per function scope
 		var props = foundFeature.properties;
 		var countyLabel = props.Label || props.NAME || props.County || '';
 		function toTitleCase(str) {
@@ -1258,8 +1345,8 @@ tryPopulateSwingYearDropdowns();
 		var foundBbox = turf.bbox(foundFeature);
 		map.fitBounds(foundBbox, { padding: 40, maxZoom: 10 });
 		// Prepare sidebar analysis
-		let props = foundFeature.properties;
-		let countyLabel = props.Label || props.NAME || props.County || '';
+	// ...existing code... (props already declared earlier in this function)
+	let countyLabel2 = props.Label || props.NAME || props.County || '';
 		function toTitleCase(str) {
 			return str.toLowerCase().replace(/\b\w+/g, function(txt){
 				return txt.charAt(0).toUpperCase() + txt.substr(1);
@@ -1268,16 +1355,16 @@ tryPopulateSwingYearDropdowns();
 		document.getElementById('county-details').style.display = 'block';
 		document.getElementById('county-name').textContent = countyLabel + ' County';
 		// Find election data for selected contest/year
-		let infoHtml = '';
-		let foundElection = props.election;
-		const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
-		let selectedYear = '', selectedContest = '';
-		if (contestVal && contestVal.includes('|')) {
-			[selectedYear, selectedContest] = contestVal.split('|');
+	let infoHtml2 = '';
+	let foundElection2 = props.election;
+	const contestVal2 = document.getElementById('contest') ? document.getElementById('contest').value : '';
+		let selectedYear2 = '', selectedContest2 = '';
+		if (contestVal2 && contestVal2.includes('|')) {
+			[selectedYear2, selectedContest2] = contestVal2.split('|');
 		}
-		if (!foundElection && electionData && electionData.results_by_year && selectedYear && selectedContest) {
+		if (!foundElection2 && electionData && electionData.results_by_year && selectedYear2 && selectedContest2) {
 			const key = countyLabel.trim().toLowerCase();
-			const contestObj = electionData.results_by_year[selectedYear] && electionData.results_by_year[selectedYear][selectedContest];
+			const contestObj = electionData.results_by_year[selectedYear2] && electionData.results_by_year[selectedYear2][selectedContest2];
 			if (contestObj && contestObj.results) {
 				for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
 					}
@@ -1445,7 +1532,7 @@ tryPopulateSwingYearDropdowns();
 		let infoHtml = '';
 		let foundElection = props.election;
 		// Only show the selected contest/year for this county
-		const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+	const contestVal2 = document.getElementById('contest') ? document.getElementById('contest').value : '';
 		let selectedYear = '', selectedContest = '';
 		if (contestVal && contestVal.includes('|')) {
 			[selectedYear, selectedContest] = contestVal.split('|');
