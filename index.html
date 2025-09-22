@@ -979,10 +979,11 @@ tryPopulateSwingYearDropdowns();
 				winnerName = r.winner || '';
 				winnerAbbr = winnerParty.length <= 3 ? winnerParty : '';
 			}
-			let margin = r.margin_pct !== undefined ? r.margin_pct : r.margin;
 			let marginStr = '';
 			let marginColor = '#cb181d';
-			if (typeof margin === 'number') {
+			if (typeof r.margin_pct === 'string') {
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${r.margin_pct}</span>`;
+			} else if (typeof r.margin === 'number') {
 				let prefix = '';
 				if (winnerAbbr === 'D') {
 					prefix = 'D+';
@@ -991,10 +992,10 @@ tryPopulateSwingYearDropdowns();
 					prefix = 'R+';
 					marginColor = '#cb181d';
 				} else {
-					prefix = (margin > 0 ? 'D+' : 'R+');
-					marginColor = (margin > 0 ? '#2563eb' : '#cb181d');
+					prefix = (r.margin > 0 ? 'D+' : 'R+');
+					marginColor = (r.margin > 0 ? '#2563eb' : '#cb181d');
 				}
-				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(margin).toFixed(2)}%</span>`;
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(r.margin).toFixed(2)}%</span>`;
 			}
 			let demPct = r.dem_votes && r.total_votes ? (r.dem_votes / r.total_votes * 100) : 0;
 			let repPct = r.rep_votes && r.total_votes ? (r.rep_votes / r.total_votes * 100) : 0;
@@ -1035,7 +1036,7 @@ tryPopulateSwingYearDropdowns();
 				} else if (typeof r.competitiveness === 'string') {
 					cat = r.competitiveness;
 				}
-			} else if (r.category) {
+			} else if (r.category && typeof r.category === 'string') {
 				cat = r.category;
 			}
 			let party = (r.competitiveness && r.competitiveness.party) ? r.competitiveness.party : (r.winner_party || '');
@@ -1399,8 +1400,8 @@ map.on('load', function() {
 			// Try all possible property names for votes
 			const d = r.dem_votes || r.Democratic || r.dem || r.democrat || r.DEMOCRAT || 0;
 			const rep = r.rep_votes || r.Republican || r.rep || r.republican || r.REPUBLICAN || 0;
-			// If total_votes exists, use it, otherwise sum d+rep
-			const total = r.total_votes || r.Total || r.TOTAL || (d + rep);
+			// If two_party_total exists, use it, otherwise sum d+rep
+			const total = r.two_party_total || r.total_votes || r.Total || r.TOTAL || (d + rep);
 			if (!name || !total) return;
 			const margin = total ? ((d - rep) / total) * 100 : 0; // Dem minus Rep, percent
 			marginMap[name] = margin;
