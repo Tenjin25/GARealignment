@@ -2,6 +2,20 @@
 <html>
 <head>
 <style>
+/* Tossup styling for sidebar */
+.county-details.tossup {
+	background: #f7f7f7;
+	border: 2px solid #888;
+}
+.tossup-label {
+	color: #888;
+	font-weight: bold;
+	font-size: 16px;
+	background: #e5e7eb;
+	border-radius: 4px;
+	padding: 2px 8px;
+	margin-right: 6px;
+}
 /* County Analysis Block: Match NC Map */
 .county-details {
 	background: #f8fafc;
@@ -1330,6 +1344,19 @@ map.on('load', function() {
 });
 
 	// ...existing code...
+	// Patch: Add tossup label and styling in sidebar rendering
+	function renderCountySidebar(county) {
+		const sidebarDiv = document.createElement('div');
+		sidebarDiv.className = 'county-details';
+		if (county.competitiveness && county.competitiveness.category === 'Tossup') {
+			sidebarDiv.classList.add('tossup');
+			sidebarDiv.innerHTML += '<p><span class="tossup-label">Tossup</span> (Democratic or Republican Win)</p>';
+		}
+		// ...existing rendering code for county details...
+		// Example: sidebarDiv.innerHTML += `<h4>${county.county}</h4>`;
+		// ...
+		return sidebarDiv;
+	}
 
 	// --- Reset View ---
 	function resetView() {
@@ -1515,9 +1542,9 @@ map.on('load', function() {
 	};
 
 		// DEBUG: Print raw county name for Gwinnett from results data
-		if (resultsObj.results && resultsObj.results['Gwinnett']) {
+		if (typeof resultsObj !== 'undefined' && resultsObj && resultsObj.results && resultsObj.results['Gwinnett']) {
 			console.log('Raw county name for Gwinnett in results:', resultsObj.results['Gwinnett']);
-		} else {
+		} else if (typeof resultsObj !== 'undefined' && resultsObj && resultsObj.results) {
 			// Try to find any key that matches gwinnett after normalization
 			const gwinnettKey = Object.keys(resultsObj.results || {}).find(k => normalizeCountyName(k) === 'gwinnett');
 			if (gwinnettKey) {
@@ -1525,6 +1552,8 @@ map.on('load', function() {
 			} else {
 				console.log('Gwinnett not found in resultsObj.results keys:', Object.keys(resultsObj.results || {}));
 			}
+		} else {
+			console.warn('resultsObj is not defined or missing expected structure.');
 		}
 	</script>
 </body>
