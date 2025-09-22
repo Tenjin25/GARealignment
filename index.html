@@ -1,36 +1,3 @@
-<script>
-function normalizeCandidateName(name) {
-	if (!name) return '';
-	name = name.trim();
-	const known = {
-		'johnny isakson': 'Johnny Isakson',
-		'jon ossoff': 'Jon Ossoff',
-		// Add more mappings as needed
-	};
-	const lower = name.toLowerCase();
-	if (known[lower]) return known[lower];
-	return name.replace(/\w\S*/g, function(txt){
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	});
-}
-</script>
-// Normalize candidate names to title case and handle known variants
-function normalizeCandidateName(name) {
-	if (!name) return '';
-	name = name.trim();
-	// Map known variants/typos
-	const known = {
-		'johnny isakson': 'Johnny Isakson',
-		'jon ossoff': 'Jon Ossoff',
-		// Add more mappings as needed
-	};
-	const lower = name.toLowerCase();
-	if (known[lower]) return known[lower];
-	// Title case
-	return name.replace(/\w\S*/g, function(txt){
-		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-	});
-}
 <!DOCTYPE html>
 <html>
 <head>
@@ -411,6 +378,22 @@ body {
 			   </div>
 		   </div>
 <!-- ...existing HTML code... -->
+<script>
+function normalizeCandidateName(name) {
+	if (!name) return '';
+	name = name.trim();
+	const known = {
+		'johnny isakson': 'Johnny Isakson',
+		'jon ossoff': 'Jon Ossoff',
+		// Add more mappings as needed
+	};
+	const lower = name.toLowerCase();
+	if (known[lower]) return known[lower];
+	return name.replace(/\w\S*/g, function(txt){
+		return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+	});
+}
+</script>
 
 <script>
 // --- Statewide Results Panel Logic ---
