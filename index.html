@@ -663,36 +663,24 @@ function populateContestDropdown() {
 	if (!contestSelect || !electionData || !electionData.results_by_year) return;
 	// Build a flat array of all contests, deduplicating by year+contest_name
 	const contestMap = new Map();
+	function friendlyContestName(contestKey) {
+		if (/^governor(_\d{4})?$/i.test(contestKey)) return 'Governor';
+		if (/^lt[_\s]?governor(_\d{4})?$/i.test(contestKey)) return 'Lt. Governor';
+		if (/^president(_\d{4})?$/i.test(contestKey)) return 'US President';
+		if (/senate|us_senate|united[_\s]?states[_\s]?senator/i.test(contestKey)) return 'US Senate';
+		if (/attorney/i.test(contestKey)) return 'Attorney General';
+		if (/secretary/i.test(contestKey)) return 'Secretary of State';
+		if (/treasurer/i.test(contestKey)) return 'Treasurer';
+		if (/agriculture/i.test(contestKey)) return 'Agriculture Commissioner';
+		if (/insurance/i.test(contestKey)) return 'Insurance Commissioner';
+		if (/labor/i.test(contestKey)) return 'Labor Commissioner';
+		if (/public[_\s]?service|psc/i.test(contestKey)) return 'Public Service Commissioner';
+		if (/school[_\s]?superintendent/i.test(contestKey)) return 'State School Superintendent';
+		return contestKey.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+	}
 	for (const [year, contests] of Object.entries(electionData.results_by_year)) {
 		for (const contestKey of Object.keys(contests)) {
-			let contestName = contestKey;
-			const contestObj = contests[contestKey];
-			// Prefer contest-level contest_name
-			if (contestObj && contestObj.contest_name) {
-				contestName = contestObj.contest_name;
-			} else if (contestObj && contestObj.results) {
-				// Fallback: first county's contest_name
-				const firstCounty = Object.values(contestObj.results)[0];
-				if (firstCounty && firstCounty.contest_name) {
-					contestName = firstCounty.contest_name;
-				}
-			}
-			// Friendly name mapping for common contest keys
-			// Normalize specific commissioner titles before broader matches
-			if (/lt[_\s]?governor/i.test(contestName)) contestName = 'Lt. Governor';
-			else if (/^governor$/i.test(contestName)) contestName = 'Governor';
-			else if (/ag(ricultural)?[_\s]?commissioner|commissioner[_\s]?of[_\s]?agriculture/i.test(contestName)) contestName = 'Agriculture Commissioner';
-			else if (/insurance[_\s]?commissioner|commissioner[_\s]?of[_\s]?insurance/i.test(contestName)) contestName = 'Insurance Commissioner';
-			else if (/labor[_\s]?commissioner|commissioner[_\s]?of[_\s]?labor/i.test(contestName)) contestName = 'Labor Commissioner';
-			else if (/public[_\s]?service[_\s]?commissioner|commissioner[_\s]?of[_\s]?public[_\s]?service|psc|^public service$/i.test(contestName)) contestName = 'Public Service Commissioner';
-			else if (/state[_\s]?school[_\s]?superintendent|school[_\s]?superintendent/i.test(contestName)) contestName = 'State School Superintendent';
-			if (/president/i.test(contestName)) contestName = 'US President';
-			if (/senate|united[_\s]?states[_\s]?senator/i.test(contestName)) contestName = 'US Senate';
-			if (/attorney/i.test(contestName)) contestName = 'Attorney General';
-			if (/secretary/i.test(contestName)) contestName = 'Secretary of State';
-			if (/treasurer/i.test(contestName)) contestName = 'Treasurer';
-			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
-			contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
+			let contestName = friendlyContestName(contestKey);
 			const label = `${contestName} (${year})`;
 			const key = year + '|' + contestKey;
 			if (!contestMap.has(key)) {
