@@ -622,10 +622,18 @@ function populateContestDropdown() {
 					contestName = firstCounty.contest_name;
 				}
 			}
+			// Friendly name mapping for common contest keys
+			if (/president/i.test(contestName)) contestName = 'US President';
+			if (/governor/i.test(contestName)) contestName = 'Governor';
+			if (/senate/i.test(contestName)) contestName = 'US Senate';
+			if (/attorney/i.test(contestName)) contestName = 'Attorney General';
+			if (/lt[_\s]?governor/i.test(contestName)) contestName = 'Lt. Governor';
+			if (/secretary/i.test(contestName)) contestName = 'Secretary of State';
+			if (/treasurer/i.test(contestName)) contestName = 'Treasurer';
 			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
 			contestName = contestName.replace(/\(\d{4}\)/g, '').trim();
 			const label = `${contestName} (${year})`;
-			const key = year + '|' + contestName.toLowerCase();
+			const key = year + '|' + contestKey;
 			if (!contestMap.has(key)) {
 				contestMap.set(key, { year, contestKey, contestName, label });
 			}
@@ -1020,12 +1028,21 @@ tryPopulateSwingYearDropdowns();
 			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🎯 Competitiveness</div>`;
-			let cat = (r.competitiveness && r.competitiveness.category) ? r.competitiveness.category : (r.category || '');
+			let cat = '';
+			if (r.competitiveness) {
+				if (typeof r.competitiveness === 'object' && r.competitiveness.category) {
+					cat = r.competitiveness.category;
+				} else if (typeof r.competitiveness === 'string') {
+					cat = r.competitiveness;
+				}
+			} else if (r.category) {
+				cat = r.category;
+			}
 			let party = (r.competitiveness && r.competitiveness.party) ? r.competitiveness.party : (r.winner_party || '');
 			let marginLabel = (typeof r.margin_pct === 'string') ? r.margin_pct : (winnerAbbr + '+' + Math.abs(r.margin).toFixed(2) + '%');
-			function getCompetitivenessColor(cat) {
-				if (typeof cat !== 'string' || !cat) return '#222';
-				const c = cat.toLowerCase();
+			function getCompetitivenessColor(catStr) {
+				if (typeof catStr !== 'string' || !catStr) return '#222';
+				const c = catStr.toLowerCase();
 				if (c.includes('annihilation republican')) return '#67000d';
 				if (c.includes('dominant republican')) return '#a50f15';
 				if (c.includes('stronghold republican')) return '#cb181d';
@@ -1377,10 +1394,13 @@ map.on('load', function() {
 		// Build a county margin map: { countyName: margin }
 		const marginMap = {};
 		Object.values(resultsObj).forEach(r => {
-			const name = (r.county || r.County || r.COUNTY || '').toLowerCase();
-			const d = r.dem_votes || r.Democratic || r.dem || 0;
-			const rep = r.rep_votes || r.Republican || r.rep || 0;
-			const total = d + rep;
+			// Try all possible property names for county
+			const name = (r.county || r.County || r.COUNTY || r.label || r.Label || r.NAME || r.Name || '').toString().trim().toLowerCase();
+			// Try all possible property names for votes
+			const d = r.dem_votes || r.Democratic || r.dem || r.democrat || r.DEMOCRAT || 0;
+			const rep = r.rep_votes || r.Republican || r.rep || r.republican || r.REPUBLICAN || 0;
+			// If total_votes exists, use it, otherwise sum d+rep
+			const total = r.total_votes || r.Total || r.TOTAL || (d + rep);
 			if (!name || !total) return;
 			const margin = total ? ((d - rep) / total) * 100 : 0; // Dem minus Rep, percent
 			marginMap[name] = margin;
@@ -1406,7 +1426,8 @@ map.on('load', function() {
 		// Build a match expression for Mapbox
 		const matchExpr = ['match', ['downcase', ['get', 'Label']]];
 		countiesGeojson.features.forEach(f => {
-			const label = (f.properties.Label || f.properties.NAME || f.properties.County || '').toLowerCase();
+			// Try all possible property names for county label
+			const label = (f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || '').toString().trim().toLowerCase();
 			const margin = marginMap[label];
 			if (typeof margin === 'number') {
 				matchExpr.push(label, getCategoryColor(margin));
