@@ -1,3 +1,22 @@
+		// Diagnostic: Print names of counties missing from resultsObj for this contest
+		const geojsonCountyNames = countiesGeojson.features.map(f => normalizeCountyName(f.properties.Label || f.properties.NAME || f.properties.County || f.properties.county || f.properties.name || ''));
+		const resultsCountyNames = countyResultsArr.map(r => normalizeCountyName(r.county || r.County || r.COUNTY || r.label || r.Label || r.NAME || r.Name || ''));
+		const missingCounties = geojsonCountyNames.filter(name => !resultsCountyNames.includes(name));
+		if (missingCounties.length > 0) {
+			console.warn('Counties missing from results for this contest:', missingCounties);
+		}
+		// DEBUG: Print raw county name for Gwinnett from results data
+		if (resultsObj.results && resultsObj.results['Gwinnett']) {
+			console.log('Raw county name for Gwinnett in results:', resultsObj.results['Gwinnett']);
+		} else {
+			// Try to find any key that matches gwinnett after normalization
+			const gwinnettKey = Object.keys(resultsObj.results || {}).find(k => normalizeCountyName(k) === 'gwinnett');
+			if (gwinnettKey) {
+				console.log('Found normalized Gwinnett key:', gwinnettKey, resultsObj.results[gwinnettKey]);
+			} else {
+				console.log('Gwinnett not found in resultsObj.results keys:', Object.keys(resultsObj.results || {}));
+			}
+		}
 <!DOCTYPE html>
 <html>
 <head>
@@ -623,11 +642,16 @@ function populateContestDropdown() {
 				}
 			}
 			// Friendly name mapping for common contest keys
+			// Normalize specific commissioner titles before broader matches
+			if (/lt[_\s]?governor/i.test(contestName)) contestName = 'Lt. Governor';
+			else if (/ag(ricultural)?[_\s]?commissioner|commissioner[_\s]?of[_\s]?agriculture/i.test(contestName)) contestName = 'Agriculture Commissioner';
+			else if (/insurance[_\s]?commissioner|commissioner[_\s]?of[_\s]?insurance/i.test(contestName)) contestName = 'Insurance Commissioner';
+			else if (/labor[_\s]?commissioner|commissioner[_\s]?of[_\s]?labor/i.test(contestName)) contestName = 'Labor Commissioner';
+			else if (/public[_\s]?service[_\s]?commissioner|commissioner[_\s]?of[_\s]?public[_\s]?service/i.test(contestName)) contestName = 'Public Service Commissioner';
+			else if (/governor/i.test(contestName)) contestName = 'Governor';
 			if (/president/i.test(contestName)) contestName = 'US President';
-			if (/governor/i.test(contestName)) contestName = 'Governor';
 			if (/senate/i.test(contestName)) contestName = 'US Senate';
 			if (/attorney/i.test(contestName)) contestName = 'Attorney General';
-			if (/lt[_\s]?governor/i.test(contestName)) contestName = 'Lt. Governor';
 			if (/secretary/i.test(contestName)) contestName = 'Secretary of State';
 			if (/treasurer/i.test(contestName)) contestName = 'Treasurer';
 			// Remove duplicate year in contestName if present (e.g., 'Governor (2014)')
