@@ -267,14 +267,29 @@ body {
 	border: 1px solid #ccc;
 	border-radius: 3px;
 }
+
+/* Twitter share button styling */
+.share-button.twitter {
+	background: #1da1f2;
+	color: #fff;
+	border-radius: 4px;
+	padding: 6px 14px;
+	font-weight: bold;
+	text-decoration: none;
+	transition: background 0.2s;
+}
+.share-button.twitter:hover {
+	background: #0d8ddb;
+}
 </style>
 </head>
 <body>
 	<!-- UI and controls copied from ultimate_nc_political_map_CLEAN.html, but all text and logic updated for Georgia -->
 	<div id="share-container-right" style="position: fixed; top: 20px; right: 440px; z-index: 1000;"></div>
 	<div id="share-container" style="position: fixed; top: 20px; left: 50%; transform: translateX(-50%); z-index: 1000; display: flex; gap: 8px;">
-		<a href="#" id="reddit-share-btn-top" class="share-button reddit" target="_blank">Share on Reddit</a>
-		<a href="#" id="linkedin-share-btn-top" class="share-button linkedin" target="_blank">Share on LinkedIn</a>
+	<a href="#" id="reddit-share-btn-top" class="share-button reddit" target="_blank">Share on Reddit</a>
+	<a href="#" id="linkedin-share-btn-top" class="share-button linkedin" target="_blank">Share on LinkedIn</a>
+	<a href="#" id="twitter-share-btn-top" class="share-button twitter" target="_blank">Share on Twitter</a>
 	</div>
 	<button id="sidebar-float-toggle" style="position:fixed;top:20px;right:20px;z-index:10001;width:56px;height:56px;background:#2563eb;color:#fff;border:none;border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,0.15);font-size:32px;display:flex;align-items:center;justify-content:center;cursor:pointer;">+</button>
 	<div id="map" style="position:relative;width:100%;height:100%;">
@@ -382,6 +397,18 @@ body {
 		   </div>
 <!-- ...existing HTML code... -->
 <script>
+// Twitter share button logic
+document.addEventListener('DOMContentLoaded', function() {
+	var twitterBtn = document.getElementById('twitter-share-btn-top');
+	if (twitterBtn) {
+		twitterBtn.onclick = function(e) {
+			e.preventDefault();
+			const url = encodeURIComponent(window.location.href);
+			const text = encodeURIComponent("Check out this Georgia political map!");
+			window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+		};
+	}
+});
 function normalizeCandidateName(name) {
 	if (!name) return '';
 	name = name.trim();
@@ -1379,8 +1406,10 @@ map.on('load', function() {
 				if (c.includes('tossup')) return '#f7f7f7';
 				return '#222';
 			}
+			// Extract only the main competitiveness level and party for color lookup
 			let normalizedCatStr = catStr.replace(/\s+/g, ' ').trim();
-			let catColor = getCompetitivenessColor(normalizedCatStr);
+			let colorLookupStr = normalizedCatStr.replace(/\s*\(.*\)$/,'').trim();
+			let catColor = getCompetitivenessColor(colorLookupStr);
 			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${normalizedCatStr}</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
