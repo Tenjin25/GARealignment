@@ -1033,6 +1033,11 @@ tryPopulateSwingYearDropdowns();
 			if (typeof r.margin_pct === 'string') {
 				let marginPctStr = r.margin_pct.trim();
 				if (!marginPctStr.endsWith('%')) marginPctStr += '%';
+				if (winnerAbbr === 'D') {
+					marginColor = '#2563eb';
+				} else if (winnerAbbr === 'R') {
+					marginColor = '#cb181d';
+				}
 				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${marginPctStr}</span>`;
 			} else if (typeof r.margin === 'number') {
 				let prefix = '';
@@ -1101,7 +1106,9 @@ tryPopulateSwingYearDropdowns();
 				competitivenessString = (catData.category ? catData.category : '') + partyLabel;
 				if (!competitivenessString.trim()) competitivenessString = catData.level || catData.name || catData.label || 'Data is an object';
 				// Use color from JSON if present, else fallback to mapping
-				catColor = catData.color || getCompetitivenessColor(competitivenessString);
+				// Normalize string for color lookup
+				let normalizedCompetitiveness = competitivenessString.replace(/\s+/g, ' ').trim();
+				catColor = catData.color || getCompetitivenessColor(normalizedCompetitiveness);
 			} else {
 				competitivenessString = catData;
 				catColor = getCompetitivenessColor(competitivenessString);
