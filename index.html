@@ -1086,7 +1086,16 @@ tryPopulateSwingYearDropdowns();
 
 			if (typeof catData === 'object' && catData !== null) {
 				// Compose label: category + party
-				let partyLabel = catData.party ? (' ' + catData.party.charAt(0) + catData.party.slice(1).toLowerCase()) : '';
+				let partyLabel = '';
+				if (catData.party) {
+					if (catData.party.toLowerCase() === 'democrat' || catData.party.toLowerCase() === 'democratic') {
+						partyLabel = ' Democratic';
+					} else if (catData.party.toLowerCase() === 'republican') {
+						partyLabel = ' Republican';
+					} else {
+						partyLabel = ' ' + catData.party.charAt(0).toUpperCase() + catData.party.slice(1).toLowerCase();
+					}
+				}
 				competitivenessString = (catData.category ? catData.category : '') + partyLabel;
 				if (!competitivenessString.trim()) competitivenessString = catData.level || catData.name || catData.label || 'Data is an object';
 				// Use color from JSON if present, else fallback to mapping
