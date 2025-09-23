@@ -1337,6 +1337,7 @@ map.on('load', function() {
 			function getCompetitivenessColor(cat) {
 				if (typeof cat !== 'string' || !cat) return '#222';
 				const c = cat.toLowerCase();
+				// Republican shades
 				if (c.includes('annihilation republican')) return '#67000d';
 				if (c.includes('dominant republican')) return '#a50f15';
 				if (c.includes('stronghold republican')) return '#cb181d';
@@ -1344,7 +1345,8 @@ map.on('load', function() {
 				if (c.includes('likely republican')) return '#fb6a4a';
 				if (c.includes('lean republican')) return '#fcae91';
 				if (c.includes('tilt republican')) return '#fee8c8';
-				if (c.includes('tossup')) return '#f7f7f7';
+				if (c.includes('r+')) return '#cb181d'; // R+ label as red
+				// Democratic shades
 				if (c.includes('tilt democratic')) return '#e1f5fe';
 				if (c.includes('lean democratic')) return '#c6dbef';
 				if (c.includes('likely democratic')) return '#9ecae1';
@@ -1352,6 +1354,8 @@ map.on('load', function() {
 				if (c.includes('stronghold democratic')) return '#3182bd';
 				if (c.includes('dominant democratic')) return '#08519c';
 				if (c.includes('annihilation democratic')) return '#08306b';
+				if (c.includes('d+')) return '#08519c'; // D+ label as blue
+				if (c.includes('tossup')) return '#f7f7f7';
 				return '#222';
 			}
 			let catColor = getCompetitivenessColor(catStr);
