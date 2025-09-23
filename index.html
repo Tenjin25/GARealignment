@@ -5,15 +5,18 @@
 /* Tossup styling for sidebar */
 .county-details.tossup {
 	background: #f7f7f7;
-	border: 2px solid #888;
+	border: 1px solid #999;
+	border-radius: 6px;
+	padding: 8px;
 }
 .tossup-label {
-	color: #888;
-	font-weight: bold;
-	font-size: 16px;
-	background: #e5e7eb;
-	border-radius: 4px;
+	color: #222;
+	background: #f7f7f7;
 	padding: 2px 8px;
+	border-radius: 4px;
+	font-weight: bold;
+	border: 1px solid #999;
+	font-size: 16px;
 	margin-right: 6px;
 	}
 
@@ -1105,12 +1108,12 @@ tryPopulateSwingYearDropdowns();
 				}
 				competitivenessString = (catData.category ? catData.category : '') + partyLabel;
 				if (!competitivenessString.trim()) competitivenessString = catData.level || catData.name || catData.label || 'Data is an object';
-				// Use color from JSON if present, else fallback to mapping
-				// Normalize string for color lookup
+				// Normalize for both color and display
 				let normalizedCompetitiveness = competitivenessString.replace(/\s+/g, ' ').trim();
 				catColor = catData.color || getCompetitivenessColor(normalizedCompetitiveness);
+				competitivenessString = normalizedCompetitiveness;
 			} else {
-				competitivenessString = catData;
+				competitivenessString = typeof catData === 'string' ? catData.replace(/\s+/g, ' ').trim() : catData;
 				catColor = getCompetitivenessColor(competitivenessString);
 			}
 
@@ -1376,8 +1379,9 @@ map.on('load', function() {
 				if (c.includes('tossup')) return '#f7f7f7';
 				return '#222';
 			}
-			let catColor = getCompetitivenessColor(catStr);
-			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${catStr}</span>`;
+			let normalizedCatStr = catStr.replace(/\s+/g, ' ').trim();
+			let catColor = getCompetitivenessColor(normalizedCatStr);
+			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${normalizedCatStr}</span>`;
 			infoHtml += `</div>`;
 		} else if (foundElection) {
 			infoHtml += '<b>Election Data:</b><br>';
@@ -1401,7 +1405,7 @@ map.on('load', function() {
 		sidebarDiv.className = 'county-details';
 		if (county.competitiveness && county.competitiveness.category === 'Tossup') {
 			sidebarDiv.classList.add('tossup');
-			sidebarDiv.innerHTML += `<p><span class="tossup-category">Tossup</span> (Democratic or Republican Win)</p>`;
+			sidebarDiv.innerHTML += `<p><span class="tossup-label">Tossup (Democratic or Republican Win)</span></p>`;
 		}
 		// ...existing rendering code for county details...
 		// Example: sidebarDiv.innerHTML += `<h4>${county.county}</h4>`;
