@@ -1031,7 +1031,9 @@ tryPopulateSwingYearDropdowns();
 			let marginStr = '';
 			let marginColor = '#cb181d';
 			if (typeof r.margin_pct === 'string') {
-				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${r.margin_pct}</span>`;
+				let marginPctStr = r.margin_pct.trim();
+				if (!marginPctStr.endsWith('%')) marginPctStr += '%';
+				marginStr = `<span style='color:${marginColor};font-weight:bold;'>${marginPctStr}</span>`;
 			} else if (typeof r.margin === 'number') {
 				let prefix = '';
 				if (winnerAbbr === 'D') {
