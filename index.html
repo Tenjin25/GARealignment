@@ -186,57 +186,26 @@ body {
 	background: #d1d5db;
 }
 .floating-expand-btn {
-	position: fixed;
-	top: 50%;
-	right: 10px;
-	transform: translateY(-50%);
-	background: rgba(255, 255, 255, 0.9);
-	border: 1px solid #e5e7eb;
-	border-radius: 8px;
-	width: 40px;
-	height: 40px;
-	cursor: pointer;
-	font-size: 18px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-	z-index: 1001;
-	transition: background-color 0.2s;
-	display: none;
-}
-.floating-expand-btn:hover {
-	background: #f3f4f6;
-}
-.main-controls h3 {
-	margin: 0;
-	color: #1f2937;
-	font-weight: 600;
-	font-size: 16px;
-}
-.main-controls select, .main-controls button {
-	width: 100%;
-	margin-bottom: 10px;
-}
-.legend {
-	position: absolute;
-	bottom: 20px;
-	right: 20px;
-	background: rgba(255, 255, 255, 0.95);
-	backdrop-filter: blur(10px);
-	padding: 15px;
-	border-radius: 12px;
-	box-shadow: 0 8px 32px rgba(0,0,0,0.1);
-	border: 1px solid rgba(255,255,255,0.2);
-	z-index: 1000;
-	max-height: 450px;
-	overflow-y: auto;
-	min-width: 200px;
-	transition: all 0.3s ease;
-}
-.legend.minimized {
-	padding: 10px;
-	min-width: 120px;
+		   <div class="control-group">
+			   <label>📁 Contest Group:</label>
+			   <select id="contest-group">
+				   <option value="">Select a Group...</option>
+				   <option value="Presidential">Presidential</option>
+				   <option value="Senate">Senate</option>
+				   <option value="Governor">Governor</option>
+				   <option value="Secretary of State">Secretary of State</option>
+				   <option value="Attorney General">Attorney General</option>
+				   <option value="Lieutenant Governor">Lieutenant Governor</option>
+				   <option value="Agriculture Commissioner">Agriculture Commissioner</option>
+				   <!-- Add more groups as needed -->
+			   </select>
+		   </div>
+		   <div class="control-group">
+			   <label>📊 Contest Type:</label>
+			   <select id="contest">
+				   <option value="">Select a Contest...</option>
+			   </select>
+		   </div>
 }
 .legend-header {
 	display: flex;
@@ -607,6 +576,33 @@ if (linkedinBtn) {
 }
 // All JS logic is now in this single script block at the end of <body>
 // ...existing code for map, sidebar, controls, etc...
+
+// Sidebar competitiveness color logic (matches NC map)
+function getCountyCompetitivenessColor(demVotes, repVotes) {
+	const totalTwoParty = demVotes + repVotes;
+	if (totalTwoParty === 0) return '#e0e0e0'; // No Data
+
+	const margin = Math.abs(repVotes - demVotes) / totalTwoParty * 100;
+	const winner = repVotes > demVotes ? 'Republican' : 'Democratic';
+
+	if (margin >= 40) {
+		return winner === 'Republican' ? '#67000d' : '#08306b';
+	} else if (margin >= 30) {
+		return winner === 'Republican' ? '#a50f15' : '#08519c';
+	} else if (margin >= 20) {
+		return winner === 'Republican' ? '#cb181d' : '#3182bd';
+	} else if (margin >= 10) {
+		return winner === 'Republican' ? '#ef3b2c' : '#6baed6';
+	} else if (margin >= 5.5) {
+		return winner === 'Republican' ? '#fb6a4a' : '#9ecae1';
+	} else if (margin >= 1) {
+		return winner === 'Republican' ? '#fcae91' : '#c6dbef';
+	} else if (margin >= 0.5) {
+		return winner === 'Republican' ? '#fee8c8' : '#e1f5fe';
+	} else {
+		return '#f7f7f7'; // Tossup
+	}
+}
 
 
 // --- Swing Arrows Overlay Logic with Tooltip ---
@@ -1530,7 +1526,14 @@ map.on('load', function() {
         console.log('DEBUG: resultsObj contents before margin map:', resultsObj);
 		const marginMap = {};
 		function normalizeCountyName(str) {
-			return str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+			// Robust normalization for Ben Hill and Jeff Davis
+			let s = str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
+			if (s === 'benhill' || s === 'benhillcounty') return 'benhill';
+			if (s === 'jeffdavis' || s === 'jeffdaviscounty') return 'jeffdavis';
+			// Handle common edge cases (e.g. with/without 'county', spaces, dashes)
+			if (s === 'benhillcounty' || s === 'benhillco') return 'benhill';
+			if (s === 'jeffdaviscounty' || s === 'jeffdavisco') return 'jeffdavis';
+			return s.replace(/county$/, '');
 		}
 	const countyResultsArr = resultsObj.results ? Object.values(resultsObj.results) : Object.values(resultsObj);
 	countyResultsArr.forEach(r => {
