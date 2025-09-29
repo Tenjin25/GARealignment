@@ -424,10 +424,97 @@ function normalizeCandidateName(name) {
 	});
 }
 </script>
-
 <script>
-// --- Statewide Results Panel Logic ---
 
+// --- Statewide Results Panel Logic ---
+// Contest grouping data
+const contestGroups = {
+	"Presidential": [
+		{ key: "president_2000", label: "US President (2000)" },
+		{ key: "president_2004", label: "US President (2004)" },
+		{ key: "president_2008", label: "US President (2008)" },
+		{ key: "president_2012", label: "US President (2012)" },
+		{ key: "president_of_the_united_states_2016", label: "US President (2016)" },
+		{ key: "president_2020", label: "US President (2020)" },
+		{ key: "president_2024", label: "US President (2024)" }
+	],
+	"Senate": [
+		{ key: "us_senate_2000", label: "US Senate Special (2000)" },
+		{ key: "us_senate_2004", label: "US Senate (2004)" },
+		{ key: "us_senate_2008", label: "US Senate (2008)" },
+		{ key: "us_senate_2010", label: "US Senate (2010)" },
+		{ key: "us_senate_2014", label: "US Senate (2014)" },
+		{ key: "us_senate_2016", label: "US Senate (2016)" },
+		{ key: "us_senate_2020", label: "US Senate (2020)" },
+		{ key: "us_senate_2021_warnock", label: "US Senate Runoff (2021) - Warnock vs. Loeffler" },
+		{ key: "us_senate_2021_ossoff", label: "US Senate Runoff (2021) - Ossoff vs. Perdue" },
+		{ key: "us_senate_2022", label: "US Senate (2022)" },
+		{ key: "us_senate_2022_warnock", label: "US Senate Runoff (2022) - Warnock vs. Walker" }
+	],
+	"Governor": [
+		{ key: "governor_2002", label: "GA Governor (2002)" },
+		{ key: "governor_2006", label: "GA Governor (2006)" },
+		{ key: "governor_2010", label: "GA Governor (2010)" },
+		{ key: "governor_2014", label: "GA Governor (2014)" },
+		{ key: "governor_2018", label: "GA Governor (2018)" },
+		{ key: "governor_2022", label: "GA Governor (2022)" }
+	],
+	"Secretary of State": [
+		{ key: "secretary_of_state_2002", label: "GA Secretary of State (2002)" },
+		{ key: "secretary_of_state_2006", label: "GA Secretary of State (2006)" },
+		{ key: "secretary_of_state_2010", label: "GA Secretary of State (2010)" },
+		{ key: "secretary_of_state_2014", label: "GA Secretary of State (2014)" },
+		{ key: "secretary_of_state_2018", label: "GA Secretary of State (2018)" },
+		{ key: "secretary_of_state_2022", label: "GA Secretary of State (2022)" }
+	],
+	"Attorney General": [
+		{ key: "attorney_general_2002", label: "GA Attorney General (2002)" },
+		{ key: "attorney_general_2006", label: "GA Attorney General (2006)" },
+		{ key: "attorney_general_2010", label: "GA Attorney General (2010)" },
+		{ key: "attorney_general_2014", label: "GA Attorney General (2014)" },
+		{ key: "attorney_general_2018", label: "GA Attorney General (2018)" },
+		{ key: "attorney_general_2022", label: "GA Attorney General (2022)" }
+	],
+	"Lieutenant Governor": [
+		{ key: "lt_governor_2002", label: "GA Lieutenant Governor (2002)" },
+		{ key: "lt_governor_2006", label: "GA Lieutenant Governor (2006)" },
+		{ key: "lt_governor_2010", label: "GA Lieutenant Governor (2010)" },
+		{ key: "lt_governor_2014", label: "GA Lieutenant Governor (2014)" },
+		{ key: "lt_governor_2018", label: "GA Lieutenant Governor (2018)" },
+		{ key: "lt_governor_2022", label: "GA Lieutenant Governor (2022)" }
+	],
+	"Agriculture Commissioner": [
+		{ key: "agriculture_commissioner_2002", label: "Agriculture Commissioner (2002)" },
+		{ key: "agriculture_commissioner_2006", label: "Agriculture Commissioner (2006)" },
+		{ key: "agriculture_commissioner_2010", label: "Agriculture Commissioner (2010)" },
+		{ key: "agriculture_commissioner_2014", label: "Agriculture Commissioner (2014)" },
+		{ key: "agriculture_commissioner_2018", label: "Agriculture Commissioner (2018)" }
+	]
+	// Add more groups as needed
+};
+
+// Populate contest dropdown based on selected group
+function updateContestDropdown() {
+	const groupSelect = document.getElementById('contest-group');
+	const contestSelect = document.getElementById('contest');
+	const selectedGroup = groupSelect.value;
+	contestSelect.innerHTML = '<option value="">Select a Contest...</option>';
+	if (selectedGroup && contestGroups[selectedGroup]) {
+		contestGroups[selectedGroup].forEach(contest => {
+			const opt = document.createElement('option');
+			opt.value = contest.key;
+			opt.textContent = contest.label;
+			contestSelect.appendChild(opt);
+		});
+	}
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+	const groupSelect = document.getElementById('contest-group');
+	if (groupSelect) {
+		groupSelect.addEventListener('change', updateContestDropdown);
+	}
+});	
 // Show county labels by default on map load
 document.addEventListener('DOMContentLoaded', function() {
 	if (typeof window.countyLabelsVisible === 'undefined' || !window.countyLabelsVisible) {
@@ -1085,6 +1172,27 @@ tryPopulateSwingYearDropdowns();
 				winnerName = r.winner || '';
 				winnerAbbr = winnerParty.length <= 3 ? winnerParty : '';
 			}
+            // Patch: Set sidebar competitiveness color
+			let demVotesForColor = Number(r.dem_votes) || 0;
+			let repVotesForColor = Number(r.rep_votes) || 0;
+			let competitivenessColor = getCountyCompetitivenessColor(demVotesForColor, repVotesForColor);
+			let countyDetailsDiv = document.getElementById('county-details');
+			if (countyDetailsDiv) {
+				countyDetailsDiv.style.border = `3px solid ${competitivenessColor}`;
+				countyDetailsDiv.style.boxShadow = `0 0 12px 2px ${competitivenessColor}55`;
+			}
+			// Patch: Show Tossup (Party Win) label in sidebar
+			if (competitivenessColor === '#f7f7f7') {
+				let tossupLabel = '';
+				if (winnerAbbr === 'D') {
+					tossupLabel = 'Tossup (Democratic Win)';
+				} else if (winnerAbbr === 'R') {
+					tossupLabel = 'Tossup (Republican Win)';
+				} else {
+					tossupLabel = 'Tossup';
+				}
+				infoHtml += `<p><span class="tossup-label">${tossupLabel}</span></p>`;
+			}
 			let marginStr = '';
 			let marginColor = '#cb181d';
 			if (typeof r.margin_pct === 'string') {
@@ -1131,6 +1239,21 @@ tryPopulateSwingYearDropdowns();
 			if (r.margin && r.margin !== r.margin_pct) {
 				infoHtml += `<span style='color:#888;'>(${Math.abs(Number(r.margin)).toLocaleString()} vote margin)</span><br>`;
 			}
+			// Add close margin labels (NC map logic)
+			let marginValue = 0;
+			if (typeof r.margin_pct === 'string') {
+				marginValue = Math.abs(parseFloat(r.margin_pct));
+			} else if (typeof r.margin === 'number') {
+				marginValue = Math.abs(r.margin);
+				if (r.total_votes) {
+					marginValue = Math.abs(r.margin) / r.total_votes * 100;
+				}
+			}
+			if (marginValue > 0 && marginValue <= 1.5) {
+				infoHtml += `<span style='color:#f59e42;font-weight:bold;'>(Extremely Close!)</span><br>`;
+			} else if (marginValue > 1.5 && marginValue <= 3.5) {
+				infoHtml += `<span style='color:#f59e42;font-weight:bold;'>(Very Close!)</span><br>`;
+			}
 			infoHtml += `<hr style='margin:10px 0;'>`;
 			infoHtml += `<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🗳️ Vote Breakdown</div>`;
 			let demName = r.dem_candidate ? r.dem_candidate.replace(/\bDemocrat(ic)?\b/i, '').trim() : 'Dem';
@@ -1173,6 +1296,22 @@ tryPopulateSwingYearDropdowns();
 
 			infoHtml += `<span style='color:${catColor};font-weight:bold;'>${competitivenessString}</span>`;
 			// --- End of replacement ---
+            // Move close margin labels below competitiveness
+			// Use marginValue from above if already declared, else calculate here
+			let closeMarginValue = 0;
+			if (typeof r.margin_pct === 'string') {
+				closeMarginValue = Math.abs(parseFloat(r.margin_pct));
+			} else if (typeof r.margin === 'number') {
+				closeMarginValue = Math.abs(r.margin);
+				if (r.total_votes) {
+					closeMarginValue = Math.abs(r.margin) / r.total_votes * 100;
+				}
+			}
+			if (closeMarginValue > 0 && closeMarginValue <= 1.5) {
+				infoHtml += `<br><span style='color:#f59e42;font-weight:bold;'>(Extremely Close!)</span>`;
+			} else if (closeMarginValue > 1.5 && closeMarginValue <= 3.5) {
+				infoHtml += `<br><span style='color:#f59e42;font-weight:bold;'>(Very Close!)</span>`;
+			}
 			infoHtml += `</div>`;
 		} else if (foundElection) {
 			infoHtml += '<b>Election Data:</b><br>';
@@ -1183,6 +1322,14 @@ tryPopulateSwingYearDropdowns();
 			infoHtml = 'No election data found for this county.';
 		}
 		document.getElementById('county-info-content').innerHTML = infoHtml;
+		// Patch: If no election data, reset sidebar border to default
+		if (!foundElection) {
+			let countyDetailsDiv = document.getElementById('county-details');
+			if (countyDetailsDiv) {
+				countyDetailsDiv.style.border = '';
+				countyDetailsDiv.style.boxShadow = '';
+			}
+		}
 	}
 
 	// Enable county search bar functionality
@@ -1558,13 +1705,11 @@ map.on('load', function() {
 		const marginMap = {};
 		function normalizeCountyName(str) {
 			// Robust normalization for Ben Hill and Jeff Davis
-			let s = str.toString().trim().toLowerCase().replace(/[^a-z0-9]/g, '');
-			if (s === 'benhill' || s === 'benhillcounty') return 'benhill';
-			if (s === 'jeffdavis' || s === 'jeffdaviscounty') return 'jeffdavis';
-			// Handle common edge cases (e.g. with/without 'county', spaces, dashes)
-			if (s === 'benhillcounty' || s === 'benhillco') return 'benhill';
-			if (s === 'jeffdaviscounty' || s === 'jeffdavisco') return 'jeffdavis';
-			return s.replace(/county$/, '');
+			let s = str.toString().trim().toLowerCase();
+			s = s.replace(/[^a-z0-9 ]/g, ''); // keep spaces for spaced names
+			if (s.replace(/ /g, '') === 'benhill' || s === 'ben hill' || s === 'benhillcounty' || s === 'ben hill county' || s === 'benhillco' || s === 'ben hill co') return 'benhill';
+			if (s.replace(/ /g, '') === 'jeffdavis' || s === 'jeff davis' || s === 'jeffdaviscounty' || s === 'jeff davis county' || s === 'jeffdavisco' || s === 'jeff davis co') return 'jeffdavis';
+			return s.replace(/county$/, '').replace(/ /g, '');
 		}
 	const countyResultsArr = resultsObj.results ? Object.values(resultsObj.results) : Object.values(resultsObj);
 	countyResultsArr.forEach(r => {
