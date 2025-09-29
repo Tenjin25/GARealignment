@@ -186,26 +186,57 @@ body {
 	background: #d1d5db;
 }
 .floating-expand-btn {
-		   <div class="control-group">
-			   <label>📁 Contest Group:</label>
-			   <select id="contest-group">
-				   <option value="">Select a Group...</option>
-				   <option value="Presidential">Presidential</option>
-				   <option value="Senate">Senate</option>
-				   <option value="Governor">Governor</option>
-				   <option value="Secretary of State">Secretary of State</option>
-				   <option value="Attorney General">Attorney General</option>
-				   <option value="Lieutenant Governor">Lieutenant Governor</option>
-				   <option value="Agriculture Commissioner">Agriculture Commissioner</option>
-				   <!-- Add more groups as needed -->
-			   </select>
-		   </div>
-		   <div class="control-group">
-			   <label>📊 Contest Type:</label>
-			   <select id="contest">
-				   <option value="">Select a Contest...</option>
-			   </select>
-		   </div>
+	position: fixed;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	background: rgba(255, 255, 255, 0.9);
+	border: 1px solid #e5e7eb;
+	border-radius: 8px;
+	width: 40px;
+	height: 40px;
+	cursor: pointer;
+	font-size: 18px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+	z-index: 1001;
+	transition: background-color 0.2s;
+	display: none;
+}
+.floating-expand-btn:hover {
+	background: #f3f4f6;
+}
+.main-controls h3 {
+	margin: 0;
+	color: #1f2937;
+	font-weight: 600;
+	font-size: 16px;
+}
+.main-controls select, .main-controls button {
+	width: 100%;
+	margin-bottom: 10px;
+}
+.legend {
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	background: rgba(255, 255, 255, 0.95);
+	backdrop-filter: blur(10px);
+	padding: 15px;
+	border-radius: 12px;
+	box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+	border: 1px solid rgba(255,255,255,0.2);
+	z-index: 1000;
+	max-height: 450px;
+	overflow-y: auto;
+	min-width: 200px;
+	transition: all 0.3s ease;
+}
+.legend.minimized {
+	padding: 10px;
+	min-width: 120px;
 }
 .legend-header {
 	display: flex;
