@@ -480,7 +480,7 @@ body {
   padding: 16px;
   background: #f9fafb;
   border-radius: 8px;
-  border: 1px solid #e5e7eb;
+  border: 1px solid #e7f1ff;
 }
 .county-details h4 {
   margin: 0 0 12px 0;
@@ -488,6 +488,25 @@ body {
   font-size: 16px;
   font-weight: 700;
 }
+/* Ensure competitiveness label aligns flush-left regardless of inline padding */
+.competitiveness-section .competitiveness-label,
+.competitiveness-label {
+  padding-left: 0 !important;
+  margin-left: 0 !important;
+  text-align: left !important;
+  display: inline-block;
+}
+/* OGTNMap-style: ensure all county-details labels and metrics are flush left */
+.county-details,
+.county-details h4,
+.county-details p,
+.county-details .metric,
+.county-details strong {
+  text-align: left !important;
+  margin-left: 0 !important;
+  display: block;
+}
+
 /* Sidebar Card Classes for Consistent Font Sizes */
 .sidebar-section-title {
   font-size: 14px !important;
@@ -3188,6 +3207,7 @@ function handleCountySelection(countyName) {
 
   // Use robust normalization and check both NAME20 and NAMELSAD20
   function normalizeCountyName(str) {
+   
     let s = str ? str.toString().trim().toLowerCase() : '';
     s = s.replace(/[^a-z0-9 ]/g, '');
     if (s.replace(/ /g, '') === 'benhill' || s === 'ben hill' || s === 'benhillcounty' || s === 'ben hill county' || s === 'benhillco' || s === 'ben hill co') return 'benhill';
