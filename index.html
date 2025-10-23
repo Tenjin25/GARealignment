@@ -1676,6 +1676,20 @@ function toggleSidebar() {
   }
   sidebarContent += `<div class="competitiveness-section">`;
   sidebarContent += '<h3 class="sidebar-section-title">🎯 Competitiveness</h3>';
+ // Add short, emphasized cues for very-close and extremely-close contests (matches CLEAN map UX)
+  try {
+    if (typeof countyCompLabel === 'string') {
+      const labelUpper = countyCompLabel.toUpperCase();
+      if (labelUpper.includes('TILT')) {
+        sidebarContent += `<p style="color:#f59e0b;font-style:italic;margin-top:6px;">(Very close!)</p>`;
+      } else if (labelUpper.includes('TOSSUP')) {
+        sidebarContent += `<p style="color:#d97706;font-style:italic;margin-top:6px;">(Extremely close!)</p>`;
+      }
+    }
+  } catch (e) {
+    // noop - don't break sidebar if something unexpected happens
+    console.warn('Error rendering close-contest cue:', e);
+  }
   let tossupStyle = '';
   if (compLabel.startsWith('Tossup')) {
     // Match other ratings: no background, consistent padding, font size, vertical alignment
