@@ -1688,20 +1688,6 @@ function toggleSidebar() {
     }
   }
   sidebarContent += `<div class="competitiveness-label" style="font-weight:bold;${tossupStyle}${!compLabel.startsWith('Tossup') ? 'color:' + compColor + '; font-size:15px; padding:2px 8px; border-radius:4px; vertical-align:middle;' : ''}">${compLabel}</div>`;
-  // Add short, emphasized cues for very-close and extremely-close contests (matches CLEAN map UX)
-  try {
-    if (typeof countyCompLabel === 'string') {
-      const labelUpper = countyCompLabel.toUpperCase();
-      if (labelUpper.includes('TILT')) {
-        sidebarContent += `<p style="color:#f59e0b;font-style:italic;margin-top:6px;">(Very close!)</p>`;
-      } else if (labelUpper.includes('TOSSUP')) {
-        sidebarContent += `<p style="color:#d97706;font-style:italic;margin-top:6px;">(Extremely close!)</p>`;
-      }
-    }
-  } catch (e) {
-    // noop - don't break sidebar if something unexpected happens
-    console.warn('Error rendering close-contest cue:', e);
-  }
   sidebarContent += `</div>`;
       contentEl.innerHTML = sidebarContent;
       detailsDiv.style.display = 'block';
@@ -2485,7 +2471,7 @@ function toggleSidebar() {
     // Wire dropdown to UI after data loads
     Promise.all([
       fetch(CONFIG.paths.counties).then(r => r.json()),
-      fetch('data/results_by_year_grouped.json').then(r => r.json())
+      fetch('data/results_by_year_grouped.final.json').then(r => r.json())
     ]).then(([geojson, results]) => {
   window.countiesGeojson = geojson;
       electionData = results;
