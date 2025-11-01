@@ -1260,14 +1260,16 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
             <div id="statewide-temperature-bar" style="width:100%;height:32px;border-radius:16px;display:flex;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
               <div style="width:${demPct}%;background:#2563eb;"></div>
               <div style="width:${repPct}%;background:#dc2626;"></div>
+              ${otherVotes > 0 ? `<div style="width:${otherPct}%;background:#64748b;"></div>` : ''}
             </div>
-            <div style="display:flex;justify-content:space-between;margin-top:6px;">
+            <div style="display:flex;justify-content:space-between;margin-top:6px;flex-wrap:wrap;gap:8px;">
               <div style="color:#2563eb;font-size:15px;font-weight:700;">
                 D: ${demVotes.toLocaleString()} (${demPct.toFixed(2)}%)
               </div>
               <div style="color:#dc2626;font-size:15px;font-weight:700;">
                 R: ${repVotes.toLocaleString()} (${repPct.toFixed(2)}%)
               </div>
+              ${otherVotes > 0 ? `<div style="color:#64748b;font-size:15px;font-weight:700;">Other: ${otherVotes.toLocaleString()} (${otherPct.toFixed(2)}%)</div>` : ''}
             </div>
           </div>
           <div style="margin-top:10px;font-size:15px;color:#374151;font-weight:600;">
