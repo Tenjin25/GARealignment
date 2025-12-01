@@ -2575,7 +2575,24 @@ function toggleSidebar() {
         Object.keys(yearData).forEach(contestKey => {
           const contest = yearData[contestKey];
           // Normalize the contest key to match office groups
-          const normalizedKey = contestKey.toLowerCase().replace(/_\d{4}$/, '');
+          let normalizedKey = contestKey.toLowerCase().replace(/_\d{4}$/, '');
+          
+          // Handle alternate naming conventions (especially 2016)
+          const keyMappings = {
+            'president_of_the_united_states': 'president',
+            'united_states_senator': 'us_senate',
+            'us_senator': 'us_senate',
+            'lieutenant_governor': 'lieutenant_governor',
+            'secretary_of_state': 'secretary_of_state',
+            'attorney_general': 'attorney_general',
+            'commissioner_of_agriculture': 'commissioner_of_agriculture',
+            'commissioner_of_insurance': 'commissioner_of_insurance',
+            'commissioner_of_labor': 'commissioner_of_labor'
+          };
+          
+          if (keyMappings[normalizedKey]) {
+            normalizedKey = keyMappings[normalizedKey];
+          }
           
           if (groupedByOffice[normalizedKey] !== undefined) {
             groupedByOffice[normalizedKey].push({
