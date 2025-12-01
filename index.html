@@ -2552,82 +2552,60 @@ function toggleSidebar() {
         return;
       }
       
-      // Only show major statewide contests
-      const allowedContests = ['president', 'governor', 'us_senate'];
-
-    function populateContestDropdown() {
-      const contestSelect = document.getElementById('contestSelect');
-      if (!contestSelect || !electionData || !electionData.results_by_year) return;
-      // Build a flat array of all contests, deduplicating by year+contest_name
-      const contestMap = new Map();
-      for (const [year, contests] of Object.entries(electionData.results_by_year)) {
-        for (const contestKey of Object.keys(contests)) {
-          let contestName = friendlyContestName(contestKey);
-          const label = `${contestName} (${year})`;
-          const key = year + '|' + contestKey;
-          if (!contestMap.has(key)) {
-            contestMap.set(key, label);
-          }
-        }
-      }
-      contestSelect.innerHTML = '<option value="">Select a contest...</option>';
-      for (const [key, label] of contestMap.entries()) {
-        contestSelect.innerHTML += `<option value="${key}">${label}</option>`;
-      }
-    }
-
-    // Wire dropdown to UI after data loads
-    Promise.all([
-      fetch(CONFIG.paths.counties).then(r => r.json()),
-      fetch('data/results_by_year_grouped.final.json').then(r => r.json())
-    ]).then(([geojson, results]) => {
-  window.countiesGeojson = geojson;
-      electionData = results;
-      // ...existing code...
-      populateContestDropdown();
-    });
-      // Build options from years and contests
-      const options = [];
+      // Define office groups and their order
+      const officeGroups = [
+        { key: 'president', label: 'President' },
+        { key: 'us_senate', label: 'U.S. Senate' },
+        { key: 'governor', label: 'Governor' },
+        { key: 'lieutenant_governor', label: 'Lieutenant Governor' },
+        { key: 'secretary_of_state', label: 'Secretary of State' },
+        { key: 'attorney_general', label: 'Attorney General' },
+        { key: 'commissioner_of_agriculture', label: 'Agriculture Commissioner' },
+        { key: 'commissioner_of_insurance', label: 'Insurance Commissioner' },
+        { key: 'commissioner_of_labor', label: 'Labor Commissioner' }
+      ];
+      
+      // Group contests by office
+      const groupedByOffice = {};
+      officeGroups.forEach(office => {
+        groupedByOffice[office.key] = [];
+      });
+      
       Object.entries(electionData.results_by_year).forEach(([year, yearData]) => {
-        Object.entries(yearData).forEach(([contestType, contests]) => {
-          // Filter to only allowed contest types
-          if (allowedContests.includes(contestType.toLowerCase())) {
-            Object.entries(contests).forEach(([contestId, contestData]) => {
-              // Create normalized contest name
-              let normalizedName = '';
-              if (contestType === 'us_senate') {
-                normalizedName = `US Senate (${year})`;
-              } else if (contestType === 'president') {
-                normalizedName = `President (${year})`;
-              } else if (contestType === 'governor') {
-                normalizedName = `Governor (${year})`;
-              } else {
-                normalizedName = `${contestType.replace('_', ' ').toUpperCase()} (${year})`;
-              }
-              
-              options.push({
-                value: `${year}-${contestType}-${contestId}`,
-                text: normalizedName,
-                year: parseInt(year),
-                contestType: contestType
-              });
+        Object.keys(yearData).forEach(contestKey => {
+          const contest = yearData[contestKey];
+          // Normalize the contest key to match office groups
+          const normalizedKey = contestKey.toLowerCase().replace(/_\d{4}$/, '');
+          
+          if (groupedByOffice[normalizedKey] !== undefined) {
+            groupedByOffice[normalizedKey].push({
+              year: parseInt(year),
+              contestKey: contestKey,
+              data: contest
             });
           }
         });
       });
       
-      // Sort by year (oldest first) then by contest type for ascending chronological order
-      options.sort((a, b) => {
-        if (a.year !== b.year) return a.year - b.year;
-        return a.contestType.localeCompare(b.contestType);
-      });
-      
-      // Add options to select
-      options.forEach(option => {
-        const opt = document.createElement('option');
-        opt.value = option.value;
-        opt.textContent = option.text;
-        select.appendChild(opt);
+      // Build optgroups for each office
+      officeGroups.forEach(office => {
+        const contests = groupedByOffice[office.key];
+        if (contests && contests.length > 0) {
+          const optgroup = document.createElement('optgroup');
+          optgroup.label = office.label;
+          
+          // Sort by year (newest first for better UX)
+          contests.sort((a, b) => b.year - a.year);
+          
+          contests.forEach(contest => {
+            const option = document.createElement('option');
+            option.value = `${contest.year}|${contest.contestKey}`;
+            option.textContent = `${office.label} (${contest.year})`;
+            optgroup.appendChild(option);
+          });
+          
+          select.appendChild(optgroup);
+        }
       });
       
       // Set up change handler
