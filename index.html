@@ -1042,69 +1042,99 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
       const sel = document.getElementById('contestSelect');
       sel.innerHTML = '<option value="">Select a contest...</option>';
       
-      // Use only non-gerrymandered statewide contests for all views
-      populateContestSelectFromCSV(electionData);
-    }
-
-    function populateContestSelectFromCSV(csvData) {
-      const sel = document.getElementById('contestSelect');
-      if (sel.dataset.populated === 'true') return; // Only populate once per data load
-      sel.innerHTML = '<option value="">Select a contest...</option>';
-      // Show loading spinner
-      var spinner = document.getElementById('contest-loading-spinner');
-      if (!spinner) {
-        spinner = document.createElement('span');
-        spinner.id = 'contest-loading-spinner';
-        spinner.className = 'spinner';
-        spinner.style.marginLeft = '8px';
-        spinner.innerHTML = '<svg width="18" height="18" viewBox="0 0 50 50"><circle cx="25" cy="25" r="20" fill="none" stroke="#2563eb" stroke-width="5" stroke-linecap="round" stroke-dasharray="31.4 31.4" transform="rotate(-90 25 25)"/></svg>';
-        sel.parentNode.insertBefore(spinner, sel.nextSibling);
+      if (!electionData || !electionData.results_by_year) {
+        sel.innerHTML = '<option value="">(no contests)</option>';
+        return;
       }
-      const contestTypes = ['president', 'governor', 'us_senate', 'attorney_general', 'cfo', 'agriculture_commissioner'];
-      // Precompute contest/year pairs in a single pass
-      const contestYearPairs = {};
-      csvData.forEach(row => {
-        contestTypes.forEach(contestType => {
-          if (row[`${contestType}_total`] > 0) {
-            if (!contestYearPairs[contestType]) contestYearPairs[contestType] = new Set();
-            contestYearPairs[contestType].add(row.year);
+
+      // Define office grouping order for Georgia contests
+      const allowedOffices = [
+        'President',
+        'U.S. Senate',
+        'Governor',
+        'Lieutenant Governor',
+        'Attorney General',
+        'Secretary of State',
+        'Agriculture Commissioner',
+        'Insurance Commissioner',
+        'Labor Commissioner',
+        'State School Superintendent',
+        'Public Service Commissioner'
+      ];
+
+      // Map contest keys to office labels
+      function getOfficeLabel(contestKey) {
+        const baseContest = contestKey.replace(/_\d{4}$/, '');
+        const labelMap = {
+          'president': 'President',
+          'president_of_the_united_states': 'President',
+          'us_senate': 'U.S. Senate',
+          'united_states_senator': 'U.S. Senate',
+          'us_senate_special': 'U.S. Senate',
+          'governor': 'Governor',
+          'lieutenant_governor': 'Lieutenant Governor',
+          'attorney_general': 'Attorney General',
+          'secretary_of_state': 'Secretary of State',
+          'commissioner_of_agriculture': 'Agriculture Commissioner',
+          'commissioner_of_insurance': 'Insurance Commissioner',
+          'commissioner_of_labor': 'Labor Commissioner',
+          'state_school_superintendent': 'State School Superintendent',
+          'public_service_commissioner': 'Public Service Commissioner',
+          'public_service_commission': 'Public Service Commissioner'
+        };
+        return labelMap[baseContest] || null;
+      }
+
+      // Group contests by office
+      const groupedByOffice = {};
+      const years = Object.keys(electionData.results_by_year).sort();
+      
+      years.forEach(year => {
+        const yearObj = electionData.results_by_year[year];
+        if (!yearObj) return;
+        
+        Object.keys(yearObj).forEach(contestKey => {
+          const officeLabel = getOfficeLabel(contestKey);
+          if (!officeLabel || !allowedOffices.includes(officeLabel)) return;
+          
+          // Skip 2020 governor (no election that year)
+          if (officeLabel === 'Governor' && year === '2020') return;
+          
+          if (!groupedByOffice[officeLabel]) {
+            groupedByOffice[officeLabel] = [];
           }
+          
+          groupedByOffice[officeLabel].push({
+            year: year,
+            contestKey: contestKey,
+            displayName: `${officeLabel} (${year})`
+          });
         });
       });
-      // Build options array - sorted chronologically
-      const options = [];
-      
-      // Get all unique years across all contest types
-      const allYears = new Set();
-      contestTypes.forEach(contestType => {
-        if (contestYearPairs[contestType]) {
-          contestYearPairs[contestType].forEach(year => allYears.add(year));
-        }
-      });
-      
-      // Sort years chronologically
-      const sortedYears = Array.from(allYears).sort((a, b) => parseInt(a) - parseInt(b));
-      
-      // For each year, add all available contests for that year
-      sortedYears.forEach(year => {
-        contestTypes.forEach(contestType => {
-          if (contestYearPairs[contestType] && contestYearPairs[contestType].has(year)) {
-            if (contestType === 'governor' && year == 2020) return;
-            const opt = document.createElement('option');
-            opt.value = `${contestType}_${year}`;
-            opt.textContent = `${formatContestName(contestType, year)} (${year})`;
-            options.push(opt);
-          }
+
+      // Build optgroups in the defined order
+      allowedOffices.forEach(officeLabel => {
+        const contests = groupedByOffice[officeLabel];
+        if (!contests || contests.length === 0) return;
+        
+        const optgroup = document.createElement('optgroup');
+        optgroup.label = officeLabel;
+        
+        // Sort contests by year (chronologically)
+        contests.sort((a, b) => parseInt(a.year) - parseInt(b.year));
+        
+        contests.forEach(item => {
+          const opt = document.createElement('option');
+          opt.value = item.contestKey;
+          opt.textContent = item.displayName;
+          optgroup.appendChild(opt);
         });
+        
+        sel.appendChild(optgroup);
       });
-      // Use document fragment for performance
-      const fragment = document.createDocumentFragment();
-      options.forEach(opt => fragment.appendChild(opt));
-      sel.appendChild(fragment);
+
       sel.dataset.populated = 'true';
-      // Hide loading spinner
-  var spinner = document.getElementById('contest-loading-spinner');
-  if (spinner) spinner.style.display = 'none';
+      
       sel.onchange = () => {
         if (document.body.classList.contains('colorblind-mode')) {
           // ...existing code for accessibility mode...
@@ -1123,7 +1153,11 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
           }
         }
       };
+    }
 
+    function populateContestSelectFromCSV(csvData) {
+      // Legacy function - now handled by populateContestSelectFromElectionJSON
+      return;
     }
 
     function populateContestSelectForStateHouse(csvData) {
