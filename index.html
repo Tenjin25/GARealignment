@@ -2594,8 +2594,8 @@ function toggleSidebar() {
           const optgroup = document.createElement('optgroup');
           optgroup.label = office.label;
           
-          // Sort by year (newest first for better UX)
-          contests.sort((a, b) => b.year - a.year);
+          // Sort by year (oldest first)
+          contests.sort((a, b) => a.year - b.year);
           
           contests.forEach(contest => {
             const option = document.createElement('option');
