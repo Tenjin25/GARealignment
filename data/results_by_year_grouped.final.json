@@ -336261,34 +336261,34 @@
           },
           "Polk": {
             "dem_candidate": "JASON J. CARTER",
-            "rep_candidate": null,
+            "rep_candidate": "J. NATHAN DEAL",
             "dem_votes": 4774,
-            "rep_votes": 0,
-            "other_votes": 11206,
+            "rep_votes": 10644,
+            "other_votes": 562,
             "total_votes": 15980,
-            "two_party_total": 4774,
+            "two_party_total": 15418,
             "margin": 5870,
-            "margin_pct": "36.73",
-            "winner": "I",
+            "margin_pct": "R+38.07",
+            "winner": "REPUBLICAN",
             "winner_name": "J. NATHAN DEAL",
-            "winner_party": "I",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": true,
             "winner_votes": 10644,
             "competitiveness": {
               "category": "Dominant",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_DOMINANT",
-              "color": "#08519c"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_DOMINANT",
+              "color": "#a50f15"
             },
             "all_parties": {
-              "I": 10644,
               "DEMOCRAT": 4774,
-              "LIBERTARIAN": 562
+              "LIBERTARIAN": 562,
+              "REPUBLICAN": 10644
             },
             "candidates": {
               "J. NATHAN DEAL": {
                 "votes": 10644,
-                "party": "I",
+                "party": "REPUBLICAN",
                 "incumbent": true
               },
               "JASON J. CARTER": {
@@ -347363,33 +347363,33 @@
           },
           "Gilmer": {
             "dem_candidate": "DOREEN CARTER",
-            "rep_candidate": null,
+            "rep_candidate": "BRIAN P. KEMP",
             "dem_votes": 2750,
-            "rep_votes": 0,
-            "other_votes": 12146,
+            "rep_votes": 12146,
+            "other_votes": 0,
             "total_votes": 14896,
-            "two_party_total": 2750,
+            "two_party_total": 14896,
             "margin": 9396,
-            "margin_pct": "63.08",
-            "winner": "I",
+            "margin_pct": "R+63.08",
+            "winner": "REPUBLICAN",
             "winner_name": "BRIAN P. KEMP",
-            "winner_party": "I",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": true,
             "winner_votes": 12146,
             "competitiveness": {
               "category": "Annihilation",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_ANNIHILATION",
-              "color": "#08306b"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_ANNIHILATION",
+              "color": "#67000d"
             },
             "all_parties": {
-              "I": 12146,
-              "DEMOCRAT": 2750
+              "DEMOCRAT": 2750,
+              "REPUBLICAN": 12146
             },
             "candidates": {
               "BRIAN P. KEMP": {
                 "votes": 12146,
-                "party": "I",
+                "party": "REPUBLICAN",
                 "incumbent": true
               },
               "DOREEN CARTER": {
@@ -355935,33 +355935,33 @@
           },
           "Peach": {
             "dem_candidate": "GREGORY K. \"GREG\" HECHT",
-            "rep_candidate": null,
+            "rep_candidate": "SAMUEL S. OLENS",
             "dem_votes": 6728,
-            "rep_votes": 0,
-            "other_votes": 7704,
+            "rep_votes": 7704,
+            "other_votes": 0,
             "total_votes": 14432,
-            "two_party_total": 6728,
+            "two_party_total": 14432,
             "margin": 976,
-            "margin_pct": "6.76",
-            "winner": "I",
+            "margin_pct": "R+6.76",
+            "winner": "REPUBLICAN",
             "winner_name": "SAMUEL S. OLENS",
-            "winner_party": "I",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": true,
             "winner_votes": 7704,
             "competitiveness": {
               "category": "Likely",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_LIKELY",
-              "color": "#9ecae1"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_LIKELY",
+              "color": "#fb6a4a"
             },
             "all_parties": {
-              "I": 7704,
-              "DEMOCRAT": 6728
+              "DEMOCRAT": 6728,
+              "REPUBLICAN": 7704
             },
             "candidates": {
               "SAMUEL S. OLENS": {
                 "votes": 7704,
-                "party": "I",
+                "party": "REPUBLICAN",
                 "incumbent": true
               },
               "GREGORY K. GREG HECHT": {
@@ -365646,34 +365646,34 @@
           },
           "Chattahoochee": {
             "dem_candidate": "ELIZABETH N. \"LIZ\" JOHNSON",
-            "rep_candidate": null,
+            "rep_candidate": "RALPH T. HUDGENS",
             "dem_votes": 664,
-            "rep_votes": 0,
-            "other_votes": 726,
+            "rep_votes": 682,
+            "other_votes": 44,
             "total_votes": 1390,
-            "two_party_total": 664,
+            "two_party_total": 1346,
             "margin": 18,
-            "margin_pct": "1.29",
-            "winner": "I",
+            "margin_pct": "R+1.34",
+            "winner": "REPUBLICAN",
             "winner_name": "RALPH T. HUDGENS",
-            "winner_party": "I",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": true,
             "winner_votes": 682,
             "competitiveness": {
               "category": "Lean",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_LEAN",
-              "color": "#c6dbef"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_LEAN",
+              "color": "#fcae91"
             },
             "all_parties": {
-              "I": 682,
               "DEMOCRAT": 664,
-              "LIBERTARIAN": 44
+              "LIBERTARIAN": 44,
+              "REPUBLICAN": 682
             },
             "candidates": {
               "RALPH T. HUDGENS": {
                 "votes": 682,
-                "party": "I",
+                "party": "REPUBLICAN",
                 "incumbent": true
               },
               "ELIZABETH N. LIZ JOHNSON": {
@@ -378511,33 +378511,33 @@
           },
           "Atkinson": {
             "dem_candidate": "ROBBIN K. SHIPP",
-            "rep_candidate": null,
+            "rep_candidate": "J. MARK BUTLER",
             "dem_votes": 956,
-            "rep_votes": 0,
-            "other_votes": 2150,
+            "rep_votes": 2150,
+            "other_votes": 0,
             "total_votes": 3106,
-            "two_party_total": 956,
+            "two_party_total": 3106,
             "margin": 1194,
-            "margin_pct": "38.44",
-            "winner": "I",
+            "margin_pct": "R+38.44",
+            "winner": "REPUBLICAN",
             "winner_name": "J. MARK BUTLER",
-            "winner_party": "I",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": true,
             "winner_votes": 2150,
             "competitiveness": {
               "category": "Dominant",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_DOMINANT",
-              "color": "#08519c"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_DOMINANT",
+              "color": "#a50f15"
             },
             "all_parties": {
-              "I": 2150,
-              "DEMOCRAT": 956
+              "DEMOCRAT": 956,
+              "REPUBLICAN": 2150
             },
             "candidates": {
               "J. MARK BUTLER": {
                 "votes": 2150,
-                "party": "I",
+                "party": "REPUBLICAN",
                 "incumbent": true
               },
               "ROBBIN K. SHIPP": {
