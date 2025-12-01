@@ -2562,7 +2562,9 @@ function toggleSidebar() {
         { key: 'attorney_general', label: 'Attorney General' },
         { key: 'commissioner_of_agriculture', label: 'Agriculture Commissioner' },
         { key: 'commissioner_of_insurance', label: 'Insurance Commissioner' },
-        { key: 'commissioner_of_labor', label: 'Labor Commissioner' }
+        { key: 'commissioner_of_labor', label: 'Labor Commissioner' },
+        { key: 'state_school_superintendent', label: 'State School Superintendent' },
+        { key: 'public_service_commissioner', label: 'Public Service Commission' }
       ];
       
       // Group contests by office
@@ -2577,18 +2579,27 @@ function toggleSidebar() {
           // Normalize the contest key to match office groups
           let normalizedKey = contestKey.toLowerCase().replace(/_\d{4}$/, '');
           
-          // Handle alternate naming conventions (especially 2016)
+          // Handle alternate naming conventions across all years
           const keyMappings = {
             'president_of_the_united_states': 'president',
             'united_states_senator': 'us_senate',
             'us_senator': 'us_senate',
+            'us_senate_special': 'us_senate',
             'lieutenant_governor': 'lieutenant_governor',
             'secretary_of_state': 'secretary_of_state',
             'attorney_general': 'attorney_general',
             'commissioner_of_agriculture': 'commissioner_of_agriculture',
             'commissioner_of_insurance': 'commissioner_of_insurance',
-            'commissioner_of_labor': 'commissioner_of_labor'
+            'commissioner_of_labor': 'commissioner_of_labor',
+            'state_school_superintendent': 'state_school_superintendent',
+            'public_service_commissioner': 'public_service_commissioner',
+            'public_service_commission': 'public_service_commissioner'
           };
+          
+          // Handle district-specific Public Service Commission races
+          if (normalizedKey.startsWith('public_service_commission_district_')) {
+            normalizedKey = 'public_service_commissioner';
+          }
           
           if (keyMappings[normalizedKey]) {
             normalizedKey = keyMappings[normalizedKey];
@@ -2663,17 +2674,26 @@ function toggleSidebar() {
         // Auto-detect dropdown value format and resolve a single contest object
         let year, contestType, contestId, contestData;
         if (value.includes('|')) {
-          // format: year|contestType (contestType may refer to a type)
+          // format: year|contestKey (full contest key including year suffix)
           [year, contestType] = value.split('|');
-          const contestsForType = electionData.results_by_year?.[year]?.[contestType];
-          if (contestsForType) {
-            if (contestsForType.contest_name) {
-              // Already a single contest object
-              contestData = contestsForType;
-            } else {
-              // Pick the first contest id for this type
-              contestId = Object.keys(contestsForType)[0];
-              contestData = contestsForType[contestId];
+          
+          // Look up the contest data directly using the full contestKey
+          contestData = electionData.results_by_year?.[year]?.[contestType];
+          
+          // If not found, it might be because the key doesn't exist
+          // Extract just the contestId (without year suffix) for contestType
+          if (!contestData) {
+            contestType = contestType.replace(/_\d{4}$/, '');
+            const contestsForType = electionData.results_by_year?.[year]?.[contestType];
+            if (contestsForType) {
+              if (contestsForType.contest_name) {
+                // Already a single contest object
+                contestData = contestsForType;
+              } else {
+                // Pick the first contest id for this type
+                contestId = Object.keys(contestsForType)[0];
+                contestData = contestsForType[contestId];
+              }
             }
           }
         } else {
