@@ -2628,7 +2628,7 @@ function toggleSidebar() {
           contests.forEach(contest => {
             const option = document.createElement('option');
             option.value = `${contest.year}|${contest.contestKey}`;
-            option.textContent = `${office.label} (${contest.year})`;
+            option.textContent = `${contest.year}`;
             optgroup.appendChild(option);
           });
           
