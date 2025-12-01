@@ -880,19 +880,19 @@ document.addEventListener('DOMContentLoaded', function() {
         </div>
         <div class="legend-content" id="legend-content">
             <div class="legend-item"><div class="legend-color" style="background: #67000d;"></div>Annihilation Republican (40%+)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #a50f15;"></div>Dominant Republican (30-40%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #cb181d;"></div>Stronghold Republican (20-30%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #ef3b2c;"></div>Safe Republican (10-20%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #fb6a4a;"></div>Likely Republican (5.5-10%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #a50f15;"></div>Dominant Republican (30-39.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #cb181d;"></div>Stronghold Republican (20-29.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #ef3b2c;"></div>Safe Republican (10-19.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #fb6a4a;"></div>Likely Republican (5.51-9.99%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #fcae91;"></div>Lean Republican (1-5.5%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #fee8c8;"></div>Tilt Republican (0.51-1%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #f7f7f7; border: 1px solid #999;"></div>Tossup (>0.5%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #e1f5fe;"></div>Tilt Democratic (0.51-1%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #fee8c8;"></div>Tilt Republican (0.51-0.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #f7f7f7; border: 1px solid #999;"></div>Tossup (<0.5%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #e1f5fe;"></div>Tilt Democratic (0.51-0.99%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #c6dbef;"></div>Lean Democratic (1-5.5%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #9ecae1;"></div>Likely Democratic (5.5-10%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #6baed6;"></div>Safe Democratic (10-20%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #3182bd;"></div>Stronghold Democratic (20-30%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #08519c;"></div>Dominant Democratic (30-40%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #9ecae1;"></div>Likely Democratic (5.51-9.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #6baed6;"></div>Safe Democratic (10-19.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #3182bd;"></div>Stronghold Democratic (20-29.99%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #08519c;"></div>Dominant Democratic (30-39.99%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #08306b;"></div>Annihilation Democratic (40%+)</div>
         </div>
     </div>
@@ -1296,22 +1296,22 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
         compLabel = winner === 'Republican' ? "Annihilation Republican (40%+)" : "Annihilation Democratic (40%+)";
         compColor = winner === 'Republican' ? '#450a0a' : '#0c1d56';
       } else if (marginPct >= 30) {
-        compLabel = winner === 'Republican' ? "Dominant Republican (30-40%)" : "Dominant Democratic (30-40%)";
+        compLabel = winner === 'Republican' ? "Dominant Republican (30-39.99%)" : "Dominant Democratic (30-39.99%)";
         compColor = winner === 'Republican' ? '#7f1d1d' : '#1e3a8a';
       } else if (marginPct >= 20) {
-        compLabel = winner === 'Republican' ? "Stronghold Republican (20-30%)" : "Stronghold Democratic (20-30%)";
+        compLabel = winner === 'Republican' ? "Stronghold Republican (20-29.99%)" : "Stronghold Democratic (20-29.99%)";
         compColor = winner === 'Republican' ? '#991b1b' : '#1e40af';
       } else if (marginPct >= 10) {
-        compLabel = winner === 'Republican' ? "Safe Republican (10-20%)" : "Safe Democratic (10-20%)";
+        compLabel = winner === 'Republican' ? "Safe Republican (10-19.99%)" : "Safe Democratic (10-19.99%)";
         compColor = winner === 'Republican' ? '#dc2626' : '#3b82f6';
       } else if (marginPct >= 5.5) {
-        compLabel = winner === 'Republican' ? "Likely Republican (5.5-10%)" : "Likely Democratic (5.5-10%)";
+        compLabel = winner === 'Republican' ? "Likely Republican (5.51-9.99%)" : "Likely Democratic (5.51-9.99%)";
         compColor = winner === 'Republican' ? '#ef4444' : '#60a5fa';
       } else if (marginPct >= 1) {
         compLabel = winner === 'Republican' ? "Lean Republican (1-5.5%)" : "Lean Democratic (1-5.5%)";
         compColor = winner === 'Republican' ? '#f87171' : '#93c5fd';
       } else if (marginPct >= 0.5) {
-        compLabel = winner === 'Republican' ? "Tilt Republican (0.5-1%)" : "Tilt Democratic (0.5-1%)";
+        compLabel = winner === 'Republican' ? "Tilt Republican (0.51-0.99%)" : "Tilt Democratic (0.51-0.99%)";
         compColor = winner === 'Republican' ? '#fca5a5' : '#bfdbfe';
       } else {
         compLabel = winner === 'Democratic' ? 'Tossup (Democratic Win)' : 'Tossup (Republican Win)';
@@ -1333,7 +1333,7 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
         <div class="statewide-margin" style="margin-bottom:0;">
           <div class="margin-text" style="color: ${winner === 'Republican' ? '#dc2626' : '#2563eb'};font-size:18px;font-weight:700;text-align:left;">
             Winner: <span style="color:${winner === 'Republican' ? '#dc2626' : '#2563eb'}">${winner === 'Republican' ? repCandidate : demCandidate} (${partyLabel}${incumbentMark})</span><br>
-            Margin: <span style="color:${winner === 'Republican' ? '#dc2626' : '#2563eb'}">${winner === 'Republican' ? 'R+' : 'D+'}${marginPct.toFixed(2)}%</span> <span style="color:#64748b;font-size:14px;">(${Math.abs(repVotes-demVotes).toLocaleString()} votes)</span>
+            Margin: <span style="color:${winner === 'Republican' ? '#dc2626' : '#2563eb'}">${winner === 'Republican' ? 'R+' : 'D+'}${marginPct.toFixed(2)}%</span> <span style="color:#64748b;font-size:14px;">(${Math.abs(repVotes - demVotes).toLocaleString()} votes)</span>
           </div>
           <div style="margin-top:8px;">
             <div id="statewide-temperature-bar" style="width:100%;height:32px;border-radius:16px;display:flex;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,0.08);">
@@ -1621,21 +1621,21 @@ function toggleSidebar() {
       if (!countyCompLabel || typeof countyCompLabel !== 'string' || countyCompLabel.trim() === '') {
         if (winner === 'Democratic') {
           if (marginPct >= 40) countyCompLabel = 'Annihilation Democratic (40%+)';
-          else if (marginPct >= 30) countyCompLabel = 'Dominant Democratic (30-40%)';
-          else if (marginPct >= 20) countyCompLabel = 'Stronghold Democratic (20-30%)';
-          else if (marginPct >= 10) countyCompLabel = 'Safe Democratic (10-20%)';
-          else if (marginPct >= 5.5) countyCompLabel = 'Likely Democratic (5.5-10%)';
+          else if (marginPct >= 30) countyCompLabel = 'Dominant Democratic (30-39.99%)';
+          else if (marginPct >= 20) countyCompLabel = 'Stronghold Democratic (20-29.99%)';
+          else if (marginPct >= 10) countyCompLabel = 'Safe Democratic (10-19.99%)';
+          else if (marginPct >= 5.5) countyCompLabel = 'Likely Democratic (5.51-9.99%)';
           else if (marginPct >= 1) countyCompLabel = 'Lean Democratic (1-5.5%)';
-          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Democratic (0.5-1%)';
+          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Democratic (0.51-0.99%)';
           else countyCompLabel = 'Tossup (Democratic Win)';
         } else if (winner === 'Republican') {
           if (marginPct >= 40) countyCompLabel = 'Annihilation Republican (40%+)';
-          else if (marginPct >= 30) countyCompLabel = 'Dominant Republican (30-40%)';
-          else if (marginPct >= 20) countyCompLabel = 'Stronghold Republican (20-30%)';
-          else if (marginPct >= 10) countyCompLabel = 'Safe Republican (10-20%)';
-          else if (marginPct >= 5.5) countyCompLabel = 'Likely Republican (5.5-10%)';
+          else if (marginPct >= 30) countyCompLabel = 'Dominant Republican (30-39.99%)';
+          else if (marginPct >= 20) countyCompLabel = 'Stronghold Republican (20-29.99%)';
+          else if (marginPct >= 10) countyCompLabel = 'Safe Republican (10-19.99%)';
+          else if (marginPct >= 5.5) countyCompLabel = 'Likely Republican (5.51-9.99%)';
           else if (marginPct >= 1) countyCompLabel = 'Lean Republican (1-5.5%)';
-          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Republican (0.5-1%)';
+          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Republican (0.51-0.99%)';
           else countyCompLabel = 'Tossup (Republican Win)';
         } else {
           countyCompLabel = 'Tossup';
