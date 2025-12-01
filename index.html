@@ -1762,6 +1762,13 @@ function toggleSidebar() {
   }
   sidebarContent += `<div class="competitiveness-section">`;
   sidebarContent += '<h3 class="sidebar-section-title">🎯 Competitiveness</h3>';
+  
+  // Extract label without percentage range for cleaner display
+  let displayLabel = compLabel;
+  if (compLabel.includes('(') && compLabel.includes(')')) {
+    displayLabel = compLabel.substring(0, compLabel.indexOf('(')).trim();
+  }
+  
   let tossupStyle = '';
   if (compLabel.startsWith('Tossup')) {
     // Match other ratings: no background, consistent padding, font size, vertical alignment
@@ -1773,7 +1780,7 @@ function toggleSidebar() {
       tossupStyle = 'color: #222; padding: 2px 8px; border-radius: 4px; font-size:15px; vertical-align:middle;';
     }
   }
-  sidebarContent += `<div class="competitiveness-label" style="font-weight:bold;${tossupStyle}${!compLabel.startsWith('Tossup') ? 'color:' + compColor + '; font-size:15px; padding:2px 8px; border-radius:4px; vertical-align:middle;' : ''}">${compLabel}</div>`;
+  sidebarContent += `<div class="competitiveness-label" style="font-weight:bold;${tossupStyle}${!compLabel.startsWith('Tossup') ? 'color:' + compColor + '; font-size:15px; padding:2px 8px; border-radius:4px; vertical-align:middle;' : ''}">${displayLabel}</div>`;
   
   // Add short, emphasized cues for very-close and extremely-close contests
   try {
