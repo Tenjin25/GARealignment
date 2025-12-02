@@ -274,6 +274,108 @@ Metro Atlanta's 11-county region now comprises **~60% of Georgia's population** 
 
 This data-driven realignment narrative explains why Georgia now features competitive presidential, Senate, and gubernatorial races—a transformation driven almost entirely by Metro Atlanta's demographic revolution while rural Georgia simultaneously moved further right. The state's future competitiveness hinges on whether Metro Atlanta's Democratic growth can continue to offset rural Republican dominance.
 
+### Beyond Metro Atlanta: Why Georgia Isn't Minnesota
+
+Unlike Minnesota, where the Twin Cities' Democratic dominance overwhelms rural Republican areas to make the state reliably blue, Georgia remains competitive because:
+
+#### 1. Rural Georgia's Massive Republican Counter-Surge
+
+**Northeast Georgia Mountains** (White, working-class, Appalachian):
+- **Hall County** (Gainesville): R+43.69% (2000) → R+43.78% (2024) — **Stable GOP Annihilation**
+  - 2024: 28,347 D vs 72,991 R (44,644 vote Republican margin)
+- **Banks County**: R+43.86% (2000) → R+78.16% (2024) — **+34 point GOP surge**
+  - 2000: 1,220 D vs 3,202 R
+  - 2024: 1,136 D vs 9,358 R (829% Republican vote growth)
+- **Jackson County**: R+38.46% (2000) → R+55.09% (2024) — **+17 point GOP surge**
+
+**Northwest Georgia Appalachia** (Industrial, Latino immigration, deeply red):
+- **Murray County**: R+34.14% (2000) → R+71.59% (2024) — **+37 point GOP surge**
+  - 2000: 2,684 D vs 5,539 R
+  - 2024: 2,459 D vs 14,965 R (270% Republican vote growth)
+- **Floyd County** (Rome): R+22.04% (2000) → R+41.95% (2024) — **+20 point GOP surge**
+- **Whitfield County** (Dalton): R+38.06% (2000) → R+44.45% (2024) — **Stable Annihilation**
+
+**South Georgia Agriculture Belt** (Rural, conservative):
+- **Colquitt County**: R+33.03% (2000) → R+50.19% (2024) — **+17 point GOP surge**
+- **Tift County**: R+30.38% (2000) → R+35.66% (2024) — **Steady Republican**
+
+These rural counties produce **massive raw vote margins**: Hall County alone delivered 44,644 net Republican votes in 2024, offsetting entire blue counties.
+
+#### 2. Black Belt Erosion: Democratic Rural Base Collapsing
+
+Georgia's historically Black-majority counties are **moving Republican** or seeing Democratic margins collapse—unlike Minnesota's rural areas which were never Democratic strongholds:
+
+**Rural Black Belt Decay**:
+- **Hancock County** (highest % Black in Georgia): D+56.85% (2000) → D+35.38% (2024) — **-21 point Democratic collapse**
+  - 2000: 2,414 D vs 662 R (Annihilation Democratic)
+  - 2024: 2,864 D vs 1,364 R (Dominant Democratic) — **Republicans doubled their vote share**
+  
+- **Macon County**: D+27.37% (2000) → D+17.90% (2024) — **-9 point erosion**
+  
+- **Warren County**: D+12.27% (2000) → D+4.71% (2024) — **-8 point erosion, approaching toss-up**
+
+**Southwest Georgia (Black-majority counties flipping RED)**:
+- **Mitchell County**: D+3.12% (2000) → R+16.32% (2024) — **19-point swing to GOP**
+- **Terrell County**: D+2.57% (2000) → D+4.10% (2024) — **Near toss-up, collapsing Democratic**
+- **Quitman County**: D+21.46% (2000) → R+15.44% (2024) — **37-point swing, FLIPPED**
+- **Webster County**: D+20.04% (2000) → R+18.41% (2024) — **38-point swing, FLIPPED**
+- **Clay County**: D+29.21% (2000) → D+7.49% (2024) — **-22 point Democratic collapse**
+- **Stewart County**: D+30.30% (2000) → D+16.27% (2024) — **-14 point erosion**
+
+**Central Black Belt Battlegrounds**:
+- **Baldwin County** (Milledgeville): R+1.22% (2000) → R+2.20% (2024) — **Toss-up, recently flipped**
+- **Washington County**: D+4.70% (2000) → R+1.91% (2024) — **6-point swing, FLIPPED 2024**
+- **Jefferson County**: D+7.44% (2000) → R+1.22% (2024) — **9-point swing, FLIPPED 2024**
+
+**Why This Matters**: In Minnesota, rural areas were always Republican—Democrats just win by massive margins in the Twin Cities. In Georgia, Democrats are **losing their rural base** (Black Belt counties) while rural white counties surge further right. This creates a **dual headwind** for Democrats.
+
+#### 3. Middle Georgia: Limited Urban Blue Anchors
+
+Georgia lacks multiple large blue cities. Unlike Minnesota (with St. Paul, Duluth as secondary anchors), Georgia has:
+
+**Strong Blue Cities** (Holding/Growing):
+- **Bibb County** (Macon): D+1.87% (2000) → D+22.43% (2024) — **+21 point Democratic surge**
+  - 2024: 42,172 D vs 26,658 R (Stronghold Democratic)
+- **Muscogee County** (Columbus): D+9.08% (2000) → D+23.35% (2024) — **+14 point surge**
+  - 2024: 49,413 D vs 30,616 R (Stronghold Democratic)
+- **Chatham County** (Savannah): Tossup (2000) → D+18.02% (2024) — **+18 point surge**
+  - 2024: 82,758 D vs 57,336 R (Safe Democratic)
+
+**But countered by red suburbs**:
+- **Houston County** (Warner Robins, military): R+26.76% (2000) → R+11.27% (2024)
+  - Still 45,090 R vs 35,907 D in 2024 (9,183 net GOP votes)
+- **Glynn County** (Brunswick coast): R+29.51% (2000) → R+25.99% (2024) — **Stable Republican**
+
+These mid-sized cities produce Democratic margins, but **nowhere near Metro Atlanta's scale** and are offset by surrounding red counties.
+
+#### 4. The Math: Why Georgia Stays Competitive
+
+**2024 Presidential Results (Trump +2.23% statewide)**:
+
+Metro Atlanta delivered **~300,000 net Democratic votes**:
+- Fulton: +240,093 D
+- DeKalb: +237,008 D  
+- Gwinnett: +69,466 D
+- Cobb: +59,725 D
+- Henry: +38,271 D
+
+But Rural/Small-Town Georgia countered with **~416,000 net Republican votes**:
+- Hall: +44,644 R
+- Jackson: +26,025 R
+- Banks: +8,222 R
+- Cherokee: +63,304 R
+- Forsyth: +45,772 R
+- Murray: +12,506 R
+- Floyd: +18,769 R
+- Whitfield: +17,702 R
+- Plus 100+ smaller rural counties adding hundreds of thousands more
+
+**The Minnesota Contrast**:
+- **Minnesota**: Twin Cities metro produces 55% of state votes AND 60%+ Democratic margins → Overwhelming blue dominance
+- **Georgia**: Metro Atlanta produces 60% of state votes but only 52-54% Democratic margins → Rural GOP margins competitive
+
+**Result**: Georgia remains a **true battleground** where both parties can win based on turnout differentials, while Minnesota is **Safe Democratic** because the Twin Cities' margins are insurmountable.
+
 ## Technical Stack
 - **Frontend**: Vanilla JavaScript (ES6+), Mapbox GL JS v2.x
 - **Data Processing**: Python 3.x with pandas, json
