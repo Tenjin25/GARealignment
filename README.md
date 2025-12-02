@@ -359,22 +359,26 @@ Metro Atlanta delivered **~300,000 net Democratic votes**:
 - Cobb: +59,725 D
 - Henry: +38,271 D
 
-But Rural/Small-Town Georgia countered with **~416,000 net Republican votes**:
-- Hall: +44,644 R
+But **Republican Exurbs/Suburbs + Rural Georgia** countered with **~416,000 net Republican votes**:
+
+*Republican-Trending Suburbs*:
+- Cherokee: +63,304 R (northern Atlanta exurb)
+- Forsyth: +45,772 R (northern Atlanta exurb)
+
+*Rural/Small-Town Georgia*:
+- Hall: +44,644 R (Gainesville)
 - Jackson: +26,025 R
-- Banks: +8,222 R
-- Cherokee: +63,304 R
-- Forsyth: +45,772 R
+- Floyd: +18,769 R (Rome)
+- Whitfield: +17,702 R (Dalton)
 - Murray: +12,506 R
-- Floyd: +18,769 R
-- Whitfield: +17,702 R
+- Banks: +8,222 R
 - Plus 100+ smaller rural counties adding hundreds of thousands more
 
 **The Minnesota Contrast**:
 - **Minnesota**: Twin Cities metro produces 55% of state votes AND 60%+ Democratic margins → Overwhelming blue dominance
-- **Georgia**: Metro Atlanta produces 60% of state votes but only 52-54% Democratic margins → Rural GOP margins competitive
+- **Georgia**: Metro Atlanta produces 60% of state votes but only 52-54% Democratic margins → Offset by red exurbs (Cherokee, Forsyth) + rural GOP surge
 
-**Result**: Georgia remains a **true battleground** where both parties can win based on turnout differentials, while Minnesota is **Safe Democratic** because the Twin Cities' margins are insurmountable.
+**Result**: Georgia remains a **true battleground** where both parties can win based on turnout differentials, while Minnesota is **Safe Democratic** because the Twin Cities' margins are insurmountable. Georgia's red suburban ring (Cherokee, Forsyth) + rural Republican counter-surge + Black Belt erosion perfectly balances Metro Atlanta's blue core.
 
 ## Technical Stack
 - **Frontend**: Vanilla JavaScript (ES6+), Mapbox GL JS v2.x
