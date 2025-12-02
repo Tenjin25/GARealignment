@@ -382,6 +382,111 @@ But **Republican Exurbs/Suburbs + Rural Georgia** countered with **~416,000 net 
 
 **Result**: Georgia remains a **true battleground** where both parties can win based on turnout differentials, while Minnesota is **Safe Democratic** because the Twin Cities' margins are insurmountable. Georgia's massive **red exurban ring** (Cherokee, Forsyth, Hall, Jackson delivering 179,000+ GOP votes) + rural Republican counter-surge + Black Belt erosion perfectly balances Metro Atlanta's blue core.
 
+### Georgia vs. North Carolina: Similar Sunbelt Transformations, Different Outcomes
+
+Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably similar demographic shifts, yet North Carolina has remained more consistently competitive while Georgia swung more dramatically:
+
+#### Key Similarities
+
+**1. Metro Area Blue Shifts**:
+- **North Carolina**: Charlotte-Mecklenburg, Raleigh-Wake County, Durham flipping heavily Democratic
+- **Georgia**: Metro Atlanta (Fulton, DeKalb, Gwinnett, Cobb) following identical pattern
+- Both driven by: college-educated in-migration, tech sector growth, racial diversification
+
+**2. Suburban Battlegrounds**:
+- **NC**: Suburban Charlotte (Union County R+30 → R+18), suburban Raleigh (Wake County toss-up → D+27)
+- **GA**: Suburban Atlanta (Gwinnett R+32 → D+17, Cobb R+23 → D+15)
+- Both states saw 2016 as inflection point for suburban realignment
+
+**3. Rural White Republican Surge**:
+- **NC**: Rural Appalachia and eastern counties moved sharply right (2000-2024)
+- **GA**: North Georgia mountains and South Georgia agriculture belt mirrored this shift
+- Both offsetting urban Democratic gains
+
+**4. Black Belt Patterns**:
+- **NC**: Eastern Black-majority counties (Edgecombe, Halifax) holding Democratic but with eroding margins
+- **GA**: Central Black Belt counties showing similar or worse erosion, some flipping red
+
+#### Critical Differences: Why Georgia Swung Harder
+
+**1. Metro Concentration Disparity**:
+- **North Carolina**: Multiple major metros provide balance
+  - Charlotte metro: ~28% of state population
+  - Raleigh-Durham-Chapel Hill (Triangle): ~20% of state population  
+  - Greensboro-Winston-Salem (Triad): ~15% of state population
+  - **Total metro power**: ~63% spread across 3 regions
+  
+- **Georgia**: Single dominant metro
+  - Atlanta metro: **~60% of entire state population**
+  - No secondary metros of comparable size (Savannah 5%, Augusta 7%, Columbus 4%)
+  - **Metro power**: ~60% concentrated in one region
+  
+**Impact**: Georgia's fate hinges almost entirely on Atlanta's trajectory. When Atlanta suburbs flipped in 2016-2020, the entire state flipped. North Carolina's distributed metros create more regional balance.
+
+**2. Exurban Ring Dynamics**:
+- **North Carolina**: Smaller exurban Republican margins
+  - Union County (Charlotte exurb): R+18% (2024) — significant but manageable
+  - Johnston County (Raleigh exurb): R+24% (2024) — growing but not overwhelming
+  
+- **Georgia**: Massive exurban Republican fortresses
+  - Forsyth County: R+33% producing 45,772 net GOP votes
+  - Cherokee County: R+39% producing 63,304 net GOP votes
+  - Hall County: R+44% producing 44,644 net GOP votes
+  - **Combined**: 179,000+ net Republican votes from 4 exurban counties alone
+  
+**Impact**: Georgia's red exurban ring is larger, more populous, and more Republican than NC's, creating a massive GOP counterweight.
+
+**3. Black Belt Collapse Severity**:
+- **North Carolina**: Eastern Black Belt relatively stable
+  - Halifax County: D+27% (2000) → D+18% (2024) — erosion but holding
+  - Bertie County: D+32% (2000) → D+24% (2024) — stable
+  
+- **Georgia**: Black Belt catastrophic decline
+  - Hancock County: D+57% (2000) → D+35% (2024) — 22-point collapse
+  - **5 counties flipped Republican**: Quitman, Webster, Mitchell, Baldwin, Washington, Jefferson
+  - Warren County: D+12% (2000) → D+5% (2024) — nearly competitive
+  
+**Impact**: Georgia Democrats lost a rural base that NC Democrats never relied on as heavily, creating an additional headwind.
+
+**4. College-Town Anchors**:
+- **North Carolina**: Strong university town Democratic bastions
+  - Chapel Hill (UNC): D+60%+, providing durable blue anchor
+  - Durham (Duke): D+55%+, stable Democratic fortress
+  - Boone (App State), Greenville (ECU): Smaller but reliable blue pockets
+  
+- **Georgia**: Weaker college-town effect
+  - Athens (UGA): D+35% in Clarke County, smaller population
+  - No equivalent to Research Triangle Park's concentration
+  - College towns less electorally dominant
+  
+**Impact**: NC has distributed blue anchors beyond metros; Georgia's Democratic strength is almost entirely metro-dependent.
+
+**5. Migration Source Differences**:
+- **North Carolina**: Attracts Northeastern migrants (NY, NJ, PA) → more Democratic lean
+  - Charlotte banking sector draws from NYC financial world
+  - Research Triangle attracts Northeastern PhDs and tech workers
+  
+- **Georgia**: More diverse migration mix
+  - Atlanta draws from across U.S. + international
+  - Includes conservative migrants from rural areas and Midwest
+  - Less uniformly Democratic transplant population
+
+#### Electoral Results Comparison
+
+**Presidential Margins (2000 vs 2024)**:
+- **North Carolina 2000**: Bush +13.0% → **2024**: Trump +3.3% (**9.7-point Democratic shift**)
+- **Georgia 2000**: Bush +11.7% → **2024**: Trump +2.2% (**9.5-point Democratic shift**)
+
+*Nearly identical overall shifts, but different volatility*:
+- **NC 2020**: Trump +1.3% (steady Republican lean)
+- **GA 2020**: Biden +0.2% (briefly flipped blue)
+
+**Why the Difference?**:
+- **North Carolina**: Distributed metros + stable Black Belt + smaller exurbs = **Steady Tilt Republican**
+- **Georgia**: Concentrated Atlanta + collapsing Black Belt + massive exurbs = **High Volatility Battleground**
+
+Georgia's winner depends on Atlanta turnout vs. exurban/rural turnout in any given cycle. North Carolina's multiple metros create more consistent, predictable outcomes. Both are competitive, but Georgia is more capable of dramatic swings based on which base mobilizes better.
+
 ## Technical Stack
 - **Frontend**: Vanilla JavaScript (ES6+), Mapbox GL JS v2.x
 - **Data Processing**: Python 3.x with pandas, json
