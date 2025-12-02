@@ -425,8 +425,8 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 
 **2. Exurban Ring Dynamics**:
 - **North Carolina**: Smaller exurban Republican margins
-  - Union County (Charlotte exurb): R+18% (2024) — significant but manageable
-  - Johnston County (Raleigh exurb): R+24% (2024) — growing but not overwhelming
+  - Union County (Charlotte exurb): R+25% (2024) — significant but manageable
+  - Johnston County (Raleigh exurb): R+21% (2024) — growing but not overwhelming
   
 - **Georgia**: Massive exurban Republican fortresses
   - Forsyth County: R+33% producing 45,772 net GOP votes
@@ -439,7 +439,7 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 **3. Black Belt Collapse Severity**:
 - **North Carolina**: Eastern Black Belt relatively stable
   - Halifax County: D+27% (2000) → D+18% (2024) — erosion but holding
-  - Bertie County: D+32% (2000) → D+24% (2024) — stable
+  - Bertie County: D+32% (2000) → D+16% (2024) — eroding
   
 - **Georgia**: Black Belt catastrophic decline
   - Hancock County: D+57% (2000) → D+35% (2024) — 22-point collapse
@@ -474,7 +474,7 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 #### Electoral Results Comparison
 
 **Presidential Margins (2000 vs 2024)**:
-- **North Carolina 2000**: Bush +13.0% → **2024**: Trump +3.3% (**9.7-point Democratic shift**)
+- **North Carolina 2000**: Bush +13.0% → **2024**: Trump +3.21% (**9.7-point Democratic shift**)
 - **Georgia 2000**: Bush +11.7% → **2024**: Trump +2.2% (**9.5-point Democratic shift**)
 
 *Nearly identical overall shifts, but different volatility*:
