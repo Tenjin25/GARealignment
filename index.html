@@ -1726,6 +1726,19 @@ function toggleSidebar() {
   // Always use 'Democratic' instead of 'Democrat' for label
   let partyLabel = compParty.toUpperCase() === 'DEMOCRAT' ? 'Democratic' : (compParty.charAt(0) + compParty.slice(1).toLowerCase());
   let compLabel = compCategory && compParty ? `${compCategory} ${partyLabel}` : compCategory || countyCompLabel;
+  
+  // If the label doesn't have a percentage range, add it based on the category
+  if (compLabel && !compLabel.includes('(') && !compLabel.includes('%')) {
+    if (compLabel.includes('Annihilation')) compLabel += ' (40%+)';
+    else if (compLabel.includes('Dominant')) compLabel += ' (30-39.99%)';
+    else if (compLabel.includes('Stronghold')) compLabel += ' (20-29.99%)';
+    else if (compLabel.includes('Safe')) compLabel += ' (10-19.99%)';
+    else if (compLabel.includes('Likely')) compLabel += ' (5.51-9.99%)';
+    else if (compLabel.includes('Lean')) compLabel += ' (1-5.5%)';
+    else if (compLabel.includes('Tilt')) compLabel += ' (0.51-0.99%)';
+    else if (compLabel.includes('Tossup') && !compLabel.includes('Win')) compLabel += ' (<0.5%)';
+  }
+  
   // Force tossup label to always show '(Democratic Win)' or '(Republican Win)'
   if (compLabel.startsWith('Tossup')) {
     if (winner === 'Democratic') compLabel = 'Tossup (Democratic Win)';
