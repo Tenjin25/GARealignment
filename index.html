@@ -1764,8 +1764,9 @@ function toggleSidebar() {
   sidebarContent += '<h3 class="sidebar-section-title">🎯 Competitiveness</h3>';
   
   // Extract label without percentage range for cleaner display
+  // Exception: Keep the full label for Tossup to show (Democratic Win) or (Republican Win)
   let displayLabel = compLabel;
-  if (compLabel.includes('(') && compLabel.includes(')')) {
+  if (compLabel.includes('(') && compLabel.includes(')') && !compLabel.startsWith('Tossup')) {
     displayLabel = compLabel.substring(0, compLabel.indexOf('(')).trim();
   }
   
@@ -2628,7 +2629,7 @@ function toggleSidebar() {
           contests.forEach(contest => {
             const option = document.createElement('option');
             option.value = `${contest.year}|${contest.contestKey}`;
-            option.textContent = `${contest.year}`;
+            option.textContent = `${office.label} (${contest.year})`;
             optgroup.appendChild(option);
           });
           
