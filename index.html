@@ -2928,7 +2928,7 @@ function toggleSidebar() {
           matchExpr.push('#f0f0f0'); // default color
           // Apply the color expression directly
           map.setPaintProperty('county-fill', 'fill-color', matchExpr);
-          map.setPaintProperty('county-fill', 'fill-opacity', 0.3);
+          map.setPaintProperty('county-fill', 'fill-opacity', 0.75);
           map.setLayoutProperty('county-fill', 'visibility', 'visible');
           try {
             const newFillColor = map.getPaintProperty('county-fill', 'fill-color');
