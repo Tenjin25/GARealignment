@@ -886,7 +886,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <div class="legend-item"><div class="legend-color" style="background: #fb6a4a;"></div>Likely Republican (5.50-9.99%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #fcae91;"></div>Lean Republican (1.00-5.49%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #fee8c8;"></div>Tilt Republican (0.50-0.99%)</div>
-            <div class="legend-item"><div class="legend-color" style="background: #f7f7f7; border: 1px solid #999;"></div>Tossup (<0.5%)</div>
+            <div class="legend-item"><div class="legend-color" style="background: #f7f7f7; border: 1px solid #999;"></div>Tossup (<0.50%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #e1f5fe;"></div>Tilt Democratic (0.50-0.99%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #c6dbef;"></div>Lean Democratic (1.00-5.49%)</div>
             <div class="legend-item"><div class="legend-color" style="background: #9ecae1;"></div>Likely Democratic (5.50-9.99%)</div>
@@ -1621,21 +1621,21 @@ function toggleSidebar() {
       if (!countyCompLabel || typeof countyCompLabel !== 'string' || countyCompLabel.trim() === '') {
         if (winner === 'Democratic') {
           if (marginPct >= 40) countyCompLabel = 'Annihilation Democratic (40%+)';
-          else if (marginPct >= 30) countyCompLabel = 'Dominant Democratic (30-39.99%)';
-          else if (marginPct >= 20) countyCompLabel = 'Stronghold Democratic (20-29.99%)';
-          else if (marginPct >= 10) countyCompLabel = 'Safe Democratic (10-19.99%)';
-          else if (marginPct >= 5.5) countyCompLabel = 'Likely Democratic (5.51-9.99%)';
-          else if (marginPct >= 1) countyCompLabel = 'Lean Democratic (1-5.5%)';
-          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Democratic (0.51-0.99%)';
+          else if (marginPct >= 30) countyCompLabel = 'Dominant Democratic (30.00-39.99%)';
+          else if (marginPct >= 20) countyCompLabel = 'Stronghold Democratic (20.00-29.99%)';
+          else if (marginPct >= 10) countyCompLabel = 'Safe Democratic (10.00-19.99%)';
+          else if (marginPct >= 5.5) countyCompLabel = 'Likely Democratic (5.50-9.99%)';
+          else if (marginPct >= 1) countyCompLabel = 'Lean Democratic (1.00-5.49%)';
+          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Democratic (0.50-0.99%)';
           else countyCompLabel = 'Tossup (Democratic Win)';
         } else if (winner === 'Republican') {
           if (marginPct >= 40) countyCompLabel = 'Annihilation Republican (40%+)';
-          else if (marginPct >= 30) countyCompLabel = 'Dominant Republican (30-39.99%)';
-          else if (marginPct >= 20) countyCompLabel = 'Stronghold Republican (20-29.99%)';
-          else if (marginPct >= 10) countyCompLabel = 'Safe Republican (10-19.99%)';
-          else if (marginPct >= 5.5) countyCompLabel = 'Likely Republican (5.51-9.99%)';
-          else if (marginPct >= 1) countyCompLabel = 'Lean Republican (1-5.5%)';
-          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Republican (0.51-0.99%)';
+          else if (marginPct >= 30) countyCompLabel = 'Dominant Republican (30.00-39.99%)';
+          else if (marginPct >= 20) countyCompLabel = 'Stronghold Republican (20.00-29.99%)';
+          else if (marginPct >= 10) countyCompLabel = 'Safe Republican (10.00-19.99%)';
+          else if (marginPct >= 5.5) countyCompLabel = 'Likely Republican (5.50-9.99%)';
+          else if (marginPct >= 1) countyCompLabel = 'Lean Republican (1.00-5.49%)';
+          else if (marginPct >= 0.5) countyCompLabel = 'Tilt Republican (0.50-0.99%)';
           else countyCompLabel = 'Tossup (Republican Win)';
         } else {
           countyCompLabel = 'Tossup';
@@ -1733,9 +1733,9 @@ function toggleSidebar() {
     else if (compLabel.includes('Dominant')) compLabel += ' (30-39.99%)';
     else if (compLabel.includes('Stronghold')) compLabel += ' (20-29.99%)';
     else if (compLabel.includes('Safe')) compLabel += ' (10-19.99%)';
-    else if (compLabel.includes('Likely')) compLabel += ' (5.51-9.99%)';
-    else if (compLabel.includes('Lean')) compLabel += ' (1-5.5%)';
-    else if (compLabel.includes('Tilt')) compLabel += ' (0.51-0.99%)';
+    else if (compLabel.includes('Likely')) compLabel += ' (5.50-9.99%)';
+    else if (compLabel.includes('Lean')) compLabel += ' (1-5.49%)';
+    else if (compLabel.includes('Tilt')) compLabel += ' (0.50-0.99%)';
     else if (compLabel.includes('Tossup') && !compLabel.includes('Win')) compLabel += ' (<0.5%)';
   }
   
@@ -1821,7 +1821,7 @@ function toggleSidebar() {
           id: 'county-fill', 
           type: 'fill', 
           source: 'counties', 
-          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.75 } 
+          paint: { 'fill-color': '#e0e0e0', 'fill-opacity': 0.81 } 
         });
         map.addLayer({ 
           id: 'county-stroke', 
