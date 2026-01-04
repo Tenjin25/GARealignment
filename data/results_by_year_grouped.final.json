@@ -440378,7 +440378,7 @@
             "rep_pct": 65.5,
             "margin_pct": -30.99,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "David Perdue",
             "competitiveness": {
               "category": "Dominant",
               "party": "Republican",
@@ -440387,13 +440387,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Jon Ossoff",
                 "party": "Democrat",
                 "votes": 6856,
                 "pct": 34.5
               },
               {
-                "name": "Republican",
+                "name": "David Perdue",
                 "party": "Republican",
                 "votes": 13015,
                 "pct": 65.5
@@ -440408,7 +440408,7 @@
             "rep_pct": 79.67,
             "margin_pct": -59.35,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "David Perdue",
             "competitiveness": {
               "category": "Annihilation",
               "party": "Republican",
@@ -440417,13 +440417,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Jon Ossoff",
                 "party": "Democrat",
                 "votes": 1673,
                 "pct": 20.33
               },
               {
-                "name": "Republican",
+                "name": "David Perdue",
                 "party": "Republican",
                 "votes": 6558,
                 "pct": 79.67
@@ -440438,7 +440438,7 @@
             "rep_pct": 66.78,
             "margin_pct": -33.55,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "David Perdue",
             "competitiveness": {
               "category": "Dominant",
               "party": "Republican",
@@ -440447,13 +440447,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Jon Ossoff",
                 "party": "Democrat",
                 "votes": 3099,
                 "pct": 33.22
               },
               {
-                "name": "Republican",
+                "name": "David Perdue",
                 "party": "Republican",
                 "votes": 6229,
                 "pct": 66.78
@@ -440468,7 +440468,7 @@
             "rep_pct": 65.13,
             "margin_pct": -30.26,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "David Perdue",
             "competitiveness": {
               "category": "Dominant",
               "party": "Republican",
@@ -440477,20 +440477,30 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Jon Ossoff",
                 "party": "Democrat",
                 "votes": 3703,
                 "pct": 34.87
               },
               {
-                "name": "Republican",
+                "name": "David Perdue",
                 "party": "Republican",
                 "votes": 6917,
                 "pct": 65.13
               }
             ]
           }
-        }
+        },
+        "candidates": [
+          {
+            "name": "Jon Ossoff",
+            "party": "Democrat"
+          },
+          {
+            "name": "David Perdue",
+            "party": "Republican"
+          }
+        ]
       },
       "us_senate_special_2021": {
         "results": {
@@ -446857,7 +446867,7 @@
             "rep_pct": 65.74,
             "margin_pct": -31.48,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "Kelly Loeffler",
             "competitiveness": {
               "category": "Dominant",
               "party": "Republican",
@@ -446866,13 +446876,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Raphael Warnock",
                 "party": "Democrat",
                 "votes": 6807,
                 "pct": 34.26
               },
               {
-                "name": "Republican",
+                "name": "Kelly Loeffler",
                 "party": "Republican",
                 "votes": 13063,
                 "pct": 65.74
@@ -446887,7 +446897,7 @@
             "rep_pct": 79.53,
             "margin_pct": -59.06,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "Kelly Loeffler",
             "competitiveness": {
               "category": "Annihilation",
               "party": "Republican",
@@ -446896,13 +446906,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Raphael Warnock",
                 "party": "Democrat",
                 "votes": 1686,
                 "pct": 20.47
               },
               {
-                "name": "Republican",
+                "name": "Kelly Loeffler",
                 "party": "Republican",
                 "votes": 6550,
                 "pct": 79.53
@@ -446917,7 +446927,7 @@
             "rep_pct": 66.75,
             "margin_pct": -33.49,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "Kelly Loeffler",
             "competitiveness": {
               "category": "Dominant",
               "party": "Republican",
@@ -446926,13 +446936,13 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Raphael Warnock",
                 "party": "Democrat",
                 "votes": 3102,
                 "pct": 33.25
               },
               {
-                "name": "Republican",
+                "name": "Kelly Loeffler",
                 "party": "Republican",
                 "votes": 6226,
                 "pct": 66.75
@@ -446947,7 +446957,7 @@
             "rep_pct": 64.59,
             "margin_pct": -29.18,
             "winner_party": "Republican",
-            "winner_name": "Republican",
+            "winner_name": "Kelly Loeffler",
             "competitiveness": {
               "category": "Stronghold",
               "party": "Republican",
@@ -446956,20 +446966,30 @@
             "source": "Manual entry from Wikipedia",
             "candidates": [
               {
-                "name": "Democrat",
+                "name": "Raphael Warnock",
                 "party": "Democrat",
                 "votes": 3758,
                 "pct": 35.41
               },
               {
-                "name": "Republican",
+                "name": "Kelly Loeffler",
                 "party": "Republican",
                 "votes": 6855,
                 "pct": 64.59
               }
             ]
           }
-        }
+        },
+        "candidates": [
+          {
+            "name": "Raphael Warnock",
+            "party": "Democrat"
+          },
+          {
+            "name": "Kelly Loeffler",
+            "party": "Republican"
+          }
+        ]
       }
     },
     "2024": {
