@@ -1157,8 +1157,23 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
         const yearObj = electionData.results_by_year[year];
         if (!yearObj) return;
         
+        // Debug 2022 contests
+        if (year === '2022') {
+          console.log('All 2022 contest keys:', Object.keys(yearObj));
+        }
+        
         Object.keys(yearObj).forEach(contestKey => {
           const officeLabel = getOfficeLabel(contestKey);
+          
+          // Debug logging for 2022
+          if (year === '2022' && contestKey.includes('school')) {
+            console.log('2022 School Superintendent Debug:', {
+              contestKey,
+              officeLabel,
+              isInAllowed: allowedOffices.includes(officeLabel)
+            });
+          }
+          
           if (!officeLabel || !allowedOffices.includes(officeLabel)) return;
           
           // Skip 2020 governor (no election that year)
@@ -1180,6 +1195,11 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
       allowedOffices.forEach(officeLabel => {
         const contests = groupedByOffice[officeLabel];
         if (!contests || contests.length === 0) return;
+        
+        // Debug logging
+        if (officeLabel === 'State School Superintendent') {
+          console.log('State School Superintendent contests:', contests);
+        }
         
         const optgroup = document.createElement('optgroup');
         optgroup.label = officeLabel;
