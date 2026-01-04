@@ -285729,10 +285729,10 @@
             "year": "2014"
           },
           "Gwinnett": {
-            "dem_candidate": null,
-            "rep_candidate": "Doreen Carter",
-            "dem_votes": 0,
-            "rep_votes": 393062,
+            "dem_candidate": "Doreen Carter",
+            "rep_candidate": "Brian P. Kemp",
+            "dem_votes": 161976,
+            "rep_votes": 231086,
             "other_votes": 0,
             "total_votes": 393062,
             "two_party_total": 393062,
@@ -285750,7 +285750,8 @@
               "color": "#ef3b2c"
             },
             "all_parties": {
-              "REPUBLICAN": 393062
+              "REPUBLICAN": 231086,
+              "DEMOCRAT": 161976
             },
             "candidates": {
               "BRIAN P. KEMP": {
@@ -285760,7 +285761,7 @@
               },
               "DOREEN CARTER": {
                 "votes": 161976,
-                "party": "REPUBLICAN",
+                "party": "DEMOCRAT",
                 "incumbent": false
               }
             },
