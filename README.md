@@ -118,6 +118,25 @@ The `data/results_by_year_grouped.final.json` file contains comprehensive electi
 
 **Script**: `fix_2000_senate_and_remove_psc.py` reprocessed the 2000 CSV source data with proper candidate filtering.
 
+#### 2008 U.S. Senate Runoff Addition
+The 2008 U.S. Senate runoff (Jim Martin vs Saxby Chambliss) was added to complete the dataset. Source data was processed from `data/20081202__ga__general__runoff.csv` containing all 159 counties.
+
+**Contest**: `us_senate_runoff_2008`
+- **Date**: December 2, 2008
+- **Candidates**: Jim Martin (Democrat) vs Saxby Chambliss (Republican)
+- **Result**: Chambliss won statewide (57.4% to 42.6%)
+- **Script**: `add_2008_senate_runoff.py`
+
+#### 2021 U.S. Senate Runoffs - Missing Counties Recovered
+Four counties (Camden, Chattooga, Grady, Greene) were missing from the original 2021 runoff CSV file. Vote totals were manually added from Wikipedia's official county results tables:
+
+**Contests**: `us_senate_2021` (Ossoff vs Perdue) and `us_senate_special_2021` (Warnock vs Loeffler)
+- **Missing Counties**: Camden, Chattooga, Grady, Greene
+- **Source**: Wikipedia county results tables (verified with 100% votes counted)
+- **Competitiveness**: All four counties were strongly Republican (R+29% to R+59%)
+- **Script**: `add_2021_manual_data.py`
+- **Result**: Both 2021 Senate contests now complete with all 159 counties
+
 #### Public Service Commission Exclusion
 **Rationale**: PSC elections are district-level races (not statewide), causing:
 - Multiple contests per year (e.g., District 3, District 5)
