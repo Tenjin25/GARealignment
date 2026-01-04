@@ -28,13 +28,14 @@ An interactive web application visualizing Georgia county-level election results
 
 ### Primary Sources
 - **OpenElections Project**: County-level CSV files for Georgia general elections (2000-2024)
+- **Harvard Dataverse**: County-level election data for 2022 races
 - **Georgia Secretary of State**: Official certified results for recent elections
 - **U.S. Census Bureau**: County boundary shapefiles (TIGER/Line 2020)
 
 ### Data Pipeline
-1. **Raw CSV Ingestion**: `data/*.csv` files from OpenElections
+1. **Raw CSV Ingestion**: `data/*.csv` files from OpenElections and Harvard Dataverse
 2. **Aggregation & Normalization**: `process_ga_elections_fixed.py` consolidates precinct data to county level
-3. **Candidate Mapping**: Party affiliation standardization and candidate name extraction
+3. **Candidate Mapping**: Party affiliation standardization and candidate name normalization to proper format (e.g., "Johnny Isakson", "Stacey Abrams")
 4. **Competitiveness Classification**: Algorithmic categorization based on two-party margin percentages
 5. **JSON Export**: `data/results_by_year_grouped.final.json` contains all processed results
 

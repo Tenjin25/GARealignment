@@ -2781,8 +2781,10 @@ function toggleSidebar() {
         // Update contest name in statewide section (with fallback)
         const contestNameEl = document.getElementById('contest-name');
         if (contestNameEl) {
-          const displayName = (currentContest.data && currentContest.data.contest_name) ? currentContest.data.contest_name : (friendlyContestName(contestType) || contestType);
-          contestNameEl.textContent = `GA ${displayName} (${year})`;
+          let displayName = (currentContest.data && currentContest.data.contest_name) ? currentContest.data.contest_name : (friendlyContestName(contestType) || contestType);
+          // Remove year from displayName if it's already there (e.g., "Lieutenant Governor 2022" -> "Lieutenant Governor")
+          displayName = displayName.replace(/\s+\d{4}$/, '');
+          contestNameEl.textContent = `${displayName} (${year})`;
         }
         
         // Update sidebar if a county is currently selected
