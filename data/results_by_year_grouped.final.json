@@ -181519,6 +181519,4635 @@
             "year": "2008"
           }
         }
+      },
+      "us_senate_runoff_2008": {
+        "contest_name": "U.S. Senate Runoff",
+        "contest_type": "us_senate",
+        "year": 2008,
+        "is_statewide": true,
+        "candidates": [
+          {
+            "name": "Jim Martin",
+            "party": "Democrat"
+          },
+          {
+            "name": "Saxby Chambliss",
+            "party": "Republican"
+          }
+        ],
+        "results": {
+          "Appling": {
+            "dem_votes": 1020,
+            "rep_votes": 2635,
+            "total_votes": 3655,
+            "dem_pct": 27.91,
+            "rep_pct": 72.09,
+            "margin_pct": -44.19,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -44.1860465116279
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1020,
+                "pct": 27.91
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2635,
+                "pct": 72.09
+              }
+            ]
+          },
+          "Atkinson": {
+            "dem_votes": 429,
+            "rep_votes": 847,
+            "total_votes": 1276,
+            "dem_pct": 33.62,
+            "rep_pct": 66.38,
+            "margin_pct": -32.76,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -32.758620689655174
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 429,
+                "pct": 33.62
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 847,
+                "pct": 66.38
+              }
+            ]
+          },
+          "Bacon": {
+            "dem_votes": 358,
+            "rep_votes": 1402,
+            "total_votes": 1760,
+            "dem_pct": 20.34,
+            "rep_pct": 79.66,
+            "margin_pct": -59.32,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -59.31818181818181
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 358,
+                "pct": 20.34
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1402,
+                "pct": 79.66
+              }
+            ]
+          },
+          "Baker": {
+            "dem_votes": 474,
+            "rep_votes": 455,
+            "total_votes": 929,
+            "dem_pct": 51.02,
+            "rep_pct": 48.98,
+            "margin_pct": 2.05,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 2.0452099031216306
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 474,
+                "pct": 51.02
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 455,
+                "pct": 48.98
+              }
+            ]
+          },
+          "Baldwin": {
+            "dem_votes": 4483,
+            "rep_votes": 4452,
+            "total_votes": 8935,
+            "dem_pct": 50.17,
+            "rep_pct": 49.83,
+            "margin_pct": 0.35,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 0.34695019585898024
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4483,
+                "pct": 50.17
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4452,
+                "pct": 49.83
+              }
+            ]
+          },
+          "Banks": {
+            "dem_votes": 599,
+            "rep_votes": 2966,
+            "total_votes": 3565,
+            "dem_pct": 16.8,
+            "rep_pct": 83.2,
+            "margin_pct": -66.4,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -66.39551192145862
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 599,
+                "pct": 16.8
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2966,
+                "pct": 83.2
+              }
+            ]
+          },
+          "Barrow": {
+            "dem_votes": 2851,
+            "rep_votes": 10035,
+            "total_votes": 12886,
+            "dem_pct": 22.12,
+            "rep_pct": 77.88,
+            "margin_pct": -55.75,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -55.75042681980443
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2851,
+                "pct": 22.12
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 10035,
+                "pct": 77.88
+              }
+            ]
+          },
+          "Bartow": {
+            "dem_votes": 4427,
+            "rep_votes": 13807,
+            "total_votes": 18234,
+            "dem_pct": 24.28,
+            "rep_pct": 75.72,
+            "margin_pct": -51.44,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -51.442360425578585
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4427,
+                "pct": 24.28
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 13807,
+                "pct": 75.72
+              }
+            ]
+          },
+          "Ben Hill": {
+            "dem_votes": 1327,
+            "rep_votes": 1694,
+            "total_votes": 3021,
+            "dem_pct": 43.93,
+            "rep_pct": 56.07,
+            "margin_pct": -12.15,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -12.148295266468054
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1327,
+                "pct": 43.93
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1694,
+                "pct": 56.07
+              }
+            ]
+          },
+          "Berrien": {
+            "dem_votes": 859,
+            "rep_votes": 2398,
+            "total_votes": 3257,
+            "dem_pct": 26.37,
+            "rep_pct": 73.63,
+            "margin_pct": -47.25,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -47.25207245931839
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 859,
+                "pct": 26.37
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2398,
+                "pct": 73.63
+              }
+            ]
+          },
+          "Bibb": {
+            "dem_votes": 18887,
+            "rep_votes": 17036,
+            "total_votes": 35923,
+            "dem_pct": 52.58,
+            "rep_pct": 47.42,
+            "margin_pct": 5.15,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Democrat",
+              "margin": 5.1526876931214005
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 18887,
+                "pct": 52.58
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 17036,
+                "pct": 47.42
+              }
+            ]
+          },
+          "Bleckley": {
+            "dem_votes": 729,
+            "rep_votes": 2089,
+            "total_votes": 2818,
+            "dem_pct": 25.87,
+            "rep_pct": 74.13,
+            "margin_pct": -48.26,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -48.2611781405252
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 729,
+                "pct": 25.87
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2089,
+                "pct": 74.13
+              }
+            ]
+          },
+          "Brantley": {
+            "dem_votes": 448,
+            "rep_votes": 2160,
+            "total_votes": 2608,
+            "dem_pct": 17.18,
+            "rep_pct": 82.82,
+            "margin_pct": -65.64,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -65.64417177914109
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 448,
+                "pct": 17.18
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2160,
+                "pct": 82.82
+              }
+            ]
+          },
+          "Brooks": {
+            "dem_votes": 1268,
+            "rep_votes": 1992,
+            "total_votes": 3260,
+            "dem_pct": 38.9,
+            "rep_pct": 61.1,
+            "margin_pct": -22.21,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -22.208588957055213
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1268,
+                "pct": 38.9
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1992,
+                "pct": 61.1
+              }
+            ]
+          },
+          "Bryan": {
+            "dem_votes": 1647,
+            "rep_votes": 4580,
+            "total_votes": 6227,
+            "dem_pct": 26.45,
+            "rep_pct": 73.55,
+            "margin_pct": -47.1,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -47.101332905090736
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1647,
+                "pct": 26.45
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4580,
+                "pct": 73.55
+              }
+            ]
+          },
+          "Bulloch": {
+            "dem_votes": 3850,
+            "rep_votes": 7555,
+            "total_votes": 11405,
+            "dem_pct": 33.76,
+            "rep_pct": 66.24,
+            "margin_pct": -32.49,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -32.48575186321789
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3850,
+                "pct": 33.76
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 7555,
+                "pct": 66.24
+              }
+            ]
+          },
+          "Burke": {
+            "dem_votes": 2533,
+            "rep_votes": 2532,
+            "total_votes": 5065,
+            "dem_pct": 50.01,
+            "rep_pct": 49.99,
+            "margin_pct": 0.02,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 0.019743336623889718
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2533,
+                "pct": 50.01
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2532,
+                "pct": 49.99
+              }
+            ]
+          },
+          "Butts": {
+            "dem_votes": 1624,
+            "rep_votes": 3448,
+            "total_votes": 5072,
+            "dem_pct": 32.02,
+            "rep_pct": 67.98,
+            "margin_pct": -35.96,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -35.96214511041009
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1624,
+                "pct": 32.02
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3448,
+                "pct": 67.98
+              }
+            ]
+          },
+          "Calhoun": {
+            "dem_votes": 724,
+            "rep_votes": 540,
+            "total_votes": 1264,
+            "dem_pct": 57.28,
+            "rep_pct": 42.72,
+            "margin_pct": 14.56,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Democrat",
+              "margin": 14.556962025316459
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 724,
+                "pct": 57.28
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 540,
+                "pct": 42.72
+              }
+            ]
+          },
+          "Camden": {
+            "dem_votes": 2049,
+            "rep_votes": 4848,
+            "total_votes": 6897,
+            "dem_pct": 29.71,
+            "rep_pct": 70.29,
+            "margin_pct": -40.58,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -40.58286211396259
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2049,
+                "pct": 29.71
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4848,
+                "pct": 70.29
+              }
+            ]
+          },
+          "Candler": {
+            "dem_votes": 615,
+            "rep_votes": 1166,
+            "total_votes": 1781,
+            "dem_pct": 34.53,
+            "rep_pct": 65.47,
+            "margin_pct": -30.94,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -30.937675463222902
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 615,
+                "pct": 34.53
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1166,
+                "pct": 65.47
+              }
+            ]
+          },
+          "Carroll": {
+            "dem_votes": 6896,
+            "rep_votes": 16451,
+            "total_votes": 23347,
+            "dem_pct": 29.54,
+            "rep_pct": 70.46,
+            "margin_pct": -40.93,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -40.92602904013363
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 6896,
+                "pct": 29.54
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 16451,
+                "pct": 70.46
+              }
+            ]
+          },
+          "Catoosa": {
+            "dem_votes": 3009,
+            "rep_votes": 8652,
+            "total_votes": 11661,
+            "dem_pct": 25.8,
+            "rep_pct": 74.2,
+            "margin_pct": -48.39,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -48.39207615127347
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3009,
+                "pct": 25.8
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 8652,
+                "pct": 74.2
+              }
+            ]
+          },
+          "Charlton": {
+            "dem_votes": 435,
+            "rep_votes": 1066,
+            "total_votes": 1501,
+            "dem_pct": 28.98,
+            "rep_pct": 71.02,
+            "margin_pct": -42.04,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -42.038640906062625
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 435,
+                "pct": 28.98
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1066,
+                "pct": 71.02
+              }
+            ]
+          },
+          "Chatham": {
+            "dem_votes": 30332,
+            "rep_votes": 28287,
+            "total_votes": 58619,
+            "dem_pct": 51.74,
+            "rep_pct": 48.26,
+            "margin_pct": 3.49,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 3.488629966393148
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 30332,
+                "pct": 51.74
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 28287,
+                "pct": 48.26
+              }
+            ]
+          },
+          "Chattahoochee": {
+            "dem_votes": 329,
+            "rep_votes": 357,
+            "total_votes": 686,
+            "dem_pct": 47.96,
+            "rep_pct": 52.04,
+            "margin_pct": -4.08,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Republican",
+              "margin": -4.081632653061234
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 329,
+                "pct": 47.96
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 357,
+                "pct": 52.04
+              }
+            ]
+          },
+          "Chattooga": {
+            "dem_votes": 1361,
+            "rep_votes": 2419,
+            "total_votes": 3780,
+            "dem_pct": 36.01,
+            "rep_pct": 63.99,
+            "margin_pct": -27.99,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.989417989417987
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1361,
+                "pct": 36.01
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2419,
+                "pct": 63.99
+              }
+            ]
+          },
+          "Cherokee": {
+            "dem_votes": 9565,
+            "rep_votes": 42860,
+            "total_votes": 52425,
+            "dem_pct": 18.25,
+            "rep_pct": 81.75,
+            "margin_pct": -63.51,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -63.509775870290895
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 9565,
+                "pct": 18.25
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 42860,
+                "pct": 81.75
+              }
+            ]
+          },
+          "Clarke": {
+            "dem_votes": 15019,
+            "rep_votes": 9331,
+            "total_votes": 24350,
+            "dem_pct": 61.68,
+            "rep_pct": 38.32,
+            "margin_pct": 23.36,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 23.35934291581109
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 15019,
+                "pct": 61.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 9331,
+                "pct": 38.32
+              }
+            ]
+          },
+          "Clay": {
+            "dem_votes": 428,
+            "rep_votes": 315,
+            "total_votes": 743,
+            "dem_pct": 57.6,
+            "rep_pct": 42.4,
+            "margin_pct": 15.21,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 15.208613728129208
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 428,
+                "pct": 57.6
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 315,
+                "pct": 42.4
+              }
+            ]
+          },
+          "Clayton": {
+            "dem_votes": 41265,
+            "rep_votes": 10368,
+            "total_votes": 51633,
+            "dem_pct": 79.92,
+            "rep_pct": 20.08,
+            "margin_pct": 59.84,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Democrat",
+              "margin": 59.83963744117134
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 41265,
+                "pct": 79.92
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 10368,
+                "pct": 20.08
+              }
+            ]
+          },
+          "Clinch": {
+            "dem_votes": 391,
+            "rep_votes": 705,
+            "total_votes": 1096,
+            "dem_pct": 35.68,
+            "rep_pct": 64.32,
+            "margin_pct": -28.65,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.649635036496356
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 391,
+                "pct": 35.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 705,
+                "pct": 64.32
+              }
+            ]
+          },
+          "Cobb": {
+            "dem_votes": 67008,
+            "rep_votes": 117116,
+            "total_votes": 184124,
+            "dem_pct": 36.39,
+            "rep_pct": 63.61,
+            "margin_pct": -27.21,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.214268645043553
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 67008,
+                "pct": 36.39
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 117116,
+                "pct": 63.61
+              }
+            ]
+          },
+          "Coffee": {
+            "dem_votes": 2268,
+            "rep_votes": 4386,
+            "total_votes": 6654,
+            "dem_pct": 34.08,
+            "rep_pct": 65.92,
+            "margin_pct": -31.83,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -31.830477908025244
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2268,
+                "pct": 34.08
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4386,
+                "pct": 65.92
+              }
+            ]
+          },
+          "Colquitt": {
+            "dem_votes": 2131,
+            "rep_votes": 5683,
+            "total_votes": 7814,
+            "dem_pct": 27.27,
+            "rep_pct": 72.73,
+            "margin_pct": -45.46,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -45.456872280522134
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2131,
+                "pct": 27.27
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5683,
+                "pct": 72.73
+              }
+            ]
+          },
+          "Columbia": {
+            "dem_votes": 7204,
+            "rep_votes": 23016,
+            "total_votes": 30220,
+            "dem_pct": 23.84,
+            "rep_pct": 76.16,
+            "margin_pct": -52.32,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -52.322964923891455
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 7204,
+                "pct": 23.84
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 23016,
+                "pct": 76.16
+              }
+            ]
+          },
+          "Cook": {
+            "dem_votes": 1337,
+            "rep_votes": 2445,
+            "total_votes": 3782,
+            "dem_pct": 35.35,
+            "rep_pct": 64.65,
+            "margin_pct": -29.3,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -29.296668429402438
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1337,
+                "pct": 35.35
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2445,
+                "pct": 64.65
+              }
+            ]
+          },
+          "Coweta": {
+            "dem_votes": 7526,
+            "rep_votes": 22536,
+            "total_votes": 30062,
+            "dem_pct": 25.03,
+            "rep_pct": 74.97,
+            "margin_pct": -49.93,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -49.9301443683055
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 7526,
+                "pct": 25.03
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 22536,
+                "pct": 74.97
+              }
+            ]
+          },
+          "Crawford": {
+            "dem_votes": 1028,
+            "rep_votes": 1850,
+            "total_votes": 2878,
+            "dem_pct": 35.72,
+            "rep_pct": 64.28,
+            "margin_pct": -28.56,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.561501042390546
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1028,
+                "pct": 35.72
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1850,
+                "pct": 64.28
+              }
+            ]
+          },
+          "Crisp": {
+            "dem_votes": 1348,
+            "rep_votes": 2443,
+            "total_votes": 3791,
+            "dem_pct": 35.56,
+            "rep_pct": 64.44,
+            "margin_pct": -28.88,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.88419941967819
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1348,
+                "pct": 35.56
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2443,
+                "pct": 64.44
+              }
+            ]
+          },
+          "Dade": {
+            "dem_votes": 1054,
+            "rep_votes": 2446,
+            "total_votes": 3500,
+            "dem_pct": 30.11,
+            "rep_pct": 69.89,
+            "margin_pct": -39.77,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -39.77142857142857
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1054,
+                "pct": 30.11
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2446,
+                "pct": 69.89
+              }
+            ]
+          },
+          "Dawson": {
+            "dem_votes": 870,
+            "rep_votes": 4993,
+            "total_votes": 5863,
+            "dem_pct": 14.84,
+            "rep_pct": 85.16,
+            "margin_pct": -70.32,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -70.322360566263
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 870,
+                "pct": 14.84
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4993,
+                "pct": 85.16
+              }
+            ]
+          },
+          "Decatur": {
+            "dem_votes": 1916,
+            "rep_votes": 2718,
+            "total_votes": 4634,
+            "dem_pct": 41.35,
+            "rep_pct": 58.65,
+            "margin_pct": -17.31,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -17.30686232196806
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1916,
+                "pct": 41.35
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2718,
+                "pct": 58.65
+              }
+            ]
+          },
+          "Dekalb": {
+            "dem_votes": 139117,
+            "rep_votes": 47643,
+            "total_votes": 186760,
+            "dem_pct": 74.49,
+            "rep_pct": 25.51,
+            "margin_pct": 48.98,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Democrat",
+              "margin": 48.97943885200257
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 139117,
+                "pct": 74.49
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 47643,
+                "pct": 25.51
+              }
+            ]
+          },
+          "Dodge": {
+            "dem_votes": 2303,
+            "rep_votes": 4092,
+            "total_votes": 6395,
+            "dem_pct": 36.01,
+            "rep_pct": 63.99,
+            "margin_pct": -27.97,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.974980453479276
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2303,
+                "pct": 36.01
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4092,
+                "pct": 63.99
+              }
+            ]
+          },
+          "Dooly": {
+            "dem_votes": 1147,
+            "rep_votes": 1274,
+            "total_votes": 2421,
+            "dem_pct": 47.38,
+            "rep_pct": 52.62,
+            "margin_pct": -5.25,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -5.245766212308965
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1147,
+                "pct": 47.38
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1274,
+                "pct": 52.62
+              }
+            ]
+          },
+          "Dougherty": {
+            "dem_votes": 13748,
+            "rep_votes": 7776,
+            "total_votes": 21524,
+            "dem_pct": 63.87,
+            "rep_pct": 36.13,
+            "margin_pct": 27.75,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Democrat",
+              "margin": 27.745772161308302
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 13748,
+                "pct": 63.87
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 7776,
+                "pct": 36.13
+              }
+            ]
+          },
+          "Douglas": {
+            "dem_votes": 13014,
+            "rep_votes": 16359,
+            "total_votes": 29373,
+            "dem_pct": 44.31,
+            "rep_pct": 55.69,
+            "margin_pct": -11.39,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -11.388009396384426
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 13014,
+                "pct": 44.31
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 16359,
+                "pct": 55.69
+              }
+            ]
+          },
+          "Early": {
+            "dem_votes": 1659,
+            "rep_votes": 1643,
+            "total_votes": 3302,
+            "dem_pct": 50.24,
+            "rep_pct": 49.76,
+            "margin_pct": 0.48,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 0.484554815263472
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1659,
+                "pct": 50.24
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1643,
+                "pct": 49.76
+              }
+            ]
+          },
+          "Echols": {
+            "dem_votes": 107,
+            "rep_votes": 379,
+            "total_votes": 486,
+            "dem_pct": 22.02,
+            "rep_pct": 77.98,
+            "margin_pct": -55.97,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -55.9670781893004
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 107,
+                "pct": 22.02
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 379,
+                "pct": 77.98
+              }
+            ]
+          },
+          "Effingham": {
+            "dem_votes": 2598,
+            "rep_votes": 8123,
+            "total_votes": 10721,
+            "dem_pct": 24.23,
+            "rep_pct": 75.77,
+            "margin_pct": -51.53,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -51.53437179367597
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2598,
+                "pct": 24.23
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 8123,
+                "pct": 75.77
+              }
+            ]
+          },
+          "Elbert": {
+            "dem_votes": 1382,
+            "rep_votes": 2309,
+            "total_votes": 3691,
+            "dem_pct": 37.44,
+            "rep_pct": 62.56,
+            "margin_pct": -25.12,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -25.115144947168794
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1382,
+                "pct": 37.44
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2309,
+                "pct": 62.56
+              }
+            ]
+          },
+          "Emanuel": {
+            "dem_votes": 1374,
+            "rep_votes": 2466,
+            "total_votes": 3840,
+            "dem_pct": 35.78,
+            "rep_pct": 64.22,
+            "margin_pct": -28.44,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.4375
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1374,
+                "pct": 35.78
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2466,
+                "pct": 64.22
+              }
+            ]
+          },
+          "Evans": {
+            "dem_votes": 739,
+            "rep_votes": 1302,
+            "total_votes": 2041,
+            "dem_pct": 36.21,
+            "rep_pct": 63.79,
+            "margin_pct": -27.58,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.584517393434595
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 739,
+                "pct": 36.21
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1302,
+                "pct": 63.79
+              }
+            ]
+          },
+          "Fannin": {
+            "dem_votes": 1453,
+            "rep_votes": 4204,
+            "total_votes": 5657,
+            "dem_pct": 25.68,
+            "rep_pct": 74.32,
+            "margin_pct": -48.63,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -48.63001590949267
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1453,
+                "pct": 25.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4204,
+                "pct": 74.32
+              }
+            ]
+          },
+          "Fayette": {
+            "dem_votes": 11534,
+            "rep_votes": 25884,
+            "total_votes": 37418,
+            "dem_pct": 30.82,
+            "rep_pct": 69.18,
+            "margin_pct": -38.35,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.35052648457961
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 11534,
+                "pct": 30.82
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 25884,
+                "pct": 69.18
+              }
+            ]
+          },
+          "Floyd": {
+            "dem_votes": 5212,
+            "rep_votes": 12118,
+            "total_votes": 17330,
+            "dem_pct": 30.08,
+            "rep_pct": 69.92,
+            "margin_pct": -39.85,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -39.849971148297755
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 5212,
+                "pct": 30.08
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 12118,
+                "pct": 69.92
+              }
+            ]
+          },
+          "Forsyth": {
+            "dem_votes": 6605,
+            "rep_votes": 37232,
+            "total_votes": 43837,
+            "dem_pct": 15.07,
+            "rep_pct": 84.93,
+            "margin_pct": -69.87,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -69.8656386157812
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 6605,
+                "pct": 15.07
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 37232,
+                "pct": 84.93
+              }
+            ]
+          },
+          "Franklin": {
+            "dem_votes": 841,
+            "rep_votes": 2995,
+            "total_votes": 3836,
+            "dem_pct": 21.92,
+            "rep_pct": 78.08,
+            "margin_pct": -56.15,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -56.15224191866528
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 841,
+                "pct": 21.92
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2995,
+                "pct": 78.08
+              }
+            ]
+          },
+          "Fulton": {
+            "dem_votes": 134606,
+            "rep_votes": 88270,
+            "total_votes": 222876,
+            "dem_pct": 60.4,
+            "rep_pct": 39.6,
+            "margin_pct": 20.79,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 20.79003571492668
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 134606,
+                "pct": 60.4
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 88270,
+                "pct": 39.6
+              }
+            ]
+          },
+          "Gilmer": {
+            "dem_votes": 1480,
+            "rep_votes": 5056,
+            "total_votes": 6536,
+            "dem_pct": 22.64,
+            "rep_pct": 77.36,
+            "margin_pct": -54.71,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -54.71236230110159
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1480,
+                "pct": 22.64
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5056,
+                "pct": 77.36
+              }
+            ]
+          },
+          "Glascock": {
+            "dem_votes": 151,
+            "rep_votes": 682,
+            "total_votes": 833,
+            "dem_pct": 18.13,
+            "rep_pct": 81.87,
+            "margin_pct": -63.75,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -63.7454981992797
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 151,
+                "pct": 18.13
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 682,
+                "pct": 81.87
+              }
+            ]
+          },
+          "Glynn": {
+            "dem_votes": 5298,
+            "rep_votes": 11317,
+            "total_votes": 16615,
+            "dem_pct": 31.89,
+            "rep_pct": 68.11,
+            "margin_pct": -36.23,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -36.226301534757745
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 5298,
+                "pct": 31.89
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 11317,
+                "pct": 68.11
+              }
+            ]
+          },
+          "Gordon": {
+            "dem_votes": 2302,
+            "rep_votes": 7451,
+            "total_votes": 9753,
+            "dem_pct": 23.6,
+            "rep_pct": 76.4,
+            "margin_pct": -52.79,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -52.794012098841385
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2302,
+                "pct": 23.6
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 7451,
+                "pct": 76.4
+              }
+            ]
+          },
+          "Grady": {
+            "dem_votes": 1412,
+            "rep_votes": 2880,
+            "total_votes": 4292,
+            "dem_pct": 32.9,
+            "rep_pct": 67.1,
+            "margin_pct": -34.2,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -34.2031686859273
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1412,
+                "pct": 32.9
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2880,
+                "pct": 67.1
+              }
+            ]
+          },
+          "Greene": {
+            "dem_votes": 1889,
+            "rep_votes": 3357,
+            "total_votes": 5246,
+            "dem_pct": 36.01,
+            "rep_pct": 63.99,
+            "margin_pct": -27.98,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.983225314525356
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1889,
+                "pct": 36.01
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3357,
+                "pct": 63.99
+              }
+            ]
+          },
+          "Gwinnett": {
+            "dem_votes": 59676,
+            "rep_votes": 105931,
+            "total_votes": 165607,
+            "dem_pct": 36.03,
+            "rep_pct": 63.97,
+            "margin_pct": -27.93,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -27.93058264445343
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 59676,
+                "pct": 36.03
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 105931,
+                "pct": 63.97
+              }
+            ]
+          },
+          "Habersham": {
+            "dem_votes": 1646,
+            "rep_votes": 6934,
+            "total_votes": 8580,
+            "dem_pct": 19.18,
+            "rep_pct": 80.82,
+            "margin_pct": -61.63,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -61.63170163170164
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1646,
+                "pct": 19.18
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 6934,
+                "pct": 80.82
+              }
+            ]
+          },
+          "Hall": {
+            "dem_votes": 6711,
+            "rep_votes": 27343,
+            "total_votes": 34054,
+            "dem_pct": 19.71,
+            "rep_pct": 80.29,
+            "margin_pct": -60.59,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -60.586127914488756
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 6711,
+                "pct": 19.71
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 27343,
+                "pct": 80.29
+              }
+            ]
+          },
+          "Hancock": {
+            "dem_votes": 1755,
+            "rep_votes": 428,
+            "total_votes": 2183,
+            "dem_pct": 80.39,
+            "rep_pct": 19.61,
+            "margin_pct": 60.79,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Democrat",
+              "margin": 60.78790655061841
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1755,
+                "pct": 80.39
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 428,
+                "pct": 19.61
+              }
+            ]
+          },
+          "Haralson": {
+            "dem_votes": 1243,
+            "rep_votes": 4538,
+            "total_votes": 5781,
+            "dem_pct": 21.5,
+            "rep_pct": 78.5,
+            "margin_pct": -57.0,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -56.99705933229544
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1243,
+                "pct": 21.5
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4538,
+                "pct": 78.5
+              }
+            ]
+          },
+          "Harris": {
+            "dem_votes": 2266,
+            "rep_votes": 5712,
+            "total_votes": 7978,
+            "dem_pct": 28.4,
+            "rep_pct": 71.6,
+            "margin_pct": -43.19,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -43.1937829029832
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2266,
+                "pct": 28.4
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5712,
+                "pct": 71.6
+              }
+            ]
+          },
+          "Hart": {
+            "dem_votes": 1326,
+            "rep_votes": 3042,
+            "total_votes": 4368,
+            "dem_pct": 30.36,
+            "rep_pct": 69.64,
+            "margin_pct": -39.29,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -39.285714285714285
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1326,
+                "pct": 30.36
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3042,
+                "pct": 69.64
+              }
+            ]
+          },
+          "Heard": {
+            "dem_votes": 606,
+            "rep_votes": 1586,
+            "total_votes": 2192,
+            "dem_pct": 27.65,
+            "rep_pct": 72.35,
+            "margin_pct": -44.71,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -44.70802919708029
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 606,
+                "pct": 27.65
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1586,
+                "pct": 72.35
+              }
+            ]
+          },
+          "Henry": {
+            "dem_votes": 19933,
+            "rep_votes": 27263,
+            "total_votes": 47196,
+            "dem_pct": 42.23,
+            "rep_pct": 57.77,
+            "margin_pct": -15.53,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -15.530977201457745
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 19933,
+                "pct": 42.23
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 27263,
+                "pct": 57.77
+              }
+            ]
+          },
+          "Houston": {
+            "dem_votes": 10061,
+            "rep_votes": 18781,
+            "total_votes": 28842,
+            "dem_pct": 34.88,
+            "rep_pct": 65.12,
+            "margin_pct": -30.23,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -30.233686984259066
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 10061,
+                "pct": 34.88
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 18781,
+                "pct": 65.12
+              }
+            ]
+          },
+          "Irwin": {
+            "dem_votes": 751,
+            "rep_votes": 1451,
+            "total_votes": 2202,
+            "dem_pct": 34.11,
+            "rep_pct": 65.89,
+            "margin_pct": -31.79,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -31.78928247048139
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 751,
+                "pct": 34.11
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1451,
+                "pct": 65.89
+              }
+            ]
+          },
+          "Jackson": {
+            "dem_votes": 2397,
+            "rep_votes": 10542,
+            "total_votes": 12939,
+            "dem_pct": 18.53,
+            "rep_pct": 81.47,
+            "margin_pct": -62.95,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -62.949223278460465
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2397,
+                "pct": 18.53
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 10542,
+                "pct": 81.47
+              }
+            ]
+          },
+          "Jasper": {
+            "dem_votes": 1212,
+            "rep_votes": 2428,
+            "total_votes": 3640,
+            "dem_pct": 33.3,
+            "rep_pct": 66.7,
+            "margin_pct": -33.41,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -33.40659340659341
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1212,
+                "pct": 33.3
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2428,
+                "pct": 66.7
+              }
+            ]
+          },
+          "Jeff Davis": {
+            "dem_votes": 1315,
+            "rep_votes": 3069,
+            "total_votes": 4384,
+            "dem_pct": 30.0,
+            "rep_pct": 70.0,
+            "margin_pct": -40.01,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -40.00912408759123
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1315,
+                "pct": 30.0
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3069,
+                "pct": 70.0
+              }
+            ]
+          },
+          "Jefferson": {
+            "dem_votes": 2108,
+            "rep_votes": 1819,
+            "total_votes": 3927,
+            "dem_pct": 53.68,
+            "rep_pct": 46.32,
+            "margin_pct": 7.36,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Democrat",
+              "margin": 7.359307359307358
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2108,
+                "pct": 53.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1819,
+                "pct": 46.32
+              }
+            ]
+          },
+          "Jenkins": {
+            "dem_votes": 717,
+            "rep_votes": 968,
+            "total_votes": 1685,
+            "dem_pct": 42.55,
+            "rep_pct": 57.45,
+            "margin_pct": -14.9,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -14.896142433234424
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 717,
+                "pct": 42.55
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 968,
+                "pct": 57.45
+              }
+            ]
+          },
+          "Johnson": {
+            "dem_votes": 556,
+            "rep_votes": 1388,
+            "total_votes": 1944,
+            "dem_pct": 28.6,
+            "rep_pct": 71.4,
+            "margin_pct": -42.8,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -42.79835390946502
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 556,
+                "pct": 28.6
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1388,
+                "pct": 71.4
+              }
+            ]
+          },
+          "Jones": {
+            "dem_votes": 2543,
+            "rep_votes": 4232,
+            "total_votes": 6775,
+            "dem_pct": 37.54,
+            "rep_pct": 62.46,
+            "margin_pct": -24.93,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -24.929889298892988
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2543,
+                "pct": 37.54
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4232,
+                "pct": 62.46
+              }
+            ]
+          },
+          "Lamar": {
+            "dem_votes": 1462,
+            "rep_votes": 2932,
+            "total_votes": 4394,
+            "dem_pct": 33.27,
+            "rep_pct": 66.73,
+            "margin_pct": -33.45,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -33.45471096950387
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1462,
+                "pct": 33.27
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2932,
+                "pct": 66.73
+              }
+            ]
+          },
+          "Lanier": {
+            "dem_votes": 400,
+            "rep_votes": 748,
+            "total_votes": 1148,
+            "dem_pct": 34.84,
+            "rep_pct": 65.16,
+            "margin_pct": -30.31,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -30.313588850174206
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 400,
+                "pct": 34.84
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 748,
+                "pct": 65.16
+              }
+            ]
+          },
+          "Laurens": {
+            "dem_votes": 4126,
+            "rep_votes": 6623,
+            "total_votes": 10749,
+            "dem_pct": 38.38,
+            "rep_pct": 61.62,
+            "margin_pct": -23.23,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -23.230067913294256
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4126,
+                "pct": 38.38
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 6623,
+                "pct": 61.62
+              }
+            ]
+          },
+          "Lee": {
+            "dem_votes": 1724,
+            "rep_votes": 5466,
+            "total_votes": 7190,
+            "dem_pct": 23.98,
+            "rep_pct": 76.02,
+            "margin_pct": -52.04,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -52.044506258692635
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1724,
+                "pct": 23.98
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5466,
+                "pct": 76.02
+              }
+            ]
+          },
+          "Liberty": {
+            "dem_votes": 4175,
+            "rep_votes": 2651,
+            "total_votes": 6826,
+            "dem_pct": 61.16,
+            "rep_pct": 38.84,
+            "margin_pct": 22.33,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 22.326399062408434
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4175,
+                "pct": 61.16
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2651,
+                "pct": 38.84
+              }
+            ]
+          },
+          "Lincoln": {
+            "dem_votes": 701,
+            "rep_votes": 1461,
+            "total_votes": 2162,
+            "dem_pct": 32.42,
+            "rep_pct": 67.58,
+            "margin_pct": -35.15,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -35.15263644773358
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 701,
+                "pct": 32.42
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1461,
+                "pct": 67.58
+              }
+            ]
+          },
+          "Long": {
+            "dem_votes": 536,
+            "rep_votes": 816,
+            "total_votes": 1352,
+            "dem_pct": 39.64,
+            "rep_pct": 60.36,
+            "margin_pct": -20.71,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -20.710059171597635
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 536,
+                "pct": 39.64
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 816,
+                "pct": 60.36
+              }
+            ]
+          },
+          "Lowndes": {
+            "dem_votes": 7203,
+            "rep_votes": 10673,
+            "total_votes": 17876,
+            "dem_pct": 40.29,
+            "rep_pct": 59.71,
+            "margin_pct": -19.41,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -19.411501454464087
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 7203,
+                "pct": 40.29
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 10673,
+                "pct": 59.71
+              }
+            ]
+          },
+          "Lumpkin": {
+            "dem_votes": 1533,
+            "rep_votes": 4832,
+            "total_votes": 6365,
+            "dem_pct": 24.08,
+            "rep_pct": 75.92,
+            "margin_pct": -51.83,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -51.83032207384132
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1533,
+                "pct": 24.08
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4832,
+                "pct": 75.92
+              }
+            ]
+          },
+          "Macon": {
+            "dem_votes": 1710,
+            "rep_votes": 976,
+            "total_votes": 2686,
+            "dem_pct": 63.66,
+            "rep_pct": 36.34,
+            "margin_pct": 27.33,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Democrat",
+              "margin": 27.326880119136263
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1710,
+                "pct": 63.66
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 976,
+                "pct": 36.34
+              }
+            ]
+          },
+          "Madison": {
+            "dem_votes": 1658,
+            "rep_votes": 4834,
+            "total_votes": 6492,
+            "dem_pct": 25.54,
+            "rep_pct": 74.46,
+            "margin_pct": -48.92,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -48.921749845964264
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1658,
+                "pct": 25.54
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4834,
+                "pct": 74.46
+              }
+            ]
+          },
+          "Marion": {
+            "dem_votes": 664,
+            "rep_votes": 822,
+            "total_votes": 1486,
+            "dem_pct": 44.68,
+            "rep_pct": 55.32,
+            "margin_pct": -10.63,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -10.632570659488557
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 664,
+                "pct": 44.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 822,
+                "pct": 55.32
+              }
+            ]
+          },
+          "Mcduffie": {
+            "dem_votes": 1899,
+            "rep_votes": 3208,
+            "total_votes": 5107,
+            "dem_pct": 37.18,
+            "rep_pct": 62.82,
+            "margin_pct": -25.63,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -25.631486195418056
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1899,
+                "pct": 37.18
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3208,
+                "pct": 62.82
+              }
+            ]
+          },
+          "Mcintosh": {
+            "dem_votes": 1402,
+            "rep_votes": 1608,
+            "total_votes": 3010,
+            "dem_pct": 46.58,
+            "rep_pct": 53.42,
+            "margin_pct": -6.84,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -6.843853820598007
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1402,
+                "pct": 46.58
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1608,
+                "pct": 53.42
+              }
+            ]
+          },
+          "Meriwether": {
+            "dem_votes": 2446,
+            "rep_votes": 2934,
+            "total_votes": 5380,
+            "dem_pct": 45.46,
+            "rep_pct": 54.54,
+            "margin_pct": -9.07,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -9.070631970260216
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2446,
+                "pct": 45.46
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2934,
+                "pct": 54.54
+              }
+            ]
+          },
+          "Miller": {
+            "dem_votes": 326,
+            "rep_votes": 906,
+            "total_votes": 1232,
+            "dem_pct": 26.46,
+            "rep_pct": 73.54,
+            "margin_pct": -47.08,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -47.07792207792207
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 326,
+                "pct": 26.46
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 906,
+                "pct": 73.54
+              }
+            ]
+          },
+          "Mitchell": {
+            "dem_votes": 2170,
+            "rep_votes": 2411,
+            "total_votes": 4581,
+            "dem_pct": 47.37,
+            "rep_pct": 52.63,
+            "margin_pct": -5.26,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -5.260860074219593
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2170,
+                "pct": 47.37
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2411,
+                "pct": 52.63
+              }
+            ]
+          },
+          "Monroe": {
+            "dem_votes": 2211,
+            "rep_votes": 4945,
+            "total_votes": 7156,
+            "dem_pct": 30.9,
+            "rep_pct": 69.1,
+            "margin_pct": -38.21,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.205701509223026
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2211,
+                "pct": 30.9
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4945,
+                "pct": 69.1
+              }
+            ]
+          },
+          "Montgomery": {
+            "dem_votes": 601,
+            "rep_votes": 1353,
+            "total_votes": 1954,
+            "dem_pct": 30.76,
+            "rep_pct": 69.24,
+            "margin_pct": -38.49,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.48515864892528
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 601,
+                "pct": 30.76
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1353,
+                "pct": 69.24
+              }
+            ]
+          },
+          "Morgan": {
+            "dem_votes": 1697,
+            "rep_votes": 3817,
+            "total_votes": 5514,
+            "dem_pct": 30.78,
+            "rep_pct": 69.22,
+            "margin_pct": -38.45,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.447587957925286
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1697,
+                "pct": 30.78
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3817,
+                "pct": 69.22
+              }
+            ]
+          },
+          "Murray": {
+            "dem_votes": 1280,
+            "rep_votes": 3117,
+            "total_votes": 4397,
+            "dem_pct": 29.11,
+            "rep_pct": 70.89,
+            "margin_pct": -41.78,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -41.77848533090744
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1280,
+                "pct": 29.11
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3117,
+                "pct": 70.89
+              }
+            ]
+          },
+          "Muscogee": {
+            "dem_votes": 20010,
+            "rep_votes": 15237,
+            "total_votes": 35247,
+            "dem_pct": 56.77,
+            "rep_pct": 43.23,
+            "margin_pct": 13.54,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Democrat",
+              "margin": 13.541578006638872
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 20010,
+                "pct": 56.77
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 15237,
+                "pct": 43.23
+              }
+            ]
+          },
+          "Newton": {
+            "dem_votes": 10314,
+            "rep_votes": 12232,
+            "total_votes": 22546,
+            "dem_pct": 45.75,
+            "rep_pct": 54.25,
+            "margin_pct": -8.51,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -8.507052248735917
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 10314,
+                "pct": 45.75
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 12232,
+                "pct": 54.25
+              }
+            ]
+          },
+          "Oconee": {
+            "dem_votes": 2722,
+            "rep_votes": 8078,
+            "total_votes": 10800,
+            "dem_pct": 25.2,
+            "rep_pct": 74.8,
+            "margin_pct": -49.59,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -49.59259259259258
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2722,
+                "pct": 25.2
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 8078,
+                "pct": 74.8
+              }
+            ]
+          },
+          "Oglethorpe": {
+            "dem_votes": 1287,
+            "rep_votes": 2485,
+            "total_votes": 3772,
+            "dem_pct": 34.12,
+            "rep_pct": 65.88,
+            "margin_pct": -31.76,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -31.76033934252387
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1287,
+                "pct": 34.12
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2485,
+                "pct": 65.88
+              }
+            ]
+          },
+          "Paulding": {
+            "dem_votes": 7065,
+            "rep_votes": 19864,
+            "total_votes": 26929,
+            "dem_pct": 26.24,
+            "rep_pct": 73.76,
+            "margin_pct": -47.53,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -47.52868654610271
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 7065,
+                "pct": 26.24
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 19864,
+                "pct": 73.76
+              }
+            ]
+          },
+          "Peach": {
+            "dem_votes": 2550,
+            "rep_votes": 2770,
+            "total_votes": 5320,
+            "dem_pct": 47.93,
+            "rep_pct": 52.07,
+            "margin_pct": -4.14,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Republican",
+              "margin": -4.135338345864653
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2550,
+                "pct": 47.93
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2770,
+                "pct": 52.07
+              }
+            ]
+          },
+          "Pickens": {
+            "dem_votes": 1450,
+            "rep_votes": 5835,
+            "total_votes": 7285,
+            "dem_pct": 19.9,
+            "rep_pct": 80.1,
+            "margin_pct": -60.19,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -60.19217570350034
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1450,
+                "pct": 19.9
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5835,
+                "pct": 80.1
+              }
+            ]
+          },
+          "Pierce": {
+            "dem_votes": 543,
+            "rep_votes": 2912,
+            "total_votes": 3455,
+            "dem_pct": 15.72,
+            "rep_pct": 84.28,
+            "margin_pct": -68.57,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -68.5672937771346
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 543,
+                "pct": 15.72
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2912,
+                "pct": 84.28
+              }
+            ]
+          },
+          "Pike": {
+            "dem_votes": 951,
+            "rep_votes": 3882,
+            "total_votes": 4833,
+            "dem_pct": 19.68,
+            "rep_pct": 80.32,
+            "margin_pct": -60.65,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -60.645561762880206
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 951,
+                "pct": 19.68
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3882,
+                "pct": 80.32
+              }
+            ]
+          },
+          "Polk": {
+            "dem_votes": 2141,
+            "rep_votes": 4829,
+            "total_votes": 6970,
+            "dem_pct": 30.72,
+            "rep_pct": 69.28,
+            "margin_pct": -38.57,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.56527977044476
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2141,
+                "pct": 30.72
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4829,
+                "pct": 69.28
+              }
+            ]
+          },
+          "Pulaski": {
+            "dem_votes": 886,
+            "rep_votes": 1537,
+            "total_votes": 2423,
+            "dem_pct": 36.57,
+            "rep_pct": 63.43,
+            "margin_pct": -26.87,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -26.867519603796936
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 886,
+                "pct": 36.57
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1537,
+                "pct": 63.43
+              }
+            ]
+          },
+          "Putnam": {
+            "dem_votes": 1622,
+            "rep_votes": 3850,
+            "total_votes": 5472,
+            "dem_pct": 29.64,
+            "rep_pct": 70.36,
+            "margin_pct": -40.72,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -40.716374269005854
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1622,
+                "pct": 29.64
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3850,
+                "pct": 70.36
+              }
+            ]
+          },
+          "Quitman": {
+            "dem_votes": 248,
+            "rep_votes": 234,
+            "total_votes": 482,
+            "dem_pct": 51.45,
+            "rep_pct": 48.55,
+            "margin_pct": 2.9,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 2.904564315352694
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 248,
+                "pct": 51.45
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 234,
+                "pct": 48.55
+              }
+            ]
+          },
+          "Rabun": {
+            "dem_votes": 1165,
+            "rep_votes": 3057,
+            "total_votes": 4222,
+            "dem_pct": 27.59,
+            "rep_pct": 72.41,
+            "margin_pct": -44.81,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -44.812884888678354
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1165,
+                "pct": 27.59
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3057,
+                "pct": 72.41
+              }
+            ]
+          },
+          "Randolph": {
+            "dem_votes": 982,
+            "rep_votes": 851,
+            "total_votes": 1833,
+            "dem_pct": 53.57,
+            "rep_pct": 46.43,
+            "margin_pct": 7.15,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Democrat",
+              "margin": 7.146753955264593
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 982,
+                "pct": 53.57
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 851,
+                "pct": 46.43
+              }
+            ]
+          },
+          "Richmond": {
+            "dem_votes": 23510,
+            "rep_votes": 16089,
+            "total_votes": 39599,
+            "dem_pct": 59.37,
+            "rep_pct": 40.63,
+            "margin_pct": 18.74,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 18.74037223162202
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 23510,
+                "pct": 59.37
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 16089,
+                "pct": 40.63
+              }
+            ]
+          },
+          "Rockdale": {
+            "dem_votes": 10706,
+            "rep_votes": 11006,
+            "total_votes": 21712,
+            "dem_pct": 49.31,
+            "rep_pct": 50.69,
+            "margin_pct": -1.38,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Republican",
+              "margin": -1.3817243920412778
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 10706,
+                "pct": 49.31
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 11006,
+                "pct": 50.69
+              }
+            ]
+          },
+          "Schley": {
+            "dem_votes": 258,
+            "rep_votes": 663,
+            "total_votes": 921,
+            "dem_pct": 28.01,
+            "rep_pct": 71.99,
+            "margin_pct": -43.97,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -43.97394136807818
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 258,
+                "pct": 28.01
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 663,
+                "pct": 71.99
+              }
+            ]
+          },
+          "Screven": {
+            "dem_votes": 1496,
+            "rep_votes": 1807,
+            "total_votes": 3303,
+            "dem_pct": 45.29,
+            "rep_pct": 54.71,
+            "margin_pct": -9.42,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Republican",
+              "margin": -9.415682712685445
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1496,
+                "pct": 45.29
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1807,
+                "pct": 54.71
+              }
+            ]
+          },
+          "Seminole": {
+            "dem_votes": 667,
+            "rep_votes": 1086,
+            "total_votes": 1753,
+            "dem_pct": 38.05,
+            "rep_pct": 61.95,
+            "margin_pct": -23.9,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -23.901882487164855
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 667,
+                "pct": 38.05
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1086,
+                "pct": 61.95
+              }
+            ]
+          },
+          "Spalding": {
+            "dem_votes": 4841,
+            "rep_votes": 8703,
+            "total_votes": 13544,
+            "dem_pct": 35.74,
+            "rep_pct": 64.26,
+            "margin_pct": -28.51,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.51447135262847
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4841,
+                "pct": 35.74
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 8703,
+                "pct": 64.26
+              }
+            ]
+          },
+          "Stephens": {
+            "dem_votes": 1137,
+            "rep_votes": 3538,
+            "total_votes": 4675,
+            "dem_pct": 24.32,
+            "rep_pct": 75.68,
+            "margin_pct": -51.36,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -51.358288770053484
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1137,
+                "pct": 24.32
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3538,
+                "pct": 75.68
+              }
+            ]
+          },
+          "Stewart": {
+            "dem_votes": 623,
+            "rep_votes": 403,
+            "total_votes": 1026,
+            "dem_pct": 60.72,
+            "rep_pct": 39.28,
+            "margin_pct": 21.44,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Democrat",
+              "margin": 21.44249512670566
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 623,
+                "pct": 60.72
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 403,
+                "pct": 39.28
+              }
+            ]
+          },
+          "Sumter": {
+            "dem_votes": 3187,
+            "rep_votes": 3286,
+            "total_votes": 6473,
+            "dem_pct": 49.24,
+            "rep_pct": 50.76,
+            "margin_pct": -1.53,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Republican",
+              "margin": -1.5294299397497326
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3187,
+                "pct": 49.24
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3286,
+                "pct": 50.76
+              }
+            ]
+          },
+          "Talbot": {
+            "dem_votes": 1140,
+            "rep_votes": 678,
+            "total_votes": 1818,
+            "dem_pct": 62.71,
+            "rep_pct": 37.29,
+            "margin_pct": 25.41,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Democrat",
+              "margin": 25.412541254125415
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1140,
+                "pct": 62.71
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 678,
+                "pct": 37.29
+              }
+            ]
+          },
+          "Taliaferro": {
+            "dem_votes": 352,
+            "rep_votes": 190,
+            "total_votes": 542,
+            "dem_pct": 64.94,
+            "rep_pct": 35.06,
+            "margin_pct": 29.89,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Democrat",
+              "margin": 29.889298892988926
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 352,
+                "pct": 64.94
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 190,
+                "pct": 35.06
+              }
+            ]
+          },
+          "Tattnall": {
+            "dem_votes": 1156,
+            "rep_votes": 2791,
+            "total_votes": 3947,
+            "dem_pct": 29.29,
+            "rep_pct": 70.71,
+            "margin_pct": -41.42,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -41.423866227514566
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1156,
+                "pct": 29.29
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2791,
+                "pct": 70.71
+              }
+            ]
+          },
+          "Taylor": {
+            "dem_votes": 835,
+            "rep_votes": 1153,
+            "total_votes": 1988,
+            "dem_pct": 42.0,
+            "rep_pct": 58.0,
+            "margin_pct": -16.0,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -15.995975855130787
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 835,
+                "pct": 42.0
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1153,
+                "pct": 58.0
+              }
+            ]
+          },
+          "Telfair": {
+            "dem_votes": 1204,
+            "rep_votes": 1309,
+            "total_votes": 2513,
+            "dem_pct": 47.91,
+            "rep_pct": 52.09,
+            "margin_pct": -4.18,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Republican",
+              "margin": -4.17827298050139
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1204,
+                "pct": 47.91
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1309,
+                "pct": 52.09
+              }
+            ]
+          },
+          "Terrell": {
+            "dem_votes": 1358,
+            "rep_votes": 1209,
+            "total_votes": 2567,
+            "dem_pct": 52.9,
+            "rep_pct": 47.1,
+            "margin_pct": 5.8,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Democrat",
+              "margin": 5.804440981690689
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1358,
+                "pct": 52.9
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1209,
+                "pct": 47.1
+              }
+            ]
+          },
+          "Thomas": {
+            "dem_votes": 3111,
+            "rep_votes": 5644,
+            "total_votes": 8755,
+            "dem_pct": 35.53,
+            "rep_pct": 64.47,
+            "margin_pct": -28.93,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.932038834951463
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3111,
+                "pct": 35.53
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5644,
+                "pct": 64.47
+              }
+            ]
+          },
+          "Tift": {
+            "dem_votes": 2444,
+            "rep_votes": 5818,
+            "total_votes": 8262,
+            "dem_pct": 29.58,
+            "rep_pct": 70.42,
+            "margin_pct": -40.84,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -40.837569595739524
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2444,
+                "pct": 29.58
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 5818,
+                "pct": 70.42
+              }
+            ]
+          },
+          "Toombs": {
+            "dem_votes": 1370,
+            "rep_votes": 3676,
+            "total_votes": 5046,
+            "dem_pct": 27.15,
+            "rep_pct": 72.85,
+            "margin_pct": -45.7,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -45.6995640110979
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1370,
+                "pct": 27.15
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3676,
+                "pct": 72.85
+              }
+            ]
+          },
+          "Towns": {
+            "dem_votes": 919,
+            "rep_votes": 2566,
+            "total_votes": 3485,
+            "dem_pct": 26.37,
+            "rep_pct": 73.63,
+            "margin_pct": -47.26,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -47.259684361549496
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 919,
+                "pct": 26.37
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2566,
+                "pct": 73.63
+              }
+            ]
+          },
+          "Treutlen": {
+            "dem_votes": 524,
+            "rep_votes": 869,
+            "total_votes": 1393,
+            "dem_pct": 37.62,
+            "rep_pct": 62.38,
+            "margin_pct": -24.77,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -24.766690595836316
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 524,
+                "pct": 37.62
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 869,
+                "pct": 62.38
+              }
+            ]
+          },
+          "Troup": {
+            "dem_votes": 4633,
+            "rep_votes": 8242,
+            "total_votes": 12875,
+            "dem_pct": 35.98,
+            "rep_pct": 64.02,
+            "margin_pct": -28.03,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -28.031067961165057
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4633,
+                "pct": 35.98
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 8242,
+                "pct": 64.02
+              }
+            ]
+          },
+          "Turner": {
+            "dem_votes": 706,
+            "rep_votes": 1171,
+            "total_votes": 1877,
+            "dem_pct": 37.61,
+            "rep_pct": 62.39,
+            "margin_pct": -24.77,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -24.773574853489606
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 706,
+                "pct": 37.61
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1171,
+                "pct": 62.39
+              }
+            ]
+          },
+          "Twiggs": {
+            "dem_votes": 1336,
+            "rep_votes": 1112,
+            "total_votes": 2448,
+            "dem_pct": 54.58,
+            "rep_pct": 45.42,
+            "margin_pct": 9.15,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Lean",
+              "party": "Democrat",
+              "margin": 9.150326797385617
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1336,
+                "pct": 54.58
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1112,
+                "pct": 45.42
+              }
+            ]
+          },
+          "Union": {
+            "dem_votes": 1547,
+            "rep_votes": 4625,
+            "total_votes": 6172,
+            "dem_pct": 25.06,
+            "rep_pct": 74.94,
+            "margin_pct": -49.87,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -49.87038237200259
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1547,
+                "pct": 25.06
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4625,
+                "pct": 74.94
+              }
+            ]
+          },
+          "Upson": {
+            "dem_votes": 2090,
+            "rep_votes": 4004,
+            "total_votes": 6094,
+            "dem_pct": 34.3,
+            "rep_pct": 65.7,
+            "margin_pct": -31.41,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -31.407942238267147
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2090,
+                "pct": 34.3
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4004,
+                "pct": 65.7
+              }
+            ]
+          },
+          "Walker": {
+            "dem_votes": 3027,
+            "rep_votes": 7876,
+            "total_votes": 10903,
+            "dem_pct": 27.76,
+            "rep_pct": 72.24,
+            "margin_pct": -44.47,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -44.47399798220673
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3027,
+                "pct": 27.76
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 7876,
+                "pct": 72.24
+              }
+            ]
+          },
+          "Walton": {
+            "dem_votes": 4270,
+            "rep_votes": 16952,
+            "total_votes": 21222,
+            "dem_pct": 20.12,
+            "rep_pct": 79.88,
+            "margin_pct": -59.76,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -59.75874092922439
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 4270,
+                "pct": 20.12
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 16952,
+                "pct": 79.88
+              }
+            ]
+          },
+          "Ware": {
+            "dem_votes": 1784,
+            "rep_votes": 4798,
+            "total_votes": 6582,
+            "dem_pct": 27.1,
+            "rep_pct": 72.9,
+            "margin_pct": -45.79,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -45.79155271953814
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1784,
+                "pct": 27.1
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4798,
+                "pct": 72.9
+              }
+            ]
+          },
+          "Warren": {
+            "dem_votes": 682,
+            "rep_votes": 665,
+            "total_votes": 1347,
+            "dem_pct": 50.63,
+            "rep_pct": 49.37,
+            "margin_pct": 1.26,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 1.2620638455827802
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 682,
+                "pct": 50.63
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 665,
+                "pct": 49.37
+              }
+            ]
+          },
+          "Washington": {
+            "dem_votes": 2326,
+            "rep_votes": 2308,
+            "total_votes": 4634,
+            "dem_pct": 50.19,
+            "rep_pct": 49.81,
+            "margin_pct": 0.39,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 0.3884333189469089
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 2326,
+                "pct": 50.19
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 2308,
+                "pct": 49.81
+              }
+            ]
+          },
+          "Wayne": {
+            "dem_votes": 1668,
+            "rep_votes": 3994,
+            "total_votes": 5662,
+            "dem_pct": 29.46,
+            "rep_pct": 70.54,
+            "margin_pct": -41.08,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -41.08089014482515
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1668,
+                "pct": 29.46
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3994,
+                "pct": 70.54
+              }
+            ]
+          },
+          "Webster": {
+            "dem_votes": 259,
+            "rep_votes": 330,
+            "total_votes": 589,
+            "dem_pct": 43.97,
+            "rep_pct": 56.03,
+            "margin_pct": -12.05,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -12.054329371816635
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 259,
+                "pct": 43.97
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 330,
+                "pct": 56.03
+              }
+            ]
+          },
+          "Wheeler": {
+            "dem_votes": 512,
+            "rep_votes": 847,
+            "total_votes": 1359,
+            "dem_pct": 37.67,
+            "rep_pct": 62.33,
+            "margin_pct": -24.65,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Safe",
+              "party": "Republican",
+              "margin": -24.650478292862402
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 512,
+                "pct": 37.67
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 847,
+                "pct": 62.33
+              }
+            ]
+          },
+          "White": {
+            "dem_votes": 1336,
+            "rep_votes": 4975,
+            "total_votes": 6311,
+            "dem_pct": 21.17,
+            "rep_pct": 78.83,
+            "margin_pct": -57.66,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -57.66122643004279
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1336,
+                "pct": 21.17
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 4975,
+                "pct": 78.83
+              }
+            ]
+          },
+          "Whitfield": {
+            "dem_votes": 3534,
+            "rep_votes": 9738,
+            "total_votes": 13272,
+            "dem_pct": 26.63,
+            "rep_pct": 73.37,
+            "margin_pct": -46.75,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -46.745027124773955
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 3534,
+                "pct": 26.63
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 9738,
+                "pct": 73.37
+              }
+            ]
+          },
+          "Wilcox": {
+            "dem_votes": 565,
+            "rep_votes": 1189,
+            "total_votes": 1754,
+            "dem_pct": 32.21,
+            "rep_pct": 67.79,
+            "margin_pct": -35.58,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -35.57582668187001
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 565,
+                "pct": 32.21
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1189,
+                "pct": 67.79
+              }
+            ]
+          },
+          "Wilkes": {
+            "dem_votes": 1433,
+            "rep_votes": 1917,
+            "total_votes": 3350,
+            "dem_pct": 42.78,
+            "rep_pct": 57.22,
+            "margin_pct": -14.45,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Likely",
+              "party": "Republican",
+              "margin": -14.447761194029844
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1433,
+                "pct": 42.78
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1917,
+                "pct": 57.22
+              }
+            ]
+          },
+          "Wilkinson": {
+            "dem_votes": 1310,
+            "rep_votes": 1296,
+            "total_votes": 2606,
+            "dem_pct": 50.27,
+            "rep_pct": 49.73,
+            "margin_pct": 0.54,
+            "winner_party": "Democrat",
+            "winner_name": "Jim Martin",
+            "competitiveness": {
+              "category": "Toss-up",
+              "party": "Democrat",
+              "margin": 0.5372217958557144
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1310,
+                "pct": 50.27
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 1296,
+                "pct": 49.73
+              }
+            ]
+          },
+          "Worth": {
+            "dem_votes": 1493,
+            "rep_votes": 3377,
+            "total_votes": 4870,
+            "dem_pct": 30.66,
+            "rep_pct": 69.34,
+            "margin_pct": -38.69,
+            "winner_party": "Republican",
+            "winner_name": "Saxby Chambliss",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -38.685831622176586
+            },
+            "candidates": [
+              {
+                "name": "Jim Martin",
+                "party": "Democrat",
+                "votes": 1493,
+                "pct": 30.66
+              },
+              {
+                "name": "Saxby Chambliss",
+                "party": "Republican",
+                "votes": 3377,
+                "pct": 69.34
+              }
+            ]
+          }
+        }
       }
     },
     "2010": {
@@ -435740,6 +440369,126 @@
             "contest": "U.S. Senate",
             "county": "Worth",
             "year": "2021"
+          },
+          "Camden": {
+            "dem_votes": 6856,
+            "rep_votes": 13015,
+            "total_votes": 19871,
+            "dem_pct": 34.5,
+            "rep_pct": 65.5,
+            "margin_pct": -30.99,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -30.99491721604349
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 6856,
+                "pct": 34.5
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 13015,
+                "pct": 65.5
+              }
+            ]
+          },
+          "Chattooga": {
+            "dem_votes": 1673,
+            "rep_votes": 6558,
+            "total_votes": 8231,
+            "dem_pct": 20.33,
+            "rep_pct": 79.67,
+            "margin_pct": -59.35,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -59.34880330458025
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 1673,
+                "pct": 20.33
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6558,
+                "pct": 79.67
+              }
+            ]
+          },
+          "Grady": {
+            "dem_votes": 3099,
+            "rep_votes": 6229,
+            "total_votes": 9328,
+            "dem_pct": 33.22,
+            "rep_pct": 66.78,
+            "margin_pct": -33.55,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -33.55488850771871
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 3099,
+                "pct": 33.22
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6229,
+                "pct": 66.78
+              }
+            ]
+          },
+          "Greene": {
+            "dem_votes": 3703,
+            "rep_votes": 6917,
+            "total_votes": 10620,
+            "dem_pct": 34.87,
+            "rep_pct": 65.13,
+            "margin_pct": -30.26,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -30.26365348399247
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 3703,
+                "pct": 34.87
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6917,
+                "pct": 65.13
+              }
+            ]
           }
         }
       },
@@ -442099,6 +446848,126 @@
             "contest": "U.S. Senate (Special)",
             "county": "Worth",
             "year": "2021"
+          },
+          "Camden": {
+            "dem_votes": 6807,
+            "rep_votes": 13063,
+            "total_votes": 19870,
+            "dem_pct": 34.26,
+            "rep_pct": 65.74,
+            "margin_pct": -31.48,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -31.48465022647207
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 6807,
+                "pct": 34.26
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 13063,
+                "pct": 65.74
+              }
+            ]
+          },
+          "Chattooga": {
+            "dem_votes": 1686,
+            "rep_votes": 6550,
+            "total_votes": 8236,
+            "dem_pct": 20.47,
+            "rep_pct": 79.53,
+            "margin_pct": -59.06,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Annihilation",
+              "party": "Republican",
+              "margin": -59.05779504613889
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 1686,
+                "pct": 20.47
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6550,
+                "pct": 79.53
+              }
+            ]
+          },
+          "Grady": {
+            "dem_votes": 3102,
+            "rep_votes": 6226,
+            "total_votes": 9328,
+            "dem_pct": 33.25,
+            "rep_pct": 66.75,
+            "margin_pct": -33.49,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -33.490566037735846
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 3102,
+                "pct": 33.25
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6226,
+                "pct": 66.75
+              }
+            ]
+          },
+          "Greene": {
+            "dem_votes": 3758,
+            "rep_votes": 6855,
+            "total_votes": 10613,
+            "dem_pct": 35.41,
+            "rep_pct": 64.59,
+            "margin_pct": -29.18,
+            "winner_party": "Republican",
+            "winner_name": "Republican",
+            "competitiveness": {
+              "category": "Dominant",
+              "party": "Republican",
+              "margin": -29.181192876660702
+            },
+            "source": "Manual entry from Wikipedia",
+            "candidates": [
+              {
+                "name": "Democrat",
+                "party": "Democrat",
+                "votes": 3758,
+                "pct": 35.41
+              },
+              {
+                "name": "Republican",
+                "party": "Republican",
+                "votes": 6855,
+                "pct": 64.59
+              }
+            ]
           }
         }
       }
