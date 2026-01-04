@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>GA Political Realignment Map (2000-2024)</title>
+	<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'>
+	<meta property="og:title" content="GA Political Realignment Map (2000-2024)">
+	<meta property="og:description" content="Interactive visualization of Georgia's political trends from 2000 to 2024, showing county-level and precinct-level voting patterns.">
+	<meta property="og:image" content="preview.png">
+	<meta name="twitter:card" content="summary_large_image">
+	<link href="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.css" rel="stylesheet" />
+	<link href="styles/style.css" rel="stylesheet">
+	<script src="https://api.mapbox.com/mapbox-gl-js/v3.0.1/mapbox-gl.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@turf/turf@6.5.0/turf.min.js"></script>
+	<style>
+		/* ...existing CSS... */
+	</style>
+</head>
+<body>
+	<!-- ...existing HTML content... -->
+	<div id="map" style="position:relative;width:100%;height:100%;">
+		<canvas id="swingCanvas" style="position:absolute;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:1000;"></canvas>
+	</div>
+	<div class="main-controls" id="main-controls">
+		<!-- ...existing controls... -->
+		<select id="contest"></select>
+		<button onclick="applyCategories()" class="btn-primary">🎨 Apply Political Categories</button>
+		<button onclick="resetView()" class="btn-secondary">🔄 Reset View</button>
+		<button onclick="toggleLabels()" class="btn-success">🏷️ Toggle County Labels</button>
+		<button onclick="togglePrecinctsLayer()" class="btn-warning">📍 Toggle Precincts</button>
+		<!-- ...other controls... -->
+	</div>
+	<!-- ...sidebar, legend, etc... -->
+
+	<script>
+	"use strict";
+	let countiesGeojson, electionData, swingArrowsActive = false;
+
+	// Mapbox Initialization
+	mapboxgl.accessToken = 'YOUR_MAPBOX_ACCESS_TOKEN';
+	const map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/light-v10',
+		center: [-83.5, 32.7],
+		zoom: 6
+	});
+
+	document.addEventListener('DOMContentLoaded', function() {
+		const swingCanvas = document.getElementById('swingCanvas');
+		const swingCtx = swingCanvas.getContext('2d');
+
+		function resizeSwingCanvas() {
+			swingCanvas.width = map.getContainer().offsetWidth;
+			swingCanvas.height = map.getContainer().offsetHeight;
+		}
+		window.addEventListener('resize', resizeSwingCanvas);
+		map.on('resize', resizeSwingCanvas);
+
+		async function init() {
+			try {
+				const [geojson, results] = await Promise.all([
+					fetch('./data/Georgia_Counties.geojson').then(r => r.json()),
+					fetch('./data/results_by_year_grouped.json').then(r => r.json())
+				]);
+				countiesGeojson = geojson;
+				electionData = results;
+				map.addSource('counties', { type: 'geojson', data: countiesGeojson });
+				map.addLayer({
+					id: 'county-fill',
+					type: 'fill',
+					source: 'counties',
+					paint: { 'fill-color': '#888', 'fill-opacity': 0.3 }
+				});
+				map.addLayer({
+					id: 'county-outline',
+					type: 'line',
+					source: 'counties',
+					paint: { 'line-color': '#222', 'line-width': 1 }
+				});
+				populateContestDropdown();
+				resizeSwingCanvas();
+				setupEventListeners();
+			} catch (error) {
+				console.error('Initialization failed:', error);
+			}
+		}
+
+		function populateContestDropdown() {
+			const contestSelect = document.getElementById('contest');
+			if (!contestSelect || !electionData || !electionData.results_by_year) return;
+			const fragment = document.createDocumentFragment();
+			const defaultOpt = document.createElement('option');
+			defaultOpt.value = '';
+			defaultOpt.textContent = 'Select a Contest...';
+			fragment.appendChild(defaultOpt);
+			for (const [year, contests] of Object.entries(electionData.results_by_year)) {
+				for (const contestKey of Object.keys(contests)) {
+					const contestObj = contests[contestKey];
+					let contestName = contestObj.contest_name || contestKey.replace(/_/g, ' ');
+					const label = `${contestName} (${year})`;
+					const opt = document.createElement('option');
+					opt.value = `${year}|${contestKey}`;
+					opt.textContent = label;
+					fragment.appendChild(opt);
+				}
+			}
+			contestSelect.innerHTML = '';
+			contestSelect.appendChild(fragment);
+		}
+
+		function setupEventListeners() {
+			document.getElementById('contest').addEventListener('change', updateStatewideResults);
+			document.getElementById('contest').addEventListener('keydown', e => {
+				if (e.key === 'Enter') applyCategories();
+			});
+			const searchInput = document.getElementById('county-search');
+			if (searchInput) {
+				searchInput.addEventListener('keydown', e => {
+					if (e.key === 'Enter') {
+						const val = searchInput.value.trim();
+						if (val) zoomToCounty(val);
+					}
+				});
+			}
+			map.on('click', 'county-fill', (e) => {
+				// ...existing map click logic...
+			});
+			map.on('mouseenter', 'county-fill', () => map.getCanvas().style.cursor = 'pointer');
+			map.on('mouseleave', 'county-fill', () => map.getCanvas().style.cursor = '');
+			map.on('move', () => {
+				if (swingArrowsActive) drawAllCountySwingArrows();
+			});
+		}
+
+		// --- Function Definitions ---
+		function resetView() {
+			map.flyTo({ center: [-83.5, 32.7], zoom: 6 });
+			if (map.getLayer('county-fill')) {
+				map.setPaintProperty('county-fill', 'fill-color', '#888');
+				map.setPaintProperty('county-fill', 'fill-opacity', 0.3);
+			}
+		}
+		function toggleLabels() { /* ... */ }
+		function toggleMainControls() { /* ... */ }
+		function drawAllCountySwingArrows() { /* ... */ }
+		function clearSwingArrows() { /* ... */ }
+		function togglePrecinctsLayer() { alert('Toggle precincts layer not yet implemented.'); }
+		function showSwingCounties() { alert('Show swing counties not yet implemented.'); }
+		function zoomToCounty(countyName) {
+			if (!countiesGeojson || !countiesGeojson.features) {
+				alert('County data not loaded');
+				return;
+			}
+			const feature = countiesGeojson.features.find(f => {
+				const props = f.properties;
+				if (!props) return false;
+				const keys = ['NAME', 'NAME10', 'County', 'COUNTY', 'COUNTY_NAM', 'Label'];
+				return keys.some(k => props[k] && props[k].toString().toLowerCase() === countyName.toLowerCase());
+			});
+			if (!feature) {
+				alert(`County "${countyName}" not found`);
+				return;
+			}
+			const bbox = turf.bbox(feature);
+			map.fitBounds(bbox, { padding: 40, maxZoom: 10 });
+			// --- Sidebar logic ---
+			const props = feature.properties;
+			openSidebar();
+			let countyLabel = props.Label || props.NAME || props.County || '';
+			function toTitleCase(str) {
+				return str.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+			}
+			if (countyLabel === countyLabel.toUpperCase()) {
+				countyLabel = toTitleCase(countyLabel);
+			}
+			document.getElementById('county-details').style.display = 'block';
+			document.getElementById('county-name').textContent = countyLabel + ' County';
+			let infoHtml = '';
+			let foundElection = null;
+			const contestVal = document.getElementById('contest')?.value;
+			if (contestVal && contestVal.includes('|')) {
+				const [selectedYear, selectedContest] = contestVal.split('|');
+				if (electionData?.results_by_year?.[selectedYear]?.[selectedContest]) {
+					const key = countyLabel.trim().toLowerCase();
+					const contestObj = electionData.results_by_year[selectedYear][selectedContest];
+					for (const [countyKey, countyResult] of Object.entries(contestObj.results)) {
+						if (countyKey.trim().toLowerCase() === key) {
+							foundElection = { ...countyResult };
+							break;
+						}
+					}
+				}
+			}
+			if (foundElection) {
+				const r = foundElection;
+				let winnerParty = (r.winner || '').toUpperCase();
+				let winnerName = '';
+				let winnerColor = '#222';
+				let winnerAbbr = '';
+				if (winnerParty.startsWith('DEM')) {
+					winnerName = (r.dem_candidate || 'Democrat');
+					winnerColor = '#2563eb';
+					winnerAbbr = 'D';
+				} else if (winnerParty.startsWith('REP')) {
+					winnerName = (r.rep_candidate || 'Republican');
+					winnerColor = '#cb181d';
+					winnerAbbr = 'R';
+				}
+				let marginStr = '';
+				if (typeof r.margin === 'number') {
+					let prefix = (winnerAbbr === 'D') ? 'D+' : 'R+';
+					let marginColor = (winnerAbbr === 'D') ? '#2563eb' : '#cb181d';
+					marginStr = `<span style='color:${marginColor};font-weight:bold;'>${prefix}${Math.abs(r.margin).toFixed(2)}%</span>`;
+				}
+				let demPct = r.dem_votes && r.total_votes ? (r.dem_votes / r.total_votes * 100) : 0;
+				let repPct = r.rep_votes && r.total_votes ? (r.rep_votes / r.total_votes * 100) : 0;
+				let demVotes = r.dem_votes ? r.dem_votes.toLocaleString() : '0';
+				let repVotes = r.rep_votes ? r.rep_votes.toLocaleString() : '0';
+				let otherVotes = r.other_votes ? r.other_votes.toLocaleString() : '';
+				let totalVotes = r.total_votes ? r.total_votes.toLocaleString() : '';
+				infoHtml = `
+					<div style='font-size:18px;font-weight:600;margin-bottom:6px;'>📊 Election Results</div>
+					<b>Total Votes:</b> ${totalVotes}<br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🏆 Winner</div>
+					<span style='color:${winnerColor};font-size:18px;font-weight:bold;'>${winnerName} (${winnerAbbr})</span><br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>📈 Margin</div>
+					${marginStr}<br>
+					<hr style='margin:10px 0;'>
+					<div style='font-size:17px;font-weight:600;margin-bottom:4px;'>🗳️ Vote Breakdown</div>
+					<span style='color:#2563eb;font-weight:bold;'>${r.dem_candidate || 'Democrat'} (D)</span> : <b>${demPct.toFixed(2)}%</b> (${demVotes})<br>
+					<span style='color:#cb181d;font-weight:bold;'>${r.rep_candidate || 'Republican'} (R)</span> : <b>${repPct.toFixed(2)}%</b> (${repVotes})<br>
+					${otherVotes ? `<span style='color:#555;font-weight:bold;'>Other</span> : ${otherVotes}<br>` : ''}`;
+			} else {
+				infoHtml = 'No election data found for this county for the selected contest.';
+			}
+			document.getElementById('county-info-content').innerHTML = infoHtml;
+		}
+
+		function applyCategories() {
+			if (!countiesGeojson || !electionData) {
+				updateStatus('Data not loaded.');
+				return;
+			}
+			const contest = document.getElementById('contest').value;
+			if (!contest) {
+				updateStatus('Select a contest first.');
+				return;
+			}
+			const [year, contestKey] = contest.split('|');
+			if (!year || !contestKey || !electionData.results_by_year || !electionData.results_by_year[year] || !electionData.results_by_year[year][contestKey]) {
+				updateStatus('Contest not found in data.');
+				return;
+			}
+			const contestObj = electionData.results_by_year[year][contestKey];
+			if (!contestObj || !contestObj.results) {
+				updateStatus('No county results found for this contest.');
+				return;
+			}
+			const colorMap = {};
+			Object.values(contestObj.results).forEach(r => {
+				const name = (r.county || r.County || r.COUNTY || '').toLowerCase().trim();
+				const demVotes = r.dem_votes || 0;
+				const repVotes = r.rep_votes || 0;
+				const totalVotes = demVotes + repVotes;
+				if (totalVotes === 0) return;
+				const marginPct = ((demVotes - repVotes) / totalVotes) * 100;
+				const winner = marginPct > 0 ? 'D' : 'R';
+				const color = categoryColorForMargin(Math.abs(marginPct), winner);
+				if (name && color) {
+					colorMap[name] = color;
+				}
+			});
+			function categoryColorForMargin(marginPct, winner) {
+				if (marginPct >= 40) {
+					return winner === 'R' ? '#67000d' : '#08306b';
+				} else if (marginPct >= 30) {
+					return winner === 'R' ? '#a50f15' : '#08519c';
+				} else if (marginPct >= 20) {
+					return winner === 'R' ? '#cb181d' : '#3182bd';
+				} else if (marginPct >= 10) {
+					return winner === 'R' ? '#ef3b2c' : '#6baed6';
+				} else if (marginPct >= 5.5) {
+					return winner === 'R' ? '#fb6a4a' : '#9ecae1';
+				} else if (marginPct >= 1) {
+					return winner === 'R' ? '#fcae91' : '#c6dbef';
+				} else if (marginPct >= 0.5) {
+					return winner === 'R' ? '#fee8c8' : '#e1f5fe';
+				} else {
+					return '#f7f7f7';
+				}
+			}
+			const matchExpr = ['match', ['downcase', ['get', 'Label']]];
+			countiesGeojson.features.forEach(f => {
+				const label = (f.properties.Label || f.properties.NAME || f.properties.County || '').toLowerCase().trim();
+				const color = colorMap[label];
+				if (color) {
+					matchExpr.push(label, color);
+				}
+			});
+			matchExpr.push('#888');
+			if (map.getLayer('county-fill')) {
+				if (matchExpr.length < 4) {
+					map.setPaintProperty('county-fill', 'fill-color', '#888');
+				} else {
+					map.setPaintProperty('county-fill', 'fill-color', matchExpr);
+				}
+				map.setPaintProperty('county-fill', 'fill-opacity', 0.38);
+				updateStatus('Political categories applied for ' + contestKey + '.');
+			} else {
+				updateStatus('County layer not found.');
+			}
+			updateStatewideResults();
+		}
+		function updateStatewideResults() {
+			const contestVal = document.getElementById('contest') ? document.getElementById('contest').value : '';
+			const statewideContent = document.getElementById('statewide-content');
+			if (!contestVal || !electionData || !electionData.results_by_year) {
+				if (statewideContent) statewideContent.innerHTML = '<p>Select a contest to see statewide results and margin.</p>';
+				return;
+			}
+			let [year, contestKey] = contestVal.split('|');
+			if (!year || !contestKey || !electionData.results_by_year[year] || !electionData.results_by_year[year][contestKey]) {
+				if (statewideContent) statewideContent.innerHTML = '<p>No statewide data for this contest.</p>';
+				return;
+			}
+			const contestObj = electionData.results_by_year[year][contestKey];
+			if (!contestObj || !contestObj.results) {
+				if (statewideContent) statewideContent.innerHTML = '<p>No statewide data for this contest.</p>';
+				return;
+			}
+			// ...existing logic to display statewide results...
+		}
+
+		// Assign to window after definition
+		window.resetView = resetView;
+		window.toggleLabels = toggleLabels;
+		window.toggleMainControls = toggleMainControls;
+		window.drawAllCountySwingArrows = drawAllCountySwingArrows;
+		window.clearSwingArrows = clearSwingArrows;
+		window.togglePrecinctsLayer = togglePrecinctsLayer;
+		window.showSwingCounties = showSwingCounties;
+		window.zoomToCounty = zoomToCounty;
+		window.applyCategories = applyCategories;
+
+		init();
+	});
+	</script>
+</body>
+</html>

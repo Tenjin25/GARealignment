@@ -1,0 +1,16 @@
+{
+  "2021": {
+    "public_service_commissioner_2021": ["camden", "chattooga", "grady", "greene"],
+    "us_senate_2021": ["camden", "chattooga", "grady", "greene"],
+    "us_senate_special_2021": ["camden", "chattooga", "grady", "greene"]
+  },
+  "2022": {
+    "governor_2022": ["gwinnett"],
+    "lieutenant_governor_2022": ["gwinnett"],
+    "secretary_of_state_2022": ["gwinnett"],
+    "attorney_general_2022": ["gwinnett"],
+    "commissioner_of_agriculture_2022": ["bartow", "carroll", "catoosa", "chattahoochee", "chattooga", "cherokee", "clayton", "coweta", "dade", "dawson", "douglas", "fannin", "fayette", "floyd", "forsyth", "fulton", "gilmer", "gordon", "gwinnett", "haralson", "harris", "heard", "lumpkin", "macon", "marion", "murray", "muscogee", "paulding", "pickens", "polk", "schley", "stewart", "sumter", "talbot", "taylor", "troup", "union", "upson", "walker", "webster", "whitfield", "wilcox"],
+    "commissioner_of_insurance_2022": ["bartow", "carroll", "catoosa", "chattahoochee", "chattooga", "cherokee", "clayton", "coweta", "dade", "dawson", "douglas", "fannin", "fayette", "floyd", "forsyth", "fulton", "gilmer", "gordon", "gwinnett", "haralson", "harris", "heard", "lumpkin", "macon", "marion", "murray", "muscogee", "paulding", "pickens", "polk", "schley", "stewart", "sumter", "talbot", "taylor", "troup", "union", "upson", "walker", "webster", "whitfield", "wilcox"],
+    "commissioner_of_labor_2022": ["bartow", "carroll", "catoosa", "chattahoochee", "chattooga", "cherokee", "clayton", "coweta", "dade", "dawson", "douglas", "fannin", "fayette", "floyd", "forsyth", "fulton", "gilmer", "gordon", "gwinnett", "haralson", "harris", "heard", "lumpkin", "macon", "marion", "murray", "muscogee", "paulding", "pickens", "polk", "schley", "stewart", "sumter", "talbot", "taylor", "troup", "union", "upson", "walker", "webster", "whitfield", "wilcox"]
+  }
+}

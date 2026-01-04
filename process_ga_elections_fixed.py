@@ -116,8 +116,7 @@ def process_files(data_folder, contests=None):
         allowed_offices = [
             'PRESIDENT', 'U.S. SENATE', 'US SENATE', 'ATTORNEY GENERAL', 'GOVERNOR',
             'LIEUTENANT GOVERNOR', 'SECRETARY OF STATE', 'COMMISSIONER OF AGRICULTURE',
-            'COMMISSIONER OF INSURANCE', 'COMMISSIONER OF LABOR', 'STATE SCHOOL SUPERINTENDENT',
-            'PUBLIC SERVICE COMMISSIONER'
+            'COMMISSIONER OF INSURANCE', 'COMMISSIONER OF LABOR', 'STATE SCHOOL SUPERINTENDENT'
         ]
         for contest_name in sorted(df['office'].dropna().unique()):
             contest_mask = df['office'].str.strip() == contest_name.strip()
@@ -160,10 +159,25 @@ def process_files(data_folder, contests=None):
                     if not cand.empty:
                         d[county]['dem_candidate'] = cand.iloc[0].strip()
                 elif party.startswith('REP'):
-                    d[county]['rep_votes'] += votes
-                    cand = df[(df[county_col].str.strip().str.upper() == county) & (df['office'].str.strip() == contest_name_stripped) & (df['party_fixed'] == 'REP')]['candidate']
-                    if not cand.empty:
-                        d[county]['rep_candidate'] = cand.iloc[0].strip()
+                    # Special handling for 2000 US Senate - only count Mack Mattingly, not primary losers
+                    if year == 2000 and 'senate' in contest_name_stripped.lower() and 'candidate' in df.columns:
+                        # Get candidate name for this row
+                        candidate_match = df[(df[county_col].str.strip().str.upper() == county) & 
+                                            (df['office'].str.strip() == contest_name_stripped) & 
+                                            (df['party_fixed'] == 'REP') &
+                                            (df['votes'].astype(int) == votes)]
+                        if not candidate_match.empty:
+                            cand_name = candidate_match['candidate'].iloc[0].strip()
+                            # Only count Mack Mattingly's votes
+                            if 'Mattingly' in cand_name:
+                                d[county]['rep_votes'] += votes
+                                d[county]['rep_candidate'] = cand_name
+                        # Skip Ben Ballenger and Bobby Wood
+                    else:
+                        d[county]['rep_votes'] += votes
+                        cand = df[(df[county_col].str.strip().str.upper() == county) & (df['office'].str.strip() == contest_name_stripped) & (df['party_fixed'] == 'REP')]['candidate']
+                        if not cand.empty:
+                            d[county]['rep_candidate'] = cand.iloc[0].strip()
                 else:
                     d[county]['other_votes'] += votes
                 d[county]['total_votes'] += votes
