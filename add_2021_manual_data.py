@@ -33,15 +33,19 @@ def calculate_competitiveness(margin_pct, winner_party):
     """Calculate competitiveness rating"""
     margin = abs(margin_pct)
     
-    if margin < 5:
-        category = "Toss-up"
-    elif margin < 10:
+    if margin < 0.50:
+        category = "Tossup"
+    elif margin < 1.00:
+        category = "Tilt"
+    elif margin < 5.50:
         category = "Lean"
-    elif margin < 15:
+    elif margin < 10.00:
         category = "Likely"
-    elif margin < 25:
+    elif margin < 20.00:
         category = "Safe"
-    elif margin < 35:
+    elif margin < 30.00:
+        category = "Stronghold"
+    elif margin < 40.00:
         category = "Dominant"
     else:
         category = "Annihilation"
