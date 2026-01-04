@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test School Superintendent</title>
+</head>
+<body>
+    <h1>Testing 2022 Contest Detection</h1>
+    <div id="output"></div>
+    
+    <script>
+        fetch('data/results_by_year_grouped.final.json')
+            .then(r => r.json())
+            .then(data => {
+                const output = document.getElementById('output');
+                const year2022 = data.results_by_year['2022'];
+                
+                output.innerHTML = '<h2>2022 Contests:</h2><ul>';
+                
+                Object.keys(year2022).forEach(contestKey => {
+                    const baseContest = contestKey.replace(/_\d{4}$/, '');
+                    
+                    const labelMap = {
+                        'school_superintendent': 'State School Superintendent',
+                        'us_senate': 'U.S. Senate',
+                        'us_senate_runoff': 'U.S. Senate',
+                        'governor': 'Governor',
+                        'lieutenant_governor': 'Lieutenant Governor',
+                        'attorney_general': 'Attorney General',
+                        'secretary_of_state': 'Secretary of State',
+                        'commissioner_of_agriculture': 'Agriculture Commissioner',
+                        'commissioner_of_insurance': 'Insurance Commissioner',
+                        'commissioner_of_labor': 'Labor Commissioner'
+                    };
+                    
+                    const label = labelMap[baseContest] || baseContest;
+                    const countyCount = Object.keys(year2022[contestKey].results || {}).length;
+                    
+                    output.innerHTML += `<li><strong>${contestKey}</strong> → base: "${baseContest}" → label: "${label}" (${countyCount} counties)</li>`;
+                });
+                
+                output.innerHTML += '</ul>';
+            });
+    </script>
+</body>
+</html>

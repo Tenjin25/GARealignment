@@ -1157,22 +1157,8 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
         const yearObj = electionData.results_by_year[year];
         if (!yearObj) return;
         
-        // Debug 2022 contests
-        if (year === '2022') {
-          console.log('All 2022 contest keys:', Object.keys(yearObj));
-        }
-        
         Object.keys(yearObj).forEach(contestKey => {
           const officeLabel = getOfficeLabel(contestKey);
-          
-          // Debug logging for 2022
-          if (year === '2022' && contestKey.includes('school')) {
-            console.log('2022 School Superintendent Debug:', {
-              contestKey,
-              officeLabel,
-              isInAllowed: allowedOffices.includes(officeLabel)
-            });
-          }
           
           if (!officeLabel || !allowedOffices.includes(officeLabel)) return;
           
@@ -1195,11 +1181,6 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
       allowedOffices.forEach(officeLabel => {
         const contests = groupedByOffice[officeLabel];
         if (!contests || contests.length === 0) return;
-        
-        // Debug logging
-        if (officeLabel === 'State School Superintendent') {
-          console.log('State School Superintendent contests:', contests);
-        }
         
         const optgroup = document.createElement('optgroup');
         optgroup.label = officeLabel;
@@ -2654,6 +2635,7 @@ function toggleSidebar() {
       const officeGroups = [
         { key: 'president', label: 'President' },
         { key: 'us_senate', label: 'U.S. Senate' },
+        { key: 'us_senate_runoff', label: 'U.S. Senate' },
         { key: 'governor', label: 'Governor' },
         { key: 'lieutenant_governor', label: 'Lieutenant Governor' },
         { key: 'secretary_of_state', label: 'Secretary of State' },
@@ -2662,6 +2644,7 @@ function toggleSidebar() {
         { key: 'commissioner_of_insurance', label: 'Insurance Commissioner' },
         { key: 'commissioner_of_labor', label: 'Labor Commissioner' },
         { key: 'state_school_superintendent', label: 'State School Superintendent' },
+        { key: 'school_superintendent', label: 'State School Superintendent' },
         { key: 'public_service_commissioner', label: 'Public Service Commission' }
       ];
       
@@ -2683,13 +2666,15 @@ function toggleSidebar() {
             'united_states_senator': 'us_senate',
             'us_senator': 'us_senate',
             'us_senate_special': 'us_senate',
+            'us_senate_runoff': 'us_senate',
             'lieutenant_governor': 'lieutenant_governor',
             'secretary_of_state': 'secretary_of_state',
             'attorney_general': 'attorney_general',
             'commissioner_of_agriculture': 'commissioner_of_agriculture',
             'commissioner_of_insurance': 'commissioner_of_insurance',
             'commissioner_of_labor': 'commissioner_of_labor',
-            'state_school_superintendent': 'state_school_superintendent',
+            'state_school_superintendent': 'school_superintendent',
+            'school_superintendent': 'school_superintendent',
             'public_service_commissioner': 'public_service_commissioner',
             'public_service_commission': 'public_service_commissioner'
           };
