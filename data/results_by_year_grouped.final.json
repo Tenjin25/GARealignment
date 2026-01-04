@@ -310972,33 +310972,33 @@
           },
           "Catoosa": {
             "dem_candidate": "Valarie D. Wilson",
-            "rep_candidate": null,
+            "rep_candidate": "Richard L. Woods",
             "dem_votes": 6294,
-            "rep_votes": 0,
-            "other_votes": 21268,
+            "rep_votes": 21268,
+            "other_votes": 0,
             "total_votes": 27562,
-            "two_party_total": 6294,
+            "two_party_total": 27562,
             "margin": 14974,
-            "margin_pct": "54.33",
+            "margin_pct": "R+54.33",
             "winner": "LIBERTARIAN",
             "winner_name": "Richard L. Woods",
-            "winner_party": "LIBERTARIAN",
+            "winner_party": "REPUBLICAN",
             "winner_incumbent": false,
             "winner_votes": 21268,
             "competitiveness": {
               "category": "Annihilation",
-              "party": "DEMOCRAT",
-              "code": "DEMOCRAT_ANNIHILATION",
-              "color": "#08306b"
+              "party": "REPUBLICAN",
+              "code": "REPUBLICAN_ANNIHILATION",
+              "color": "#67000d"
             },
             "all_parties": {
-              "LIBERTARIAN": 21268,
+              "REPUBLICAN": 21268,
               "DEMOCRAT": 6294
             },
             "candidates": {
               "RICHARD L. WOODS": {
                 "votes": 21268,
-                "party": "LIBERTARIAN",
+                "party": "REPUBLICAN",
                 "incumbent": false
               },
               "VALARIE D. WILSON": {
@@ -311381,10 +311381,10 @@
             "year": "2014"
           },
           "Cobb": {
-            "dem_candidate": null,
-            "rep_candidate": "Valarie D. Wilson D)",
-            "dem_votes": 0,
-            "rep_votes": 416740,
+            "dem_candidate": "Valarie D. Wilson",
+            "rep_candidate": "Richard L. Woods",
+            "dem_votes": 174276,
+            "rep_votes": 242464,
             "other_votes": 0,
             "total_votes": 416740,
             "two_party_total": 416740,
@@ -311402,7 +311402,8 @@
               "color": "#ef3b2c"
             },
             "all_parties": {
-              "REPUBLICAN": 416740
+              "REPUBLICAN": 242464,
+              "DEMOCRAT": 174276
             },
             "candidates": {
               "RICHARD L. WOODS": {
@@ -311410,9 +311411,9 @@
                 "party": "REPUBLICAN",
                 "incumbent": false
               },
-              "VALARIE D. WILSON D": {
+              "VALARIE D. WILSON": {
                 "votes": 174276,
-                "party": "REPUBLICAN",
+                "party": "DEMOCRAT",
                 "incumbent": false
               }
             },
