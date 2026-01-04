@@ -19,7 +19,7 @@ with open(output_path, 'r', encoding='utf-8') as f:
 
 # Office mappings to match the existing format
 office_mapping = {
-    'U.S. Senate': 'senate_2022',
+    'U.S. Senate': 'us_senate_2022',
     'Governor': 'governor_2022',
     'Lieutenant Governor': 'lieutenant_governor_2022',
     'Secretary of State': 'secretary_of_state_2022',
@@ -32,8 +32,8 @@ office_mapping = {
 
 # Contest name mappings
 contest_names = {
-    'senate_2022': 'U.S. Senate',
-    'senate_runoff_2022': 'U.S. Senate Runoff',
+    'us_senate_2022': 'U.S. Senate',
+    'us_senate_runoff_2022': 'U.S. Senate Runoff',
     'governor_2022': 'Governor',
     'lieutenant_governor_2022': 'Lieutenant Governor',
     'secretary_of_state_2022': 'Secretary of State',
@@ -254,7 +254,7 @@ print("\nProcessing 2022 Senate runoff...")
 
 if '2022_runoff' in aggregated['results']:
     runoff_data = aggregated['results']['2022_runoff']
-    contest_key = 'senate_runoff_2022'
+    contest_key = 'us_senate_runoff_2022'
     
     # Initialize contest
     results['results_by_year']['2022'][contest_key] = {'results': {}}
