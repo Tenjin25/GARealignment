@@ -502,7 +502,7 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 - **GA 2020**: Biden +0.2% (briefly flipped blue)
 
 **Why the Difference?**:
-- **North Carolina**: Distributed metros + stable Black Belt + smaller exurbs = **Steady Tilt Republican**
+- **North Carolina**: Distributed metros + stable Black Belt + smaller exurbs = **Steady Lean Republican**
 - **Georgia**: Concentrated Atlanta + collapsing Black Belt + massive exurbs = **High Volatility Battleground**
 
 Georgia's winner depends on Atlanta turnout vs. exurban/rural turnout in any given cycle. North Carolina's multiple metros create more consistent, predictable outcomes. Both are competitive, but Georgia is more capable of dramatic swings based on which base mobilizes better.
