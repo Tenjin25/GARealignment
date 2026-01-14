@@ -13,13 +13,13 @@ An interactive web application visualizing Georgia county-level election results
 ### Data Analysis
 - **Competitiveness Categories**: 
   - Annihilation (40%+)
-  - Dominant (30-39.99%)
-  - Stronghold (20-29.99%)
-  - Safe (10-19.99%)
-  - Likely (5.5-9.99%)
-  - Lean (1-5.5%)
-  - Tilt (0.5-0.99%)
-  - Tossup (<0.5%)
+  - Dominant (30.00-39.99%)
+  - Stronghold (20.00-29.99%)
+  - Safe (10.00-19.99%)
+  - Likely (5.50-9.99%)
+  - Lean (1.00-5.49%)
+  - Tilt (0.50-0.99%)
+  - Tossup (<0.50%)
 - **County-Level Metrics**: Two-party vote shares, margins, total votes, candidate names
 - **Statewide Aggregations**: Automatic calculation of state-level results from county data
 - **Historical Comparisons**: Track county realignments across election cycles
@@ -279,13 +279,13 @@ Metro Atlanta's 11-county region now comprises **~60% of Georgia's population** 
 - Statewide: Biden won by 0.24% (D+12,670 votes)
 - Metro Atlanta Democratic margins exceeded rural Republican advantages
 - Fulton + DeKalb + Gwinnett alone: **+324,000 net Democratic votes**
-- Georgia: **Toss-up**
+- Georgia: **Toss-up (Democratic Win)**
 
 **2024 Presidential Results**:
-- Statewide: Trump won by 2.23% (R+116,904 votes)
+- Statewide: Trump won by 2.20% (R+116,904 votes)
 - Metro Atlanta's blue margins nearly offset statewide result
 - Fulton + DeKalb + Gwinnett: **+308,000 net Democratic votes**
-- Georgia: **Tilt Republican** (but still competitive)
+- Georgia: **Lean Republican** (but still competitive)
 
 **The Realignment Equation**:
 - Rural Georgia moved **R+10-15 points** more Republican (2000-2024)
@@ -372,7 +372,7 @@ These mid-sized cities produce Democratic margins, but **nowhere near Metro Atla
 
 #### 4. The Math: Why Georgia Stays Competitive
 
-**2024 Presidential Results (Trump +2.23% statewide)**:
+**2024 Presidential Results (Trump +2.20% statewide)**:
 
 Metro Atlanta delivered **~300,000 net Democratic votes**:
 - Fulton: +240,093 D
@@ -432,8 +432,8 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 **1. Metro Concentration Disparity**:
 - **North Carolina**: Multiple major metros provide balance
   - Charlotte metro: ~28% of state population
-  - Raleigh-Durham-Chapel Hill (Triangle): ~20% of state population  
-  - Greensboro-Winston-Salem (Triad): ~15% of state population
+  - Raleigh-Durham-Chapel Hill (Research Triangle): ~20% of state population  
+  - Greensboro-Winston-Salem (Piedmont Triad): ~15% of state population
   - **Total metro power**: ~63% spread across 3 regions
   
 - **Georgia**: Single dominant metro
@@ -471,7 +471,7 @@ Georgia and North Carolina are neighboring Sunbelt states undergoing remarkably 
 **4. College-Town Anchors**:
 - **North Carolina**: Strong university town Democratic bastions
   - Chapel Hill (UNC): D+60%+, providing durable blue anchor
-  - Durham (Duke): D+55%+, stable Democratic fortress
+  - Durham (Duke, NC Central): D+55%+, stable Democratic fortress
   - Boone (App State), Greenville (ECU): Smaller but reliable blue pockets
   
 - **Georgia**: Weaker college-town effect
