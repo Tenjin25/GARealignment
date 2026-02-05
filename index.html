@@ -67,6 +67,35 @@
     .spinner svg circle {
       animation: spinner-rotate 0.8s linear infinite;
     }
+    .custom-label-toggle {
+      background: linear-gradient(90deg, #f3f4f6 0%, #e0e7ff 100%);
+      border: 1.5px solid #2563eb;
+      color: #222;
+      font-weight: 600;
+      font-size: 15px;
+      border-radius: 7px;
+      padding: 7px 18px 7px 14px;
+      margin-left: 10px;
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(37,99,235,0.07);
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .custom-label-toggle:hover {
+      background: linear-gradient(90deg, #e0e7ff 0%, #c7d2fe 100%);
+      box-shadow: 0 4px 16px rgba(37,99,235,0.13);
+      color: #1d4ed8;
+    }
+    .custom-label-toggle .label-icon {
+      font-size: 18px;
+      margin-right: 2px;
+    }
+    .custom-label-toggle .label-text {
+      font-size: 15px;
+      font-weight: 600;
+    }
   </style>
   <script>
   // For Georgia, candidate names are already in the election data
@@ -75,7 +104,34 @@
     // This function is kept for compatibility but just returns the party name
     return party;
   }
-  </script>
+    </script>
+    <script>
+    // County label toggle logic
+    document.addEventListener('DOMContentLoaded', function() {
+      const btn = document.getElementById('toggleLabelsBtn');
+      if (!btn || !window.map) return;
+      let labelsVisible = true;
+      btn.addEventListener('click', function() {
+        if (!window.map.getLayer || !window.map.getLayer('county-label')) return;
+        labelsVisible = !labelsVisible;
+        window.map.setLayoutProperty('county-label', 'visibility', labelsVisible ? 'visible' : 'none');
+        const labelText = btn.querySelector('.label-text');
+        if (labelText) labelText.textContent = labelsVisible ? 'Hide County Labels' : 'Show County Labels';
+      });
+      // Ensure button reflects current state on map load
+      if (window.map.isStyleLoaded && window.map.isStyleLoaded()) {
+        const labelText = btn.querySelector('.label-text');
+        if (labelText) labelText.textContent = 'Hide County Labels';
+        window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+      } else {
+        window.map.on('load', function() {
+          const labelText = btn.querySelector('.label-text');
+          if (labelText) labelText.textContent = 'Hide County Labels';
+          window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+        });
+      }
+    });
+    </script>
   <script
         // Debug: log keys and values of the first result object
       if (results) {
@@ -1029,7 +1085,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <select id="contestSelect">
                     <option value="">Select a Contest...</option>
                 </select>
-                  <button id="toggleLabelsBtn" style="background:none;border:none;color:#2563eb;font-weight:600;font-size:14px;cursor:pointer;margin-left:10px;padding:0;">Hide County Labels</button>
+                  <button id="toggleLabelsBtn" class="custom-label-toggle"><span class="label-icon" aria-hidden="true">🏷️</span> <span class="label-text">Hide County Labels</span></button>
             </div>
         </div>
     </div>
