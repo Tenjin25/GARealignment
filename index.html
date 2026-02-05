@@ -3457,7 +3457,7 @@ function setupCountySearch() {
           return `\n          <div style="padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6;\" `
                + `onmouseover="this.style.backgroundColor='##f3f4f6'\" `
                + `onmouseout="this.style.backgroundColor='white'\" `
-               + `onclick="selectCounty('${safe}')">${county}</div>`;
+               + `onclick="selectCounty('${safe}')\">${county}</div>`;
         }).join('');
         dropdown.style.display = 'block';
       } else {
