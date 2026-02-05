@@ -1078,7 +1078,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     mapboxgl.accessToken = CONFIG.mapboxToken;
 
-    const map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v12', center: CONFIG.center, zoom: CONFIG.zoom });
+    window.map = new mapboxgl.Map({ container: 'map', style: 'mapbox://styles/mapbox/streets-v12', center: CONFIG.center, zoom: CONFIG.zoom });
 
   window.countiesGeojson = null;
     let electionData = null;
