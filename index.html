@@ -1029,7 +1029,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <select id="contestSelect">
                     <option value="">Select a Contest...</option>
                 </select>
-                  <button id="toggleLabelsBtn" style="margin-left:8px;vertical-align:middle;">Hide County Labels</button>
+                  <button id="toggleLabelsBtn" style="background:none;border:none;color:#2563eb;font-weight:600;font-size:14px;cursor:pointer;margin-left:10px;padding:0;">Hide County Labels</button>
             </div>
         </div>
     </div>
@@ -1114,7 +1114,7 @@ function mergeGeoElectionData(boundaryGeoJSON, electionData, countyKey='County',
   });
   boundaryGeoJSON.features.forEach(f => {
     const p = f.properties || {};
-    let name = normalizeCountyName(p[countyKey] || p.COUNTYNAME || p.NAME || p.County || p.name || '');
+    let name = normalizeCountyName(p[countyKey] || p.COUNTYNAME || p.NAME || p.County || p.name || p.NAMELSAD || '');
     const electionRow = electionMap[name];
     if (electionRow) {
       Object.assign(f.properties, electionRow);
@@ -3454,10 +3454,10 @@ function setupCountySearch() {
         dropdown.innerHTML = matches.map(county => {
           // Escape single quotes to safely embed in an inline onclick attribute
           const safe = county.replace(/'/g, "\\'");
-          return `\n          <div style=\"padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6;\" `
-               + `onmouseover=\"this.style.backgroundColor='##f3f4f6'\" `
-               + `onmouseout=\"this.style.backgroundColor='white'\" `
-               + `onclick=\"selectCounty('${safe}')\">${county}</div>`;
+          return `\n          <div style="padding: 8px 12px; cursor: pointer; border-bottom: 1px solid #f3f4f6;\" `
+               + `onmouseover="this.style.backgroundColor='##f3f4f6'\" `
+               + `onmouseout="this.style.backgroundColor='white'\" `
+               + `onclick="selectCounty('${safe}')">${county}</div>`;
         }).join('');
         dropdown.style.display = 'block';
       } else {
