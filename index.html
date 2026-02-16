@@ -7,7 +7,6 @@
     }
   /* Force inline color for competitiveness label in sidebar, override all sidebar and p rules */
   /* Ensure inline color for competitiveness label is always respected */
-  @media (max-width: 700px) {
     #sidebar-minimize-btn,
     #main-controls .controls-header #controls-minimize-btn,
     #legend-minimize-btn {
@@ -216,7 +215,6 @@
       gap: 8px;
       margin-bottom: 8px;
     }
-  }
   </style>
   <script>
   // For Georgia, candidate names are already in the election data
@@ -476,13 +474,13 @@ body {
   background: #2563eb;
   border: 1px solid #1d4ed8;
   border-radius: 6px;
-  width: 30px;
-  height: 30px;
+  width: 36px;
+  height: 36px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 18px;
+  font-size: 20px;
   font-weight: bold;
   color: white;
   transition: all 0.2s ease;
@@ -727,8 +725,6 @@ body {
 
 /* Statewide Results */
 .statewide-results {
-  border-top: 1px solid #e5e7eb;
-  padding-top: 20px;
   margin-bottom: 20px;
 }
 .statewide-results h4 {
@@ -1198,9 +1194,6 @@ document.addEventListener('DOMContentLoaded', function() {
             </div>
         </div>
         <div class="controls-content" id="controls-content">
-            <div class="analysis-mode">
-                <!-- Removed County Results from dropdown -->
-            </div>
             <div class="control-group">
                 <div class="contest-type-header" style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">
                   <label>📊 Contest Type:</label>
@@ -3800,3 +3793,4 @@ map.on('styledata', function() {
 </script>
 </body>
 </html>
+
