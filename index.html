@@ -1887,24 +1887,16 @@ function toggleSidebar() {
   if (sidebar.classList.contains('minimized')) {
     // Expand sidebar
     sidebar.classList.remove('minimized');
-    sidebarContent.style.display = 'block';
+    if (sidebarContent) sidebarContent.style.display = '';
     minimizeBtn.textContent = '−';
     minimizeBtn.title = 'Minimize sidebar';
   } else {
     // Minimize sidebar
     sidebar.classList.add('minimized');
-    sidebarContent.style.display = 'none';
+    if (sidebarContent) sidebarContent.style.display = '';
     minimizeBtn.textContent = '+';
     minimizeBtn.title = 'Expand sidebar';
-    // Reload data when sidebar is minimized
-    try {
-      if (typeof init === 'function') {
-        init();
-      }
-    } catch (e) {
-      console.error('Error reloading data on sidebar minimize:', e);
-    }
-  }
+}
 }
 
     function showCountyDetails(countyName) {
@@ -1915,6 +1907,8 @@ function toggleSidebar() {
       if (!contentEl || !detailsDiv) return;
       if (sidebar) {
         sidebar.classList.remove('minimized');
+        const sc = document.querySelector('.sidebar-content');
+        if (sc) sc.style.display = '';
         const btn = document.getElementById('sidebar-minimize-btn');
         if (btn) btn.textContent = '−';
       }
@@ -2236,7 +2230,9 @@ function toggleSidebar() {
               const sidebar = document.getElementById('sidebar');
               if (sidebar && sidebar.classList.contains('minimized')) {
                 sidebar.classList.remove('minimized');
-                const btn = document.getElementById('sidebar-minimize-btn');
+        const sc = document.querySelector('.sidebar-content');
+        if (sc) sc.style.display = '';
+        const btn = document.getElementById('sidebar-minimize-btn');
                 if (btn) btn.textContent = '−';
               }
             }
@@ -3794,4 +3790,6 @@ map.on('styledata', function() {
 </script>
 </body>
 </html>
+
+
 
