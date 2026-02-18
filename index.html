@@ -901,23 +901,23 @@ document.addEventListener('DOMContentLoaded', function() {
           const year = contestKey.substring(lastUnderscoreIndex + 1);
           const contestData = electionData.filter(row => row.year == year);
           function cbColorForMargin(marginPct, winner) {
-            // Accessibility palette: orange for R, blue for D, with shades
+            // Main map legend color palette
             if (marginPct >= 40) {
-              return winner === 'R' ? '#ff9900' : '#0074d9'; // Annihilation
+              return winner === 'R' ? '#67000d' : '#08306b'; // Annihilation
             } else if (marginPct >= 30) {
-              return winner === 'R' ? '#ffb84d' : '#339af0'; // Dominant
+              return winner === 'R' ? '#a50f15' : '#08519c'; // Dominant
             } else if (marginPct >= 20) {
-              return winner === 'R' ? '#ffd699' : '#5dade2'; // Stronghold
+              return winner === 'R' ? '#cb181d' : '#3182bd'; // Stronghold
             } else if (marginPct >= 10) {
-              return winner === 'R' ? '#ffe5cc' : '#74c0fc'; // Safe
+              return winner === 'R' ? '#ef3b2c' : '#6baed6'; // Safe
             } else if (marginPct >= 5.5) {
-              return winner === 'R' ? '#fff2e6' : '#a5d8ff'; // Likely
+              return winner === 'R' ? '#fb6a4a' : '#9ecae1'; // Likely
             } else if (marginPct >= 1) {
-              return winner === 'R' ? '#ffe5cc' : '#d0ebff'; // Lean
+              return winner === 'R' ? '#fcae91' : '#c6dbef'; // Lean
             } else if (marginPct >= 0.5) {
-              return winner === 'R' ? '#fff2e6' : '#e7f5ff'; // Tilt
+              return winner === 'R' ? '#fee8c8' : '#e1f5fe'; // Tilt
             } else {
-              return '#cccccc'; // Tossup
+              return '#f7f7f7'; // Tossup
             }
           }
           contestData.forEach(row => {
@@ -1276,7 +1276,7 @@ document.addEventListener('DOMContentLoaded', function() {
       mapboxToken: 'pk.eyJ1Ijoic2hhbWFyZGF2aXMiLCJhIjoiY21kcW8yeDB2MDhvbTJzb29qeGp1aDZmZCJ9.Zw_i6U-dL7_bEKRHTUh7yg',
       paths: {
         counties: './tl_2020_13_county20.geojson', // Georgia 2020 county GeoJSON
-  election: './data/results_by_year_grouped.final_recalc.json'
+  election: './data/results_by_year_grouped.final.json'
       },
       center: [-83.5, 32.7], // Georgia center
       zoom: 7,
@@ -3797,7 +3797,6 @@ map.on('styledata', function() {
 </script>
 </body>
 </html>
-
 
 
 
