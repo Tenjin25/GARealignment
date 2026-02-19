@@ -249,28 +249,32 @@
       if (window.map.isStyleLoaded && window.map.isStyleLoaded()) {
         const labelText = btn.querySelector('.label-text');
         if (labelText) labelText.textContent = 'Hide County Labels';
-        window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+        if (window.map.getLayer('county-label')) {
+          window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+        }
       } else {
         window.map.on('load', function() {
           const labelText = btn.querySelector('.label-text');
           if (labelText) labelText.textContent = 'Hide County Labels';
-          window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+          if (window.map.getLayer('county-label')) {
+            window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+          }
         });
       }
     });
     </script>
   <script>
         // Debug: log keys and values of the first result object
-      if (results) {
-        const first = Object.values(results)[0];
+      if (window.results) {
+        const first = Object.values(window.results)[0];
         if (first) {
           console.log('First county result object keys:', Object.keys(first));
           console.log('First county result object:', first);
         }
       }
       // Debug: log first 3 county result objects to inspect available properties
-      if (results) {
-        const firstThree = Object.values(results).slice(0, 3);
+      if (window.results) {
+        const firstThree = Object.values(window.results).slice(0, 3);
         console.log('First 3 county result objects:', firstThree);
       }
 </script><script>
