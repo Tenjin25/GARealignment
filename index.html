@@ -3289,20 +3289,6 @@ function toggleSidebar() {
               // Prefer JSON-provided competitiveness color if present
               if (r.competitiveness && r.competitiveness.color) {
                 colorMap[normName] = r.competitiveness.color;
-                if (normName === 'paulding') {
-                  window.__pauldingDebug = window.__pauldingDebug || {};
-                  const debugKey = `${currentContest.year}|${currentContest.contestType}|paulding`;
-                  if (!window.__pauldingDebug[debugKey]) {
-                    console.log('Paulding debug (competitiveness color):', {
-                      contestType: currentContest.contestType,
-                      year: currentContest.year,
-                      margin_pct: r.margin_pct,
-                      competitiveness: r.competitiveness,
-                      color: r.competitiveness.color
-                    });
-                    window.__pauldingDebug[debugKey] = true;
-                  }
-                }
                 return;
               }
               const d = r.dem_votes || r.Democratic || r.dem || r.democrat || r.DEMOCRAT || 0;
@@ -3313,23 +3299,6 @@ function toggleSidebar() {
               const margin = ((d - rep) / total) * 100;
               const color = getCategoryColor(margin);
               colorMap[normName] = color;
-              if (normName === 'paulding') {
-                window.__pauldingDebug = window.__pauldingDebug || {};
-                const debugKey = `${currentContest.year}|${currentContest.contestType}|paulding`;
-                if (!window.__pauldingDebug[debugKey]) {
-                  console.log('Paulding debug (computed color):', {
-                    contestType: currentContest.contestType,
-                    year: currentContest.year,
-                    total_votes: total,
-                    dem_votes: d,
-                    rep_votes: rep,
-                    margin_pct: r.margin_pct,
-                    computed_margin: margin,
-                    color
-                  });
-                  window.__pauldingDebug[debugKey] = true;
-                }
-              }
             });
           }
           // Build a match expression for Mapbox using NAME20 (uppercased)
