@@ -901,23 +901,23 @@ document.addEventListener('DOMContentLoaded', function() {
           const year = contestKey.substring(lastUnderscoreIndex + 1);
           const contestData = electionData.filter(row => row.year == year);
           function cbColorForMargin(marginPct, winner) {
-            // Main map legend color palette
+            // Accessibility palette: orange for R, blue for D, with shades
             if (marginPct >= 40) {
-              return winner === 'R' ? '#67000d' : '#08306b'; // Annihilation
+              return winner === 'R' ? '#ff9900' : '#0074d9'; // Annihilation
             } else if (marginPct >= 30) {
-              return winner === 'R' ? '#a50f15' : '#08519c'; // Dominant
+              return winner === 'R' ? '#ffb84d' : '#339af0'; // Dominant
             } else if (marginPct >= 20) {
-              return winner === 'R' ? '#cb181d' : '#3182bd'; // Stronghold
+              return winner === 'R' ? '#ffd699' : '#5dade2'; // Stronghold
             } else if (marginPct >= 10) {
-              return winner === 'R' ? '#ef3b2c' : '#6baed6'; // Safe
+              return winner === 'R' ? '#ffe5cc' : '#74c0fc'; // Safe
             } else if (marginPct >= 5.5) {
-              return winner === 'R' ? '#fb6a4a' : '#9ecae1'; // Likely
+              return winner === 'R' ? '#fff2e6' : '#a5d8ff'; // Likely
             } else if (marginPct >= 1) {
-              return winner === 'R' ? '#fcae91' : '#c6dbef'; // Lean
+              return winner === 'R' ? '#ffe5cc' : '#d0ebff'; // Lean
             } else if (marginPct >= 0.5) {
-              return winner === 'R' ? '#fee8c8' : '#e1f5fe'; // Tilt
+              return winner === 'R' ? '#fff2e6' : '#e7f5ff'; // Tilt
             } else {
-              return '#f7f7f7'; // Tossup
+              return '#cccccc'; // Tossup
             }
           }
           contestData.forEach(row => {
@@ -2021,13 +2021,40 @@ function toggleSidebar() {
         else if (winner === 'Republican') countyCompLabel = 'Tossup (Republican Win)';
       }
       // Accessibility palette for winner color (Georgia bins)
+      function cbColorForMargin(marginPct, winner) {
+        if (marginPct >= 40) {
+          return winner === 'Republican' ? '#67000d' : '#08306b';
+        } else if (marginPct >= 30) {
+          return winner === 'Republican' ? '#a50f15' : '#08519c';
+        } else if (marginPct >= 20) {
+          return winner === 'Republican' ? '#cb181d' : '#3182bd';
+        } else if (marginPct >= 10) {
+          return winner === 'Republican' ? '#ef3b2c' : '#6baed6';
+        } else if (marginPct >= 5.5) {
+          return winner === 'Republican' ? '#fb6a4a' : '#9ecae1';
+        } else if (marginPct >= 1) {
+          return winner === 'Republican' ? '#fcae91' : '#c6dbef';
+        } else if (marginPct >= 0.5) {
+          return winner === 'Republican' ? '#fee8c8' : '#e1f5fe';
+        } else {
+          return '#f7f7f7';
+        }
+      }
       const isColorblind = document.body.classList.contains('colorblind-mode');
       let winnerColor = '#dc2626';
-      let winnerLetter = (winner === 'Republican' || winner === 'R') ? 'R' : 'D';
-      if (isColorblind) {
-        winnerColor = cbColorForMargin(parseFloat(marginPct), winnerLetter);
+      if (winner === 'Republican') {
+        if (isColorblind) {
+          if (parseFloat(marginPct) >= 40) winnerColor = '#ff9900';
+          else if (parseFloat(marginPct) >= 30) winnerColor = '#ffb84d';
+          else if (parseFloat(marginPct) >= 20) winnerColor = '#ffd699';
+          else if (parseFloat(marginPct) >= 10) winnerColor = '#ffe5cc';
+          else if (parseFloat(marginPct) >= 5.5) winnerColor = '#fff2e6';
+          else if (parseFloat(marginPct) >= 1) winnerColor = '#ffe5cc';
+          else if (parseFloat(marginPct) >= 0.5) winnerColor = '#fff2e6';
+          else winnerColor = '#cccccc';
+        }
       } else {
-        winnerColor = winnerLetter === 'R' ? '#dc2626' : '#2563eb';
+        winnerColor = isColorblind ? cbColorForMargin(parseFloat(marginPct), 'D') : '#2563eb';
       }
       let precincts = '';
       if (countyData.precincts || countyData.Precincts || countyData.PRECINCTS) {
@@ -2050,19 +2077,15 @@ function toggleSidebar() {
       sidebarContent += `<div class="margin-section">`;
       sidebarContent += '<h3 class="sidebar-section-title">📈 Margin</h3>';
       let marginColor = winnerColor;
-      if (isColorblind) {
-        marginColor = cbColorForMargin(parseFloat(marginPct), winnerLetter);
-      } else {
-        marginColor = winnerLetter === 'R' ? '#dc2626' : '#2563eb';
+      if (winner !== 'Republican') {
+        marginColor = isColorblind ? cbColorForMargin(parseFloat(marginPct), 'D') : '#2563eb';
       }
-      // Use partyLetter already declared above
       sidebarContent += `<p class="sidebar-margin" style="color: ${marginColor}; font-weight: bold;">${winner === 'Republican' ? 'R+' : 'D+'}${marginPct.toFixed(2)}%</p>`;
       sidebarContent += `<p class="sidebar-margin-details" style="color: #6b7280;">(${Math.abs(margin).toLocaleString()} vote margin)</p>`;
       sidebarContent += `</div>`;
       sidebarContent += `<div class="vote-breakdown">`;
       sidebarContent += '<h3 class="sidebar-section-title">🗳️ Vote Breakdown</h3>';
-      // Only declare repColor and demColor once
-      let repColor = isColorblind ? cbColorForMargin(parseFloat(marginPct), 'R') : '#ef3b2c';
+      let repColor = isColorblind ? '#ff9900' : '#ef3b2c';
       let demColor = isColorblind ? cbColorForMargin(parseFloat(marginPct), 'D') : '#2563eb';
       sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${demColor}; font-weight: bold;">${demCandidate} (D)</span> : ${demPct.toFixed(2)}% (${demVotes.toLocaleString()})</p>`;
       sidebarContent += `<p class="sidebar-breakdown"><span style="color: ${repColor}; font-weight: bold;">${repCandidate} (R)</span> : ${repPct.toFixed(2)}% (${repVotes.toLocaleString()})</p>`;
