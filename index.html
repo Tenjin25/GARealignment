@@ -1228,12 +1228,16 @@ document.addEventListener('DOMContentLoaded', function() {
                   if (window.map.isStyleLoaded && window.map.isStyleLoaded()) {
                     btn.style.opacity = '1';
                     btn.title = 'Hide County Labels';
-                    window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+                    if (window.map.getLayer && window.map.getLayer('county-label')) {
+                      window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+                    }
                   } else {
                     window.map.on('load', function() {
                       btn.style.opacity = '1';
                       btn.title = 'Hide County Labels';
-                      window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+                      if (window.map.getLayer && window.map.getLayer('county-label')) {
+                        window.map.setLayoutProperty('county-label', 'visibility', 'visible');
+                      }
                     });
                   }
                 });
@@ -3276,17 +3280,56 @@ function toggleSidebar() {
               console.log('Election results NOT loaded');
             }
           // Debug: print all normalized county names from GeoJSON
-          // Build a margin map keyed by normalized county name
-          const marginMap = {};
+          // Build a color map keyed by normalized county name
+          const colorMap = {};
           if (results) {
             Object.entries(results).forEach(([countyName, r]) => {
               const normName = normalizeCountyName(countyName);
+              if (!normName) return;
+              // Prefer JSON-provided competitiveness color if present
+              if (r.competitiveness && r.competitiveness.color) {
+                colorMap[normName] = r.competitiveness.color;
+                if (normName === 'paulding') {
+                  window.__pauldingDebug = window.__pauldingDebug || {};
+                  const debugKey = `${currentContest.year}|${currentContest.contestType}|paulding`;
+                  if (!window.__pauldingDebug[debugKey]) {
+                    console.log('Paulding debug (competitiveness color):', {
+                      contestType: currentContest.contestType,
+                      year: currentContest.year,
+                      margin_pct: r.margin_pct,
+                      competitiveness: r.competitiveness,
+                      color: r.competitiveness.color
+                    });
+                    window.__pauldingDebug[debugKey] = true;
+                  }
+                }
+                return;
+              }
               const d = r.dem_votes || r.Democratic || r.dem || r.democrat || r.DEMOCRAT || 0;
               const rep = r.rep_votes || r.Republican || r.rep || r.republican || r.REPUBLICAN || 0;
-              const total = r.two_party_total || r.total_votes || r.Total || r.TOTAL || (d + rep);
-              if (!normName || !total) return;
-              const margin = total ? ((d - rep) / total) * 100 : 0;
-              marginMap[normName] = margin;
+              // Use total_votes first to align with recalculated margin_pct
+              const total = r.total_votes || r.two_party_total || r.Total || r.TOTAL || (d + rep);
+              if (!total) return;
+              const margin = ((d - rep) / total) * 100;
+              const color = getCategoryColor(margin);
+              colorMap[normName] = color;
+              if (normName === 'paulding') {
+                window.__pauldingDebug = window.__pauldingDebug || {};
+                const debugKey = `${currentContest.year}|${currentContest.contestType}|paulding`;
+                if (!window.__pauldingDebug[debugKey]) {
+                  console.log('Paulding debug (computed color):', {
+                    contestType: currentContest.contestType,
+                    year: currentContest.year,
+                    total_votes: total,
+                    dem_votes: d,
+                    rep_votes: rep,
+                    margin_pct: r.margin_pct,
+                    computed_margin: margin,
+                    color
+                  });
+                  window.__pauldingDebug[debugKey] = true;
+                }
+              }
             });
           }
           // Build a match expression for Mapbox using NAME20 (uppercased)
@@ -3298,9 +3341,9 @@ function toggleSidebar() {
               const rawName = f.properties.NAME20 || f.properties.NAME || f.properties.COUNTYNAME || f.properties.County || f.properties.county_name || '';
               const normName = normalizeCountyName(rawName);
               geojsonNames.push(normName);
-              const margin = marginMap[normName];
-              if (typeof margin === 'number') {
-                matchExpr.push(rawName.toUpperCase(), getCategoryColor(margin));
+              const color = colorMap[normName];
+              if (color) {
+                matchExpr.push(rawName.toUpperCase(), color);
               } else {
                 unmatchedCounties.push(rawName);
               }
@@ -3308,7 +3351,7 @@ function toggleSidebar() {
           }
           // Log all normalized names from GeoJSON and marginMap
           console.log('GeoJSON normalized county names:', geojsonNames);
-          console.log('MarginMap county names:', Object.keys(marginMap));
+          console.log('ColorMap county names:', Object.keys(colorMap));
           if (unmatchedCounties.length > 0) {
             console.warn('Unmatched counties (not colored):', unmatchedCounties);
           }
